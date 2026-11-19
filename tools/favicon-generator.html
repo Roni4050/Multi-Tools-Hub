@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favicon & PWA App Icon Generator - Package ZIP Builder | MultiTools Hub</title>
+  <meta name="description" content="Free Favicon and PWA App Icon Generator. Convert any image or logo into 16x16, 32x32, 48x48, 180x180 Apple Touch, 192x192, and 512x512 PWA icons with site.webmanifest and 1-click ZIP download.">
+  <link rel="canonical" href="https://multitools-hub.web.app/tools/favicon-generator.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multitools-hub.web.app/tools/favicon-generator.html">
+  <meta property="og:title" content="Favicon & PWA App Icon Generator - MultiTools Hub">
+  <meta property="og:description" content="Generate 16x16, 32x32, Apple Touch, Android PWA icons, and site.webmanifest in a single ZIP. 100% private.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: {} } }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- JSZip (Local with CDN fallback) -->
+  <script src="../assets/js/vendor/jszip.min.js"></script>
+  <script>window.JSZip || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"><\/script>')</script>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Favicon & PWA App Icon Generator",
+        "url": "https://multitools-hub.web.app/tools/favicon-generator.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Convert logo images into all modern web favicon and progressive web app (PWA) icon sizes, ready-to-use site.webmanifest, and HTML head tags with ZIP packaging.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What image sizes are required for modern web and mobile browsers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Modern browsers and search engines (like Google) require 16x16 and 32x32 pixels for desktop browser tabs, 180x180 pixels for iOS Apple Touch home screen shortcuts, and 192x192 and 512x512 pixels for Android, Google Chrome, and Progressive Web App (PWA) install prompts."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is a site.webmanifest file and why is it needed?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A site.webmanifest is a JSON file that provides your website metadata to mobile operating systems (Android, ChromeOS, iOS), specifying how your web app should look when saved to the user's home screen, including your app name, theme color, and high-resolution icon references."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I upload a square PNG with transparent background?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Uploading a high-resolution 512x512 PNG with a transparent background produces the cleanest results across both dark and light browser themes."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent hidden sm:inline">MultiTools Hub</span>
+        </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="favicon-generator.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">Favicon Generator</a>
+        <a href="image-converter.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Image Converter</a>
+        <a href="bulk-image-resizer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Bulk Resizer</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+        <a href="../about.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">About</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="window.toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="Toggle Dark/Light Mode">
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+        <a href="../index.html" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="All Tools">
+          <i data-lucide="layout-grid" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Title & Breadcrumb -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800/80 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-slate-500 mb-3">
+        <a href="../index.html" class="hover:text-indigo-600 transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-slate-400">Image &amp; Vector</span>
+        <span>/</span>
+        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Favicon &amp; PWA Icon Generator</span>
+      </nav>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Favicon &amp; PWA App Icon Generator
+          </h1>
+          <p class="mt-1.5 text-sm text-slate-600 dark:text-slate-400 max-w-2xl">
+            Upload your logo and instantly generate 16x16, 32x32, 48x48, 180x180 Apple Touch, 192x192, and 512x512 PWA icons + site.webmanifest in a single ZIP package.
+          </p>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 self-start sm:self-auto flex-shrink-0">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span>100% In-Browser Privacy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+      <!-- Left Main Tool Workspace -->
+      <div class="lg:col-span-8 space-y-6">
+
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 shadow-sm space-y-6">
+
+          <!-- Dropzone -->
+          <div id="fav-dropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-indigo-500 rounded-2xl p-8 sm:p-12 text-center cursor-pointer transition-all bg-slate-50/50 dark:bg-slate-800/30">
+            <input type="file" id="fav-file-input" accept="image/png,image/jpeg,image/webp,image/svg+xml" class="hidden">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-4 shadow-sm">
+              <i data-lucide="sparkles" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Upload your square logo (512x512+ recommended)</h3>
+            <p class="text-sm text-slate-500 mt-1">PNG with transparent background, SVG, or JPG</p>
+            <div class="mt-4">
+              <button type="button" id="fav-sample-btn" class="px-5 py-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-sm font-semibold hover:bg-indigo-100 dark:hover:bg-indigo-900/60 transition-colors inline-flex items-center gap-2 shadow-sm">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                <span>Load Sample 512x512 App Logo</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Manifest Metadata Settings -->
+          <div class="p-5 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">PWA Manifest Configuration</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label for="fav-app-name" class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">App Name</label>
+                <input type="text" id="fav-app-name" value="MultiTools Hub" class="w-full px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold">
+              </div>
+              <div>
+                <label for="fav-short-name" class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">Short Name</label>
+                <input type="text" id="fav-short-name" value="MultiTools" class="w-full px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold">
+              </div>
+              <div>
+                <label for="fav-theme-color" class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">Theme Color</label>
+                <input type="color" id="fav-theme-color" value="#4f46e5" class="w-full h-8 px-1 py-1 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 cursor-pointer">
+              </div>
+            </div>
+          </div>
+
+          <!-- Generated Icons Grid -->
+          <div id="fav-results-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+
+          <!-- ZIP Download Action -->
+          <div id="fav-actions-row" class="hidden pt-2">
+            <button type="button" id="fav-download-zip-btn" class="w-full py-4 px-6 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-md shadow-indigo-500/20">
+              <i data-lucide="archive" class="w-5 h-5"></i>
+              <span>Download Complete Favicon &amp; PWA Package (.ZIP)</span>
+            </button>
+          </div>
+
+          <!-- HTML Code Snippet Section -->
+          <div id="fav-manifest-section" class="hidden space-y-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <i data-lucide="code" class="w-4 h-4 text-indigo-600"></i>
+                HTML &lt;head&gt; Code Integration
+              </h3>
+              <button type="button" id="fav-copy-html-btn" class="px-3 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold hover:bg-indigo-100 transition-colors flex items-center gap-1.5">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                <span>Copy HTML Tags</span>
+              </button>
+            </div>
+            <pre class="p-4 rounded-xl bg-slate-900 text-slate-200 text-xs font-mono overflow-x-auto leading-relaxed">&lt;!-- Favicon &amp; PWA Web Icons --&gt;
+&lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;
+&lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"&gt;
+&lt;link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"&gt;
+&lt;link rel="manifest" href="/site.webmanifest"&gt;
+&lt;meta name="theme-color" content="#4f46e5"&gt;</pre>
+          </div>
+
+        </div>
+
+        <!-- SEO Guide Article -->
+        <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-10 shadow-sm space-y-8">
+          <header>
+            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              The Comprehensive Guide to Modern Web Favicons and PWA App Icons
+            </h2>
+            <p class="mt-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+              In modern web development, a single 16x16 .ico file is no longer sufficient. High-density Retina displays, mobile Safari, Google search result snippets, and Android Progressive Web Apps require specific icon assets. This guide outlines how to configure your website's icons correctly for 100% device compatibility.
+            </p>
+          </header>
+
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+              Standard Icon Sizes Explained
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-600 mb-1">16x16 &amp; 32x32 PNG</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Used directly in browser tabs (Chrome, Firefox, Edge, Safari) and bookmark toolbars. 32x32 is also used in Google Search Mobile Rich Results next to your site URL.
+                </p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-600 mb-1">180x180 Apple Touch Icon</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Referenced when an iPhone or iPad user taps "Add to Home Screen". iOS automatically adds subtle rounded corners and shadow styling.
+                </p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-600 mb-1">192x192 Android PWA Icon</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Required by Google Chrome's Web App Install banner and displayed on Android app drawer launchers.
+                </p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-600 mb-1">512x512 PWA Splash Screen</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Shown during the splash launch animation when an installed Progressive Web App opens on Android, Windows 11, or macOS.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+              How to Install the Generated Favicon Package
+            </h2>
+            <ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-400">
+              <li>Click <strong>Download Complete Package (.ZIP)</strong> above to save the archive.</li>
+              <li>Extract all files directly into the root directory of your website (e.g., <code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">public/</code> or <code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">dist/</code>).</li>
+              <li>Copy the HTML snippet from the box above and paste it between the <code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">&lt;head&gt;</code> and <code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">&lt;/head&gt;</code> tags of your <code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">index.html</code>.</li>
+              <li>Deploy your website to Firebase Hosting, Vercel, Netlify, or Apache. Clear your browser cache to preview your new icons!</li>
+            </ol>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div class="space-y-3">
+              <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+                <summary class="flex items-center justify-between gap-4 p-5 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                  Why use PNG favicons instead of traditional .ico format?
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400 flex-shrink-0"></i>
+                </summary>
+                <p class="px-5 pb-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Modern web standards and all modern browsers (Chrome, Firefox, Safari, Edge) fully support PNG favicons. PNG offers smaller byte sizes, superior 32-bit alpha transparency, and avoids legacy multi-layer ICO corruption issues.</p>
+              </details>
+              <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+                <summary class="flex items-center justify-between gap-4 p-5 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                  Are my proprietary logo vectors uploaded to any cloud server?
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400 flex-shrink-0"></i>
+                </summary>
+                <p class="px-5 pb-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">No. Everything is resized and packaged locally inside your browser via HTML5 Canvas and JSZip. Your brand assets remain completely confidential.</p>
+              </details>
+            </div>
+          </section>
+        </article>
+
+      </div>
+
+      <!-- Right Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <!-- Related Step-by-Step Guide Card -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-900 dark:to-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 shadow-sm space-y-3">
+          <div class="flex items-center gap-2 text-indigo-700 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>Recommended Reading</span>
+          </div>
+          <h4 class="font-bold text-sm text-slate-900 dark:text-white leading-snug">
+            <a href="../blog/complete-favicon-pwa-icon-setup-guide.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              The Modern Favicon & PWA App Icon Setup Guide: Best Sizes, Manifests & Retina Support
+            </a>
+          </h4>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Read our complete 2026 problem-solving tutorial with step-by-step instructions, practical use cases, and expert tips.
+          </p>
+          <div class="pt-2">
+            <a href="../blog/complete-favicon-pwa-icon-setup-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+              <span>Read Step-by-Step Guide</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 text-slate-800 dark:text-slate-200">
+          <div class="flex items-center gap-2.5 text-indigo-700 dark:text-indigo-400 font-bold text-sm mb-3">
+            <i data-lucide="check" class="w-5 h-5"></i>
+            <span>Included in ZIP Package</span>
+          </div>
+          <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
+            <li>• favicon-16x16.png</li>
+            <li>• favicon-32x32.png</li>
+            <li>• favicon-48x48.png</li>
+            <li>• apple-touch-icon.png (180x180)</li>
+            <li>• android-chrome-192x192.png</li>
+            <li>• android-chrome-512x512.png</li>
+            <li>• site.webmanifest (PWA configuration)</li>
+            <li>• html-head-tags.html (Copy-paste code)</li>
+          </ul>
+        </div>
+
+        <div class="sticky top-24 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm space-y-4">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">Related Image Tools</h3>
+          <div class="space-y-3">
+            <a href="image-converter.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Image Format Converter</p>
+                <p class="text-xs text-slate-500 mt-0.5">JPG, PNG, WEBP, SVG</p>
+              </div>
+            </a>
+            <a href="svg-color-changer.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-violet-100 dark:bg-violet-950/80 text-violet-600 dark:text-violet-400 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="feather" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">SVG Color Changer</p>
+                <p class="text-xs text-slate-500 mt-0.5">Recolor vector graphics</p>
+              </div>
+            </a>
+            <a href="bulk-webp-converter.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Bulk WebP Converter</p>
+                <p class="text-xs text-slate-500 mt-0.5">Compress &amp; convert to WebP</p>
+              </div>
+            </a>
+          </div>
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+            <a href="../index.html" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 hover:text-indigo-600 text-slate-700 dark:text-slate-300 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+              <span>Browse All Tools</span>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/favicon-generator.js"></script>
+</body>
+</html>

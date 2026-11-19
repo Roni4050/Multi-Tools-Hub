@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Watermark & EXIF Metadata Cleaner - MultiTools Hub</title>
+  <meta name="description" content="Strip hidden GPS coordinates and EXIF camera metadata cleanly in your browser. Apply custom copyright or tiled watermarks for microstock proofing. 100% private.">
+  <link rel="canonical" href="https://multitools-hub.web.app/tools/image-watermark-exif-cleaner.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multitools-hub.web.app/tools/image-watermark-exif-cleaner.html">
+  <meta property="og:title" content="Image Watermark & EXIF Metadata Cleaner - MultiTools Hub">
+  <meta property="og:description" content="Strip hidden GPS coordinates and camera metadata cleanly via browser canvas, or apply tiled copyright watermarks.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {} }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Image Watermark and EXIF Metadata Cleaner",
+        "url": "https://multitools-hub.web.app/tools/image-watermark-exif-cleaner.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Strip hidden camera EXIF, GPS location tags, and device identifiers, or apply customizable copyright watermarks locally in browser.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is EXIF metadata and why should I clean it before publishing?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Exchangeable Image File Format (EXIF) metadata is automatically recorded by digital cameras and smartphones whenever a photo is taken. It frequently embeds your exact GPS home coordinates, camera serial numbers, date/time stamps, and device models. Stripping it protects your personal safety and location privacy."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does canvas re-encoding guarantee that all metadata is stripped?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "When an image is drawn onto an HTML5 Canvas element, only the raw visual RGB pixel data is sampled. When the canvas exports the image back into a JPEG or PNG blob, none of the original EXIF, GPS, or IPTC metadata headers are preserved."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I apply a diagonal tiled watermark across the whole image?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Selecting the 'Tiled Diagonal Pattern' position automatically repeats your copyright notice across the entire surface at an angled grid, making unauthorized commercial theft and uncredited sharing impossible."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does MultiTools Hub save a copy of my original unwatermarked photos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. All watermarking and metadata sanitization occur strictly inside your browser's local sandbox memory. Zero bytes are uploaded to our servers."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <a href="../index.html" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+          <i data-lucide="layers" class="w-5 h-5"></i>
+        </div>
+        <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent">MultiTools Hub</span>
+      </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors" title="Back to All Tools">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="image-watermark-exif-cleaner.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">EXIF Cleaner</a>
+        <a href="bulk-image-resizer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Bulk Resizer</a>
+        <a href="bulk-webp-converter.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">WebP Converter</a>
+        <a href="color-palette-extractor.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Color Palette</a>
+        <a href="svg-color-changer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">SVG Editor</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+        <a href="../about.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">About</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="window.toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors">
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+        <a href="../index.html" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors">
+          <i data-lucide="grid" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs & Header -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800/80 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-slate-500 mb-2">
+        <a href="../index.html" class="hover:text-indigo-600">Home</a>
+        <span>/</span>
+        <span class="text-slate-400">Image & Vector</span>
+        <span>/</span>
+        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">EXIF Cleaner & Watermark</span>
+      </nav>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Image Watermark & EXIF Metadata Cleaner
+          </h1>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
+            Strip hidden camera GPS metadata cleanly or apply customizable copyright watermarks for client proofing.
+          </p>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 self-start sm:self-auto">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span>100% In-Browser Privacy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Left 70% Tool Interface -->
+      <div class="lg:col-span-8 space-y-6">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 shadow-sm space-y-6">
+          
+          <!-- Dropzone -->
+          <div id="watermark-dropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-indigo-500 rounded-2xl p-8 sm:p-12 text-center cursor-pointer transition-all bg-slate-50/50 dark:bg-slate-800/30">
+            <input type="file" id="watermark-file-input" accept="image/*" class="hidden">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-3">
+              <i data-lucide="shield-check" class="w-7 h-7"></i>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Upload image to sanitize EXIF or watermark</h3>
+            <p class="text-xs text-slate-500 mt-1">Supports JPG, PNG, and WebP • Completely private</p>
+            <div class="mt-3">
+              <button type="button" id="watermark-sample-btn" class="px-4 py-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold hover:bg-indigo-100 dark:hover:bg-indigo-900/60 transition-colors inline-flex items-center gap-1.5 shadow-sm">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>Load Sample Stock Photo</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Active Workspace -->
+          <div id="watermark-workspace" class="hidden space-y-6">
+            
+            <!-- Mode Radio Controls -->
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold">
+              <div class="flex items-center gap-6">
+                <label class="flex items-center gap-2 cursor-pointer text-slate-700 dark:text-slate-200">
+                  <input type="radio" name="wm-mode" id="mode-watermark" checked class="text-indigo-600 focus:ring-indigo-500">
+                  <span>Apply Copyright Watermark</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer text-slate-700 dark:text-slate-200">
+                  <input type="radio" name="wm-mode" id="mode-clean-only" class="text-indigo-600 focus:ring-indigo-500">
+                  <span>Clean EXIF Metadata Only (No Watermark)</span>
+                </label>
+              </div>
+
+              <div id="meta-clean-badge">
+                <!-- Status tag -->
+              </div>
+            </div>
+
+            <!-- Watermark Customization Options -->
+            <div id="watermark-options" class="p-5 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 space-y-4 text-xs">
+              <div>
+                <label for="wm-text" class="block font-semibold uppercase tracking-wider text-slate-500 mb-1">Watermark Text</label>
+                <input type="text" id="wm-text" value="© MultiTools Hub Preview - Not for Resale" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-medium">
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                <div>
+                  <label for="wm-position" class="block font-semibold uppercase tracking-wider text-slate-500 mb-1">Position / Layout</label>
+                  <select id="wm-position" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800">
+                    <option value="tile" selected>Tiled Diagonal Pattern</option>
+                    <option value="center">Centered</option>
+                    <option value="bottom-right">Bottom-Right Corner</option>
+                    <option value="bottom-left">Bottom-Left Corner</option>
+                    <option value="top-right">Top-Right Corner</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="wm-color" class="block font-semibold uppercase tracking-wider text-slate-500 mb-1">Text Color</label>
+                  <div class="flex items-center gap-2">
+                    <input type="color" id="wm-color" value="#ffffff" class="w-8 h-8 rounded border-0 cursor-pointer p-0 bg-transparent">
+                    <span class="text-slate-500 font-mono text-[11px]">Pick Color</span>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex items-center justify-between mb-1">
+                    <label for="wm-fontsize" class="font-semibold uppercase tracking-wider text-slate-500">Font Size</label>
+                    <span id="wm-fontsize-val" class="font-mono text-indigo-600 dark:text-indigo-400 font-bold">48px</span>
+                  </div>
+                  <input type="range" id="wm-fontsize" min="16" max="120" value="48" class="w-full accent-indigo-600 cursor-pointer">
+                </div>
+
+                <div>
+                  <div class="flex items-center justify-between mb-1">
+                    <label for="wm-opacity" class="font-semibold uppercase tracking-wider text-slate-500">Opacity</label>
+                    <span id="wm-opacity-val" class="font-mono text-indigo-600 dark:text-indigo-400 font-bold">60%</span>
+                  </div>
+                  <input type="range" id="wm-opacity" min="10" max="100" value="60" class="w-full accent-indigo-600 cursor-pointer">
+                </div>
+              </div>
+            </div>
+
+            <!-- Canvas Workspace Preview -->
+            <div class="flex justify-center bg-slate-950 p-4 rounded-2xl border border-slate-800 overflow-hidden shadow-inner">
+              <canvas id="watermark-canvas" class="max-h-[500px] w-auto rounded-xl shadow-2xl"></canvas>
+            </div>
+
+            <!-- Actions Bar -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-slate-100 dark:border-slate-800">
+              <div class="flex items-center gap-3">
+                <label for="wm-output-format" class="text-xs font-semibold text-slate-500">Save As:</label>
+                <select id="wm-output-format" class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs">
+                  <option value="jpeg">JPEG (.jpg)</option>
+                  <option value="png">PNG (.png)</option>
+                </select>
+                <button type="button" id="wm-reset-btn" class="text-xs text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 underline font-semibold ml-2">
+                  Change Image
+                </button>
+              </div>
+
+              <button type="button" id="wm-download-btn" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm transition-all shadow-md shadow-indigo-600/20 flex items-center justify-center gap-2">
+                <i data-lucide="download" class="w-4 h-4"></i>
+                <span>Download Cleaned Image</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- SEO Article (700+ Words) -->
+        <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-8 sm:p-10 shadow-sm space-y-8 text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+          
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Why Stripping EXIF Camera Metadata Protects Personal and Business Privacy
+            </h2>
+            <p>
+              Every time you snap a photograph using an iPhone, Android smartphone, or DSLR camera, a rich hidden header known as <strong>Exchangeable Image File Format (EXIF)</strong> is automatically baked into the file binary.
+            </p>
+            <p class="mt-3">
+              This metadata frequently exposes your precise residential GPS coordinates (latitude, longitude, and elevation), camera model, unique device serial numbers, exact timestamps, and exposure settings. When posting images online or distributing client proofs, failing to scrub this metadata can reveal your physical location or private client premises to bad actors.
+            </p>
+          </div>
+
+          <div class="border-t border-slate-100 dark:border-slate-800 pt-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Watermarking for Microstock Contributors and Portfolio Proofing
+            </h2>
+            <p>
+              Independent illustrators and photographers regularly share preview proofs with clients before final invoices are paid. Unscrupulous clients or web scrapers can easily download unprotected proofs and bypass payment.
+            </p>
+            <p class="mt-3">
+              By applying a semi-transparent, diagonal tiled watermark across the entire image canvas, you establish unmistakable copyright ownership without obscuring composition. The watermark cannot be cropped out with simple rectangular editing tools.
+            </p>
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="border-t border-slate-100 dark:border-slate-800 pt-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Frequently Asked Questions (FAQ)
+            </h2>
+            <div class="space-y-3">
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>What is EXIF metadata and why should I clean it before publishing?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Exchangeable Image File Format (EXIF) metadata is automatically recorded by digital cameras and smartphones whenever a photo is taken. It frequently embeds your exact GPS home coordinates, camera serial numbers, date/time stamps, and device models. Stripping it protects your personal safety and location privacy.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>How does canvas re-encoding guarantee that all metadata is stripped?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  When an image is drawn onto an HTML5 Canvas element, only the raw visual RGB pixel data is sampled. When the canvas exports the image back into a JPEG or PNG blob, none of the original EXIF, GPS, or IPTC metadata headers are preserved.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>Can I apply a diagonal tiled watermark across the whole image?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Yes! Selecting the 'Tiled Diagonal Pattern' position automatically repeats your copyright notice across the entire surface at an angled grid, making unauthorized commercial theft and uncredited sharing impossible.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>Does MultiTools Hub save a copy of my original unwatermarked photos?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Never. All watermarking and metadata sanitization occur strictly inside your browser's local sandbox memory. Zero bytes are uploaded to our servers.
+                </p>
+              </details>
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+
+      <!-- Right 30% Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <!-- Related Step-by-Step Guide Card -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-900 dark:to-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 shadow-sm space-y-3">
+          <div class="flex items-center gap-2 text-indigo-700 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>Recommended Reading</span>
+          </div>
+          <h4 class="font-bold text-sm text-slate-900 dark:text-white leading-snug">
+            <a href="../blog/how-to-remove-exif-gps-metadata-from-photos.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              How to Strip Hidden GPS Location & EXIF Camera Metadata from Photos Privately
+            </a>
+          </h4>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Read our complete 2026 problem-solving tutorial with step-by-step instructions, practical use cases, and expert tips.
+          </p>
+          <div class="pt-2">
+            <a href="../blog/how-to-remove-exif-gps-metadata-from-photos.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+              <span>Read Step-by-Step Guide</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 text-slate-800 dark:text-slate-200">
+          <div class="flex items-center gap-2.5 text-indigo-700 dark:text-indigo-400 font-bold text-sm mb-2">
+            <i data-lucide="shield-alert" class="w-5 h-5"></i>
+            <span>Privacy Security Note</span>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Social networks sometimes retain GPS metadata when photos are sent via uncompressed messaging. Scrub your images here prior to sharing.
+          </p>
+        </div>
+
+        <div class="sticky top-24 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm space-y-4">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">Related Utility Tools</h3>
+          
+          <div class="space-y-3">
+            <a href="bulk-image-resizer.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="scaling" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Bulk Image Resizer</p>
+                <p class="text-xs text-slate-500 mt-0.5">Scale images to exact dimensions</p>
+              </div>
+            </a>
+
+            <a href="color-palette-extractor.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="palette" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Color Palette Extractor</p>
+                <p class="text-xs text-slate-500 mt-0.5">Sample dominant colors from photos</p>
+              </div>
+            </a>
+
+            <a href="aspect-ratio-calculator.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-violet-100 dark:bg-violet-950/80 text-violet-600 dark:text-violet-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="calculator" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Aspect Ratio Calculator</p>
+                <p class="text-xs text-slate-500 mt-0.5">Verify 4MP microstock standards</p>
+              </div>
+            </a>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+            <a href="../index.html" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 hover:text-indigo-600 text-slate-700 dark:text-slate-300 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+              <span>Browse All 14 Tools</span>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/image-watermark-exif-cleaner.js"></script>
+</body>
+</html>

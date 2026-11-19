@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Palette & HEX Extractor - Sample Dominant Colors | MultiTools Hub</title>
+  <meta name="description" content="Extract the top 8 dominant and harmonious colors from any image. Copy HEX, RGB, HSL values with one click, export CSS variables, and link directly to our SVG color editor.">
+  <link rel="canonical" href="https://multitools-hub.web.app/tools/color-palette-extractor.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multitools-hub.web.app/tools/color-palette-extractor.html">
+  <meta property="og:title" content="Color Palette & HEX Extractor - MultiTools Hub">
+  <meta property="og:description" content="Extract harmonious color palettes, HEX, RGB, and HSL codes from your images in your browser.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {} }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Image Color Palette and Hex Extractor",
+        "url": "https://multitools-hub.web.app/tools/color-palette-extractor.html",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Sample pixel colors from images, extract dominant harmonic swatches, copy CSS variables, and export color cards.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does the color extraction algorithm find the dominant swatches?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The tool samples thousands of pixels across an HTML5 Canvas and quantizes them into harmonic color clusters. It sorts by frequency while filtering out near-duplicate hues to provide 8 distinct, balanced tones."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I paste an image directly from my clipboard?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! You can press Ctrl+V (or Cmd+V) anywhere on the page to paste a screenshot directly into the extractor without having to save it to your hard drive first."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does the 'Use in SVG Editor' integration work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Clicking the 'Use these colors in SVG Editor' button forwards your extracted HEX values directly to our SVG Color Changer via URL parameters, making them instantly available as quick color chips."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my images transmitted or saved to a server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Pixel sampling and color quantization occur 100% locally in your browser memory."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <a href="../index.html" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+          <i data-lucide="layers" class="w-5 h-5"></i>
+        </div>
+        <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent">MultiTools Hub</span>
+      </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors" title="Back to All Tools">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="color-palette-extractor.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">Color Palette</a>
+        <a href="svg-color-changer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">SVG Editor</a>
+        <a href="bulk-image-resizer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Bulk Resizer</a>
+        <a href="thumbnail-previewer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Thumbnail Test</a>
+        <a href="qr-code-generator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">QR Generator</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+        <a href="../about.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">About</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="window.toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors">
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+        <a href="../index.html" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors">
+          <i data-lucide="grid" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs & Header -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800/80 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-slate-500 mb-2">
+        <a href="../index.html" class="hover:text-indigo-600">Home</a>
+        <span>/</span>
+        <span class="text-slate-400">Image & Vector</span>
+        <span>/</span>
+        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Color Palette Extractor</span>
+      </nav>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Image Color Palette & HEX Extractor
+          </h1>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
+            Extract dominant colors, one-click copy HEX, RGB, HSL values, and export CSS variables.
+          </p>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 self-start sm:self-auto">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span>100% In-Browser Privacy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Left 70% Tool Interface -->
+      <div class="lg:col-span-8 space-y-6">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 shadow-sm space-y-6">
+          
+          <!-- Dropzone -->
+          <div id="palette-dropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-indigo-500 rounded-2xl p-8 sm:p-12 text-center cursor-pointer transition-all bg-slate-50/50 dark:bg-slate-800/30">
+            <input type="file" id="palette-file-input" accept="image/*" class="hidden">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-3">
+              <i data-lucide="palette" class="w-7 h-7"></i>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Upload image or paste from clipboard (Ctrl+V)</h3>
+            <p class="text-xs text-slate-500 mt-1">Samples dominant tones and generates harmonious palettes</p>
+            <div class="mt-3">
+              <button type="button" id="palette-sample-btn" class="px-4 py-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold hover:bg-indigo-100 dark:hover:bg-indigo-900/60 transition-colors inline-flex items-center gap-1.5 shadow-sm">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>Load Sample Sunset Photo</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Active Workspace -->
+          <div id="palette-workspace" class="hidden space-y-6">
+            
+            <div class="flex flex-col sm:flex-row items-center gap-6 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60">
+              <img id="image-preview" src="#" alt="Sample Preview" class="w-24 h-24 sm:w-32 sm:h-32 rounded-xl object-cover border border-slate-200 dark:border-slate-700 shadow-sm flex-shrink-0">
+              <div class="space-y-1 text-center sm:text-left">
+                <h4 class="font-bold text-sm text-slate-900 dark:text-white">Dominant Color Swatches Extracted</h4>
+                <p class="text-xs text-slate-500">Click any color swatch to copy its HEX code instantly to your clipboard.</p>
+                <div class="pt-2">
+                  <button type="button" id="palette-reset-btn" class="text-xs text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">
+                    Upload a different image
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Extracted Swatches Grid (8 Swatches) -->
+            <div id="swatches-container" class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <!-- Swatches rendered via JS -->
+            </div>
+
+            <!-- Export Actions Toolbar -->
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+              <div class="flex flex-wrap items-center gap-2">
+                <button type="button" id="copy-css-btn" class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-200 transition-colors flex items-center gap-1.5">
+                  <i data-lucide="code" class="w-3.5 h-3.5"></i>
+                  <span>Copy CSS Variables</span>
+                </button>
+                <button type="button" id="download-palette-card-btn" class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-200 transition-colors flex items-center gap-1.5">
+                  <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                  <span>Download Swatch PNG Card</span>
+                </button>
+              </div>
+
+              <!-- Contextual Action Button to SVG Color Changer -->
+              <a id="use-in-svg-btn" href="svg-color-changer.html" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs shadow-md shadow-indigo-600/20 transition-all flex items-center gap-1.5">
+                <i data-lucide="feather" class="w-3.5 h-3.5"></i>
+                <span>Use these colors in SVG Editor →</span>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- SEO Article (700+ Words) -->
+        <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-8 sm:p-10 shadow-sm space-y-8 text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+          
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Extracting Harmonious Color Schemes for Brand Identity & Vector Design
+            </h2>
+            <p>
+              Whether you are an illustrator building a microstock vector collection, a web developer establishing a brand design system, or a video creator color-grading thumbnail graphics, extracting real-world colors from photography is the fastest route to natural visual harmony.
+            </p>
+            <p class="mt-3">
+              MultiTools Hub utilizes Euclidean color space distance algorithms to sample dominant pixel clusters, discard noise, and present a curated 8-tone palette with instant HEX, RGB, and HSL values.
+            </p>
+          </div>
+
+          <div class="border-t border-slate-100 dark:border-slate-800 pt-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Understanding Color Codes: HEX, RGB, and HSL
+            </h2>
+            <div class="space-y-4 text-xs">
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80">
+                <span class="font-bold text-slate-900 dark:text-white text-sm">HEX (#RRGGBB)</span>
+                <p class="text-slate-500 mt-1">Hexadecimal color representation is standard in CSS web design, Figma, Photoshop, and Illustrator stylesheets.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80">
+                <span class="font-bold text-slate-900 dark:text-white text-sm">RGB (Red, Green, Blue)</span>
+                <p class="text-slate-500 mt-1">Additive color values (0-255) ideal for digital screens, video editors, and canvas manipulation.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80">
+                <span class="font-bold text-slate-900 dark:text-white text-sm">HSL (Hue, Saturation, Lightness)</span>
+                <p class="text-slate-500 mt-1">Human-intuitive color format allowing you to create darker shades or lighter tints simply by adjusting the lightness percentage.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="border-t border-slate-100 dark:border-slate-800 pt-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Frequently Asked Questions (FAQ)
+            </h2>
+            <div class="space-y-3">
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>How does the color extraction algorithm find the dominant swatches?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  The tool samples thousands of pixels across an HTML5 Canvas and quantizes them into harmonic color clusters. It sorts by frequency while filtering out near-duplicate hues to provide 8 distinct, balanced tones.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>Can I paste an image directly from my clipboard?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Yes! You can press Ctrl+V (or Cmd+V) anywhere on the page to paste a screenshot directly into the extractor without having to save it to your hard drive first.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>How does the 'Use in SVG Editor' integration work?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Clicking the 'Use these colors in SVG Editor' button forwards your extracted HEX values directly to our SVG Color Changer via URL parameters, making them instantly available as quick color chips.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>Are my images transmitted or saved to a server?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  No. Pixel sampling and color quantization occur 100% locally in your browser memory.
+                </p>
+              </details>
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+
+      <!-- Right 30% Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <!-- Related Step-by-Step Guide Card -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-900 dark:to-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 shadow-sm space-y-3">
+          <div class="flex items-center gap-2 text-indigo-700 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>Recommended Reading</span>
+          </div>
+          <h4 class="font-bold text-sm text-slate-900 dark:text-white leading-snug">
+            <a href="../blog/how-to-extract-color-palettes-from-images.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              How to Extract Beautiful Color Palettes & Dominant HEX Swatches from Any Image
+            </a>
+          </h4>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Read our complete 2026 problem-solving tutorial with step-by-step instructions, practical use cases, and expert tips.
+          </p>
+          <div class="pt-2">
+            <a href="../blog/how-to-extract-color-palettes-from-images.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+              <span>Read Step-by-Step Guide</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 text-slate-800 dark:text-slate-200">
+          <div class="flex items-center gap-2.5 text-indigo-700 dark:text-indigo-400 font-bold text-sm mb-2">
+            <i data-lucide="feather" class="w-5 h-5"></i>
+            <span>Seamless Vector Workflow</span>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Send your extracted palette directly to our SVG Color Changer tool with one click to recolor vector icons and illustrations effortlessly.
+          </p>
+        </div>
+
+        <div class="sticky top-24 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm space-y-4">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">Related Utility Tools</h3>
+          
+          <div class="space-y-3">
+            <a href="svg-color-changer.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="feather" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">SVG Color Changer</p>
+                <p class="text-xs text-slate-500 mt-0.5">Recolor vector graphics with this palette</p>
+              </div>
+            </a>
+
+            <a href="thumbnail-previewer.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="layout" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Thumbnail Previewer</p>
+                <p class="text-xs text-slate-500 mt-0.5">Test color contrast in YouTube mockups</p>
+              </div>
+            </a>
+
+            <a href="qr-code-generator.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-violet-100 dark:bg-violet-950/80 text-violet-600 dark:text-violet-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="qr-code" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Custom QR Code Generator</p>
+                <p class="text-xs text-slate-500 mt-0.5">Generate QR codes with custom hex colors</p>
+              </div>
+            </a>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+            <a href="../index.html" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 hover:text-indigo-600 text-slate-700 dark:text-slate-300 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+              <span>Browse All 14 Tools</span>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/color-palette-extractor.js"></script>
+</body>
+</html>

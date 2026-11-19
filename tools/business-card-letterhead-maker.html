@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>US Letterhead & Business Card Print Layout Maker (PDF) | MultiTools Hub</title>
+  <meta name="description" content="Generate 10-up standard 3.5x2 inch US business cards on 8.5x11 inch US Letter sheets (Avery 5371 compatible) and official corporate letterhead PDFs directly in your browser.">
+  <link rel="canonical" href="business-card-letterhead-maker.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="US Letterhead & Business Card Print Layout Maker - MultiTools Hub">
+  <meta property="og:description" content="Generate 10-up US business cards and corporate letterheads directly in your browser with zero server uploads.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: {} } }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "US Letterhead & Business Card Print Layout Maker",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Design and export 10-up US standard business cards (3.5x2 inches) and 8.5x11 inch letterheads as print-ready vector PDFs.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the standard US business card size and print layout?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The American standard business card size is 3.5 inches wide by 2.0 inches high (88.9 mm × 50.8 mm). Standard perforated cardstock (such as Avery 5371, 5871, or 8371) arranges 10 cards per 8.5 × 11 inch US Letter sheet in a 2-column by 5-row grid."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What paper stock is recommended for printing business cards at home?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For durable, professional-feeling cards, use heavy cardstock between 80 lb cover (216 gsm) and 110 lb cover (300 gsm). Standard perforated sheets allow clean separation without needing industrial paper cutters."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent hidden sm:inline">MultiTools Hub</span>
+        </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="business-card-letterhead-maker.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">Cards & Letterhead</a>
+        <a href="shipping-label-envelope-printer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Shipping Labels</a>
+        <a href="invoice-receipt-generator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Invoice Generator</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+      </nav>
+
+      <div class="flex items-center gap-2.5">
+        <button type="button" onclick="toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" aria-label="Toggle theme">
+          <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 py-8 md:py-12">
+    <div class="mb-8">
+      <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+        <i data-lucide="credit-card" class="w-4 h-4"></i>
+        <span>US Print Publishing Suite</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">US Letterhead & Business Card Print Layout Maker</h1>
+      <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-3xl leading-relaxed">
+        Design American standard 3.5x2 inch business cards (arranged 10-up on an 8.5x11 inch US Letter sheet with crop marks) or professional corporate letterhead PDFs.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Left 6 Cols: Form Inputs -->
+      <div class="lg:col-span-6 space-y-6">
+        
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
+          
+          <!-- Mode Switcher -->
+          <div class="flex items-center gap-2 p-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+            <button type="button" id="mode-card-btn" class="flex-1 py-2 px-3 rounded-lg text-xs font-bold transition-all bg-indigo-600 text-white shadow-sm">
+              3.5" x 2" Business Card (10-Up Sheet)
+            </button>
+            <button type="button" id="mode-letterhead-btn" class="flex-1 py-2 px-3 rounded-lg text-xs font-bold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300">
+              8.5" x 11" US Letterhead
+            </button>
+          </div>
+
+          <!-- Business Card Controls -->
+          <div id="card-controls" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label for="input-name" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Full Name</label>
+                <input type="text" id="input-name" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold" value="Alex Morgan">
+              </div>
+              <div>
+                <label for="input-title" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Professional Title</label>
+                <input type="text" id="input-title" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold" value="Senior Managing Director">
+              </div>
+            </div>
+
+            <div>
+              <label for="input-company" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Company / Firm Name</label>
+              <input type="text" id="input-company" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold" value="ACME Corporation Inc.">
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label for="input-phone" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Phone Number</label>
+                <input type="text" id="input-phone" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" value="+1 (555) 234-5678">
+              </div>
+              <div>
+                <label for="input-email" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Email Address</label>
+                <input type="email" id="input-email" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" value="alex.morgan@example.com">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label for="input-website" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Website URL</label>
+                <input type="text" id="input-website" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" value="www.acmecorp.com">
+              </div>
+              <div>
+                <label for="input-address" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Physical Address</label>
+                <input type="text" id="input-address" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" value="123 Wall Street, New York, NY 10005">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-2">
+              <div>
+                <label for="input-color" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Brand Accent Color</label>
+                <div class="flex items-center gap-2">
+                  <input type="color" id="input-color" value="#4F46E5" class="w-9 h-9 rounded-lg border border-slate-300 dark:border-slate-700 cursor-pointer">
+                  <span class="text-xs font-mono text-slate-500">Pick color</span>
+                </div>
+              </div>
+              <div>
+                <label for="input-logo" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Company Logo (Optional)</label>
+                <input type="file" id="input-logo" accept="image/png, image/jpeg, image/webp" class="text-xs text-slate-500 file:mr-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
+              </div>
+            </div>
+          </div>
+
+          <!-- Letterhead Controls (Hidden by default) -->
+          <div id="letterhead-controls" class="hidden space-y-4">
+            <div>
+              <label for="lh-company" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Organization Name</label>
+              <input type="text" id="lh-company" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold" value="MultiTools Hub Enterprises LLC">
+            </div>
+            <div>
+              <label for="lh-tagline" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Company Tagline / Motto</label>
+              <input type="text" id="lh-tagline" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" value="Quality • Innovation • Reliability">
+            </div>
+            <div>
+              <label for="lh-footer" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Footer Legal Note</label>
+              <input type="text" id="lh-footer" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" value="Confidential & Proprietary • MultiTools Hub Document System">
+            </div>
+          </div>
+
+          <!-- Download Button -->
+          <div class="pt-3">
+            <button type="button" id="download-pdf-btn" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md shadow-indigo-500/20 transition-all flex items-center justify-center gap-2">
+              <i data-lucide="download" class="w-4 h-4"></i>
+              <span>Download Print-Ready PDF</span>
+            </button>
+            <p class="text-[11px] text-center text-slate-400 mt-2">
+              Standard 8.5 x 11 inch US Letter PDF with crop cutting marks. 100% Client-side.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Right 6 Cols: Canvas Live Preview -->
+      <div class="lg:col-span-6 space-y-6">
+        
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Live Visual Canvas Preview</h3>
+            <span class="text-[11px] font-semibold text-indigo-600 dark:text-indigo-400">Updates Instantly</span>
+          </div>
+
+          <div class="flex items-center justify-center bg-slate-100 dark:bg-slate-950 p-4 rounded-xl border border-slate-200/80 dark:border-slate-800 overflow-hidden">
+            <canvas id="preview-canvas" class="max-w-full h-auto rounded-lg shadow-lg border border-slate-200 dark:border-slate-700"></canvas>
+          </div>
+
+          <p class="text-xs text-slate-500 dark:text-slate-400 text-center">
+            When downloaded, cards are automatically tiled in a <strong>2×5 grid (10 cards per sheet)</strong> on a standard 8.5×11" US Letter page with cutting crop marks.
+          </p>
+        </div>
+
+        <!-- Recommended Reading Card -->
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-indigo-50/90 to-violet-50/90 dark:from-indigo-950/60 dark:to-slate-900 border border-indigo-200 dark:border-indigo-800/80 shadow-sm">
+          <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>Recommended Reading</span>
+          </div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1.5 leading-snug">
+            How to Design & Print US Business Cards & Letterhead at Home
+          </h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+            Master standard 3.5×2" card dimensions, Avery 5371 template alignment, heavy paper cardstock choices, and bleed margins.
+          </p>
+          <a href="../blog/how-to-design-print-us-business-cards-letterhead.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 px-3.5 py-2 rounded-xl transition-colors shadow-sm">
+            <span>Read Complete Guide</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/business-card-letterhead-maker.js"></script>
+</body>
+</html>

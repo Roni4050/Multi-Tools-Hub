@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College & High School Final Exam Grade Calculator | MultiTools Hub</title>
+  <meta name="description" content="Calculate what score you need on your final exam to pass or secure an A, B, or C grade. Includes weighted semester coursework grade calculator and US 4.0 GPA conversion.">
+  <link rel="canonical" href="final-grade-exam-calculator.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Final Exam Grade Calculator - MultiTools Hub">
+  <meta property="og:description" content="Calculate what score you need on your final exam to achieve your target course grade.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: {} } }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Final Exam Grade Calculator",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Calculate minimum required final exam scores and semester weighted grades on standard US grading scales.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the formula to calculate what I need on my final exam?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The mathematical formula is: Required Final Exam Score = (Target Grade - (Current Grade × (1 - Final Exam Weight))) / Final Exam Weight. For example, if your current grade is 85%, your target is 90% (an A), and the final is worth 20%, you need: (90 - (85 × 0.80)) / 0.20 = 110%."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens if the calculator says I need over 100% on the final?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "If the result is greater than 100%, it means it is mathematically impossible to achieve that target grade based strictly on standard points. You would need extra credit assignments or a generous grading curve from your instructor."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent hidden sm:inline">MultiTools Hub</span>
+        </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="final-grade-exam-calculator.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">Grade Calculator</a>
+        <a href="sales-tax-tip-calculator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Sales Tax & Tip</a>
+        <a href="military-time-date-calculator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Military Time</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+      </nav>
+
+      <div class="flex items-center gap-2.5">
+        <button type="button" onclick="toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" aria-label="Toggle theme">
+          <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 py-8 md:py-12">
+    <div class="mb-8">
+      <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+        <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+        <span>US Academic Intelligence</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">College & High School Final Exam Grade Calculator</h1>
+      <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-3xl leading-relaxed">
+        Find out exactly what score you need on your final exam to achieve your target letter grade, or calculate your weighted semester GPA across all coursework.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Left 2 Cols: Interactive Tool -->
+      <div class="lg:col-span-2 space-y-6">
+        
+        <!-- Navigation Tabs -->
+        <div class="flex items-center gap-2 p-1.5 rounded-2xl bg-slate-200/60 dark:bg-slate-900 border border-slate-300/60 dark:border-slate-800 max-w-md">
+          <button type="button" class="grade-tab-btn flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-sm" data-tab="tab-final">
+            What Do I Need on the Final?
+          </button>
+          <button type="button" class="grade-tab-btn flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300" data-tab="tab-weighted">
+            Weighted Coursework
+          </button>
+        </div>
+
+        <!-- TAB 1: Final Exam Score -->
+        <div id="tab-final" class="grade-tab-panel space-y-6">
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div>
+                <label for="current-grade" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Current Class Grade (%)</label>
+                <div class="relative">
+                  <input type="number" id="current-grade" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-bold text-lg" value="84" step="0.1" min="0" max="150">
+                  <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
+                </div>
+              </div>
+
+              <div>
+                <label for="target-grade" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Desired Target Grade (%)</label>
+                <div class="relative">
+                  <input type="number" id="target-grade" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-bold text-lg" value="90" step="0.1" min="0" max="150">
+                  <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
+                </div>
+              </div>
+
+              <div>
+                <label for="final-weight" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Final Exam Weight (%)</label>
+                <div class="relative">
+                  <input type="number" id="final-weight" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-bold text-lg" value="25" step="1" min="1" max="100">
+                  <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Target Grade Preset Chips -->
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">Target Grade Presets</span>
+              <div class="flex flex-wrap items-center gap-2">
+                <button type="button" class="target-preset-btn px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white" data-target="90">A (90%)</button>
+                <button type="button" class="target-preset-btn px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-target="85">B+ (85%)</button>
+                <button type="button" class="target-preset-btn px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-target="80">B (80%)</button>
+                <button type="button" class="target-preset-btn px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-target="75">C+ (75%)</button>
+                <button type="button" class="target-preset-btn px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-target="70">C (70% Passing)</button>
+              </div>
+            </div>
+
+            <!-- Calculation Output Card -->
+            <div class="p-6 rounded-2xl bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-indigo-950/40 dark:to-slate-900 border border-indigo-200 dark:border-indigo-800/80 shadow-sm text-center space-y-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Minimum Score Needed on Final Exam</span>
+              <div id="out-required-score" class="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
+                0.0%
+              </div>
+              <div id="out-score-status" class="inline-block px-3 py-1 rounded-full text-xs font-bold">
+                <!-- Status text -->
+              </div>
+              <p id="out-formula-breakdown" class="text-xs text-slate-500 font-mono pt-2 border-t border-indigo-100 dark:border-slate-800">
+                Formula Breakdown
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TAB 2: Weighted Coursework -->
+        <div id="tab-weighted" class="grade-tab-panel hidden space-y-6">
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">Coursework Categories</h3>
+                <p class="text-xs text-slate-500">Ensure total weight equals 100%</p>
+              </div>
+              <div class="text-xs">
+                Total Weight: <span id="out-total-weight" class="font-bold text-emerald-600">100%</span>
+              </div>
+            </div>
+
+            <!-- Rows Container -->
+            <div id="coursework-rows" class="space-y-2.5">
+              <div class="assignment-row grid grid-cols-12 gap-2 sm:gap-3 items-center p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800">
+                <div class="col-span-6 sm:col-span-5">
+                  <input type="text" class="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-medium" value="Homework & Labs">
+                </div>
+                <div class="col-span-3 sm:col-span-3">
+                  <input type="number" class="row-weight w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-bold" value="20" min="0" max="100">
+                </div>
+                <div class="col-span-2 sm:col-span-3">
+                  <input type="number" class="row-score w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-bold" value="95" min="0" max="150">
+                </div>
+                <div class="col-span-1 sm:col-span-1 text-right">
+                  <button type="button" class="remove-row-btn text-rose-500 hover:text-rose-700 p-1 rounded-md" title="Remove"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                </div>
+              </div>
+
+              <div class="assignment-row grid grid-cols-12 gap-2 sm:gap-3 items-center p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800">
+                <div class="col-span-6 sm:col-span-5">
+                  <input type="text" class="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-medium" value="Quizzes">
+                </div>
+                <div class="col-span-3 sm:col-span-3">
+                  <input type="number" class="row-weight w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-bold" value="20" min="0" max="100">
+                </div>
+                <div class="col-span-2 sm:col-span-3">
+                  <input type="number" class="row-score w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-bold" value="88" min="0" max="150">
+                </div>
+                <div class="col-span-1 sm:col-span-1 text-right">
+                  <button type="button" class="remove-row-btn text-rose-500 hover:text-rose-700 p-1 rounded-md" title="Remove"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                </div>
+              </div>
+
+              <div class="assignment-row grid grid-cols-12 gap-2 sm:gap-3 items-center p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800">
+                <div class="col-span-6 sm:col-span-5">
+                  <input type="text" class="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-medium" value="Midterm Exam">
+                </div>
+                <div class="col-span-3 sm:col-span-3">
+                  <input type="number" class="row-weight w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-bold" value="30" min="0" max="100">
+                </div>
+                <div class="col-span-2 sm:col-span-3">
+                  <input type="number" class="row-score w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-bold" value="82" min="0" max="150">
+                </div>
+                <div class="col-span-1 sm:col-span-1 text-right">
+                  <button type="button" class="remove-row-btn text-rose-500 hover:text-rose-700 p-1 rounded-md" title="Remove"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                </div>
+              </div>
+
+              <div class="assignment-row grid grid-cols-12 gap-2 sm:gap-3 items-center p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800">
+                <div class="col-span-6 sm:col-span-5">
+                  <input type="text" class="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-medium" value="Final Exam">
+                </div>
+                <div class="col-span-3 sm:col-span-3">
+                  <input type="number" class="row-weight w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-bold" value="30" min="0" max="100">
+                </div>
+                <div class="col-span-2 sm:col-span-3">
+                  <input type="number" class="row-score w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-bold" value="90" min="0" max="150">
+                </div>
+                <div class="col-span-1 sm:col-span-1 text-right">
+                  <button type="button" class="remove-row-btn text-rose-500 hover:text-rose-700 p-1 rounded-md" title="Remove"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" id="add-assignment-btn" class="px-3.5 py-2 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 hover:border-indigo-500 text-xs font-bold text-indigo-600 dark:text-indigo-400 transition-colors inline-flex items-center gap-1.5">
+              <i data-lucide="plus" class="w-4 h-4"></i> Add Category
+            </button>
+
+            <!-- Semester Summary -->
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 grid grid-cols-3 gap-3 text-center">
+              <div>
+                <span class="text-xs text-slate-500 block">Overall Percentage</span>
+                <span id="out-semester-grade" class="text-xl font-black text-indigo-600 dark:text-indigo-400">0.00%</span>
+              </div>
+              <div>
+                <span class="text-xs text-slate-500 block">Letter Grade</span>
+                <span id="out-letter-grade" class="text-xl font-black text-slate-900 dark:text-white">A</span>
+              </div>
+              <div>
+                <span class="text-xs text-slate-500 block">US 4.0 GPA Scale</span>
+                <span id="out-gpa-equiv" class="text-xl font-black text-emerald-600">4.0 / 4.0</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Educational Section -->
+        <article class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">How Weighted Grading Works in US High Schools & Universities</h2>
+            <p>
+              In US collegiate courses, grades are rarely determined by raw points alone. Instead, professors assign weights (percentages) to different coursework categories (e.g., Homework 20%, Quizzes 20%, Midterm 25%, and Final Exam 35%). Knowing the exact weight of your final allows you to budget your study time strategically.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-base font-bold text-slate-900 dark:text-white mb-3">Frequently Asked Questions</h2>
+            <div class="space-y-3">
+              <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+                <summary class="flex items-center justify-between gap-4 p-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                  What is a passing grade in US universities?
+                  <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 flex-shrink-0"></i>
+                </summary>
+                <p class="px-4 pb-4 text-xs text-slate-600 dark:text-slate-400">
+                  For general undergraduate electives, a "D" (60-69%) or "C" (70-72%) is technically passing. However, major prerequisite courses typically require a minimum grade of "C" (2.0 GPA) to advance to the next level.
+                </p>
+              </details>
+            </div>
+          </section>
+        </article>
+
+      </div>
+
+      <!-- Right Column: Sidebar -->
+      <aside class="space-y-6">
+        <!-- Recommended Reading Card -->
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-indigo-50/90 to-violet-50/90 dark:from-indigo-950/60 dark:to-slate-900 border border-indigo-200 dark:border-indigo-800/80 shadow-sm">
+          <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>Recommended Reading</span>
+          </div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1.5 leading-snug">
+            How to Calculate Your Final Exam Score & Weighted Semester Grade
+          </h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+            Learn the mathematical algebra behind final exam weighting, realistic extra credit strategies, and syllabus grade recovery.
+          </p>
+          <a href="../blog/how-to-calculate-final-exam-grade-score.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 px-3.5 py-2 rounded-xl transition-colors shadow-sm">
+            <span>Read Complete Guide</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+
+        <!-- Quick Feature Specs -->
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider">Features & Reliability</h3>
+          <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-400">
+            <li class="flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+              <span>Instant required score algebra formula</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+              <span>Weighted multi-assignment coursework tab</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+              <span>Standard US 4.0 scale GPA conversion</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="shield-check" class="w-4 h-4 text-indigo-500"></i>
+              <span>100% Client-side browser calculation</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Related Tools -->
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider">Related US Tools</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="sales-tax-tip-calculator.html" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">US Sales Tax & Tip Split Calculator</a></li>
+            <li><a href="military-time-date-calculator.html" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">Military Time & Date Duration Calculator</a></li>
+            <li><a href="us-timezone-meeting-planner.html" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">US Time Zone Meeting Planner</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/final-grade-exam-calculator.js"></script>
+</body>
+</html>

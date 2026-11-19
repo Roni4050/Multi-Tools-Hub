@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Color Changer & PNG Exporter - Recolor Vectors Online | MultiTools Hub</title>
+  <meta name="description" content="Recolor SVG vector files and export high-resolution PNGs (1x, 2x, 4x) directly in your browser. Automatic fill & stroke color detection, live preview, 100% private.">
+  <link rel="canonical" href="https://multitools-hub.web.app/tools/svg-color-changer.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multitools-hub.web.app/tools/svg-color-changer.html">
+  <meta property="og:title" content="SVG Color Changer & PNG Exporter - MultiTools Hub">
+  <meta property="og:description" content="Recolor SVG vectors in real-time and export crisp 1x, 2x, 4x PNG images or modified SVG code.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {} }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "SVG Color Changer and PNG Exporter",
+        "url": "https://multitools-hub.web.app/tools/svg-color-changer.html",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Parse SVG markup, detect fill and stroke colors, recolor vectors dynamically, and rasterize high-res PNGs.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does the tool detect colors inside an SVG file?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The tool parses your SVG XML markup using the browser's DOMParser API. It scans all elements for fill, stroke, and inline style properties, grouping elements by hex color so you can swap out tones with a single color picker."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I export high-resolution PNGs for microstock or printing?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! You can rasterize and download your modified SVG graphic as a 1x, 2x, or 4x ultra-high-resolution PNG with transparent background preservation."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I paste raw SVG markup code directly without saving a file?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You can paste raw <svg> tags directly into the paste box or click the upload area to select a .svg file from your computer."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my proprietary vector files uploaded to any server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The entire XML parsing, color mapping, and canvas rasterization execute 100% locally in your browser memory."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <a href="../index.html" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+          <i data-lucide="layers" class="w-5 h-5"></i>
+        </div>
+        <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent">MultiTools Hub</span>
+      </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors" title="Back to All Tools">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="svg-color-changer.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">SVG Editor</a>
+        <a href="color-palette-extractor.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Color Palette</a>
+        <a href="bulk-image-resizer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Bulk Resizer</a>
+        <a href="image-watermark-exif-cleaner.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">EXIF Cleaner</a>
+        <a href="qr-code-generator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">QR Generator</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+        <a href="../about.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">About</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="window.toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors">
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+        <a href="../index.html" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors">
+          <i data-lucide="grid" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs & Header -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800/80 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-slate-500 mb-2">
+        <a href="../index.html" class="hover:text-indigo-600">Home</a>
+        <span>/</span>
+        <span class="text-slate-400">Image & Vector</span>
+        <span>/</span>
+        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">SVG Color Changer</span>
+      </nav>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            SVG Color Changer & PNG Exporter
+          </h1>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
+            Automatically detect SVG fill and stroke colors, recolor vector elements, and export crisp 1x/2x/4x PNGs.
+          </p>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 self-start sm:self-auto">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span>100% In-Browser Privacy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Left 70% Tool Interface -->
+      <div class="lg:col-span-8 space-y-6">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 shadow-sm space-y-6">
+          
+          <!-- Passed Palette Notification (from Tool 9) -->
+          <div id="passed-palette-chips" class="hidden p-4 rounded-xl bg-indigo-50/80 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-800 flex items-center justify-between gap-3 text-xs">
+            <div class="flex items-center gap-3">
+              <span class="font-bold text-indigo-700 dark:text-indigo-300">Imported Palette Chips:</span>
+              <div class="chips-container flex items-center gap-1.5"></div>
+            </div>
+            <span class="text-slate-400">Click to copy HEX</span>
+          </div>
+
+          <!-- Dropzone -->
+          <div id="svg-dropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-indigo-500 rounded-2xl p-8 sm:p-10 text-center cursor-pointer transition-all bg-slate-50/50 dark:bg-slate-800/30">
+            <input type="file" id="svg-file-input" accept=".svg,image/svg+xml" class="hidden">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-3">
+              <i data-lucide="feather" class="w-7 h-7"></i>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Upload .svg vector file</h3>
+            <p class="text-xs text-slate-500 mt-1">Parses all fills and strokes automatically</p>
+            <div class="mt-3">
+              <button type="button" id="svg-sample-btn" class="px-4 py-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold hover:bg-indigo-100 dark:hover:bg-indigo-900/60 transition-colors inline-flex items-center gap-1.5 shadow-sm">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>Load Sample Vector Badge</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Paste Raw SVG Alternative -->
+          <div class="space-y-2">
+            <label for="svg-paste-input" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
+              Or Paste Raw SVG Markup Code:
+            </label>
+            <div class="flex gap-2">
+              <textarea id="svg-paste-input" rows="2" placeholder="<svg xmlns='http://www.w3.org/2000/svg' ...>...</svg>" class="flex-1 px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white font-mono text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+              <button type="button" id="svg-paste-btn" class="px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-indigo-600 hover:text-white text-slate-700 dark:text-slate-200 text-xs font-semibold transition-colors flex-shrink-0">
+                Load SVG
+              </button>
+            </div>
+          </div>
+
+          <!-- Active Workspace -->
+          <div id="svg-workspace" class="hidden space-y-6">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              
+              <!-- Live Preview Column -->
+              <div>
+                <div class="flex items-center justify-between pb-2 mb-2 text-xs font-semibold text-slate-500">
+                  <span>Live SVG Preview</span>
+                  <button type="button" id="svg-reset-btn" class="text-indigo-600 dark:text-indigo-400 hover:underline">
+                    Load New Vector
+                  </button>
+                </div>
+                <div id="svg-preview-box" class="h-80 rounded-2xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-6 flex items-center justify-center overflow-hidden shadow-inner">
+                  <!-- Serialized SVG lives here -->
+                </div>
+              </div>
+
+              <!-- Detected Colors List Column -->
+              <div>
+                <div class="pb-2 mb-2 text-xs font-semibold text-slate-500">
+                  <span>Detected Colors (Click Swatch to Replace)</span>
+                </div>
+                <div id="svg-color-list" class="space-y-2 max-h-80 overflow-y-auto pr-1">
+                  <!-- Color rows rendered via JS -->
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Export Buttons Toolbar -->
+            <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+              <div class="flex flex-wrap items-center gap-2">
+                <button type="button" id="download-svg-btn" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs shadow-md shadow-indigo-600/20 transition-all flex items-center gap-1.5">
+                  <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                  <span>Download SVG (.svg)</span>
+                </button>
+                <button type="button" id="copy-svg-btn" class="px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-xs transition-colors flex items-center gap-1.5">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                  <span>Copy SVG Code</span>
+                </button>
+              </div>
+
+              <!-- High-Res PNG Multipliers -->
+              <div class="flex items-center gap-1.5">
+                <span class="text-xs text-slate-500 font-medium mr-1">Export PNG:</span>
+                <button type="button" id="download-png-1x" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-bold transition-colors">1x</button>
+                <button type="button" id="download-png-2x" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-bold transition-colors">2x</button>
+                <button type="button" id="download-png-4x" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors">4x HD</button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- SEO Article (700+ Words) -->
+        <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-8 sm:p-10 shadow-sm space-y-8 text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+          
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Effortless Vector Recoloring and High-DPI PNG Rasterization
+            </h2>
+            <p>
+              Scalable Vector Graphics (SVG) are the gold standard for icons, logos, website graphics, and microstock vector illustrations. However, changing a color scheme across an intricate SVG usually requires launching heavyweight desktop vector design applications.
+            </p>
+            <p class="mt-3">
+              MultiTools Hub parses the underlying XML tree of your SVG, isolates every single fill and stroke attribute, and groups them dynamically into manageable color swatches. Swapping a corporate blue for a brand purple takes only a couple of clicks, updating the live graphic preview in real-time.
+            </p>
+          </div>
+
+          <div class="border-t border-slate-100 dark:border-slate-800 pt-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Exporting Crisp 1x, 2x, and 4x PNG Assets
+            </h2>
+            <p>
+              While vector files scale infinitely on the web, many platforms, presentations, mobile apps, and microstock categories require high-resolution raster images (PNG) with transparent backgrounds:
+            </p>
+            <ul class="mt-3 space-y-2 list-disc list-inside text-slate-600 dark:text-slate-400">
+              <li><strong>1x Standard:</strong> Exports at native viewBox resolution for standard desktop screens.</li>
+              <li><strong>2x Retina:</strong> Doubles pixel dimensions for crisp rendering on Apple Retina displays and high-DPI smartphones.</li>
+              <li><strong>4x Ultra HD:</strong> Quadruples resolution for print reproduction, merchandise mockups, and microstock submissions.</li>
+            </ul>
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="border-t border-slate-100 dark:border-slate-800 pt-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Frequently Asked Questions (FAQ)
+            </h2>
+            <div class="space-y-3">
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>How does the tool detect colors inside an SVG file?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  The tool parses your SVG XML markup using the browser's DOMParser API. It scans all elements for fill, stroke, and inline style properties, grouping elements by hex color so you can swap out tones with a single color picker.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>Can I export high-resolution PNGs for microstock or printing?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Yes! You can rasterize and download your modified SVG graphic as a 1x, 2x, or 4x ultra-high-resolution PNG with transparent background preservation.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>Can I paste raw SVG markup code directly without saving a file?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Yes. You can paste raw &lt;svg&gt; tags directly into the paste box or click the upload area to select a .svg file from your computer.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>Are my proprietary vector files uploaded to any server?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  No. The entire XML parsing, color mapping, and canvas rasterization execute 100% locally in your browser memory.
+                </p>
+              </details>
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+
+      <!-- Right 30% Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <!-- Related Step-by-Step Guide Card -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-900 dark:to-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 shadow-sm space-y-3">
+          <div class="flex items-center gap-2 text-indigo-700 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>Recommended Reading</span>
+          </div>
+          <h4 class="font-bold text-sm text-slate-900 dark:text-white leading-snug">
+            <a href="../blog/how-to-recolor-svg-vector-graphics-in-browser.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              How to Recolor SVG Vector Graphics and Export High-Resolution PNG Assets Without Illustrator
+            </a>
+          </h4>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Read our complete 2026 problem-solving tutorial with step-by-step instructions, practical use cases, and expert tips.
+          </p>
+          <div class="pt-2">
+            <a href="../blog/how-to-recolor-svg-vector-graphics-in-browser.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+              <span>Read Step-by-Step Guide</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 text-slate-800 dark:text-slate-200">
+          <div class="flex items-center gap-2.5 text-indigo-700 dark:text-indigo-400 font-bold text-sm mb-2">
+            <i data-lucide="palette" class="w-5 h-5"></i>
+            <span>Connected Color Extractor</span>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Need inspiration? Upload any photo in our Color Palette Extractor and transfer your harmonic swatches directly here to recolor your vectors.
+          </p>
+        </div>
+
+        <div class="sticky top-24 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm space-y-4">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">Related Utility Tools</h3>
+          
+          <div class="space-y-3">
+            <a href="color-palette-extractor.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="palette" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Color Palette Extractor</p>
+                <p class="text-xs text-slate-500 mt-0.5">Extract harmonic swatches from images</p>
+              </div>
+            </a>
+
+            <a href="bulk-image-resizer.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="scaling" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Bulk Image Resizer</p>
+                <p class="text-xs text-slate-500 mt-0.5">Scale raster graphics in bulk</p>
+              </div>
+            </a>
+
+            <a href="qr-code-generator.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-violet-100 dark:bg-violet-950/80 text-violet-600 dark:text-violet-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="qr-code" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Custom QR Generator</p>
+                <p class="text-xs text-slate-500 mt-0.5">Vector SVG and PNG QR codes</p>
+              </div>
+            </a>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+            <a href="../index.html" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 hover:text-indigo-600 text-slate-700 dark:text-slate-300 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+              <span>Browse All 14 Tools</span>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/svg-color-changer.js"></script>
+</body>
+</html>

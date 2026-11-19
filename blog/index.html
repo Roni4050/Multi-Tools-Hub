@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorials &amp; Technical Guides | MultiTools Hub</title>
+  <meta name="description" content="In-depth tutorials, technical guides, and problem-solving articles for video creators, print publishers, e-commerce sellers, and developers. 100% client-side tips and tools.">
+  <link rel="canonical" href="https://multitools-hub.web.app/blog/index.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multitools-hub.web.app/blog/index.html">
+  <meta property="og:title" content="Tutorials &amp; Technical Guides - MultiTools Hub">
+  <meta property="og:description" content="In-depth tutorials on PDF manipulation, image optimization, social safe zones, e-commerce fees, and print specifications.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: {} } }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "MultiTools Hub Technical Guides",
+    "url": "https://multitools-hub.web.app/blog/index.html",
+    "description": "Comprehensive technical guides for digital creators, photographers, publishers, and developers."
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col font-sans">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent hidden sm:inline">MultiTools Hub</span>
+        </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+        <a href="index.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 text-sm font-semibold transition-colors">
+          <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+          <span>Blog &amp; Guides</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="../tools/all-in-one-pdf-converter.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">PDF Suite</a>
+        <a href="../tools/image-converter.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Image Tools</a>
+        <a href="../tools/passport-photo-maker.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Creator Tools</a>
+        <a href="../about.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">About</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="window.toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="Toggle Dark/Light Mode">
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+        <a href="../index.html" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="All Tools">
+          <i data-lucide="layout-grid" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="py-16 md:py-20 bg-grid-pattern border-b border-slate-200/80 dark:border-slate-800/80 text-center">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/70 border border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 mb-4 shadow-sm">
+        <i data-lucide="book-marked" class="w-3.5 h-3.5"></i>
+        <span>30 Detailed Problem-Solving Tutorials</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+        MultiTools Hub <span class="bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-500 bg-clip-text text-transparent">Guides &amp; Tutorials</span>
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+        Practical, in-depth step-by-step guides for creators, microstock contributors, self-publishers, freelancers, and developers.
+      </p>
+
+      <!-- Category Filter Tabs -->
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-2 text-sm font-medium">
+        <button type="button" class="category-filter-btn px-4 py-2 rounded-xl bg-indigo-600 text-white shadow-sm transition-all" data-category="all">
+          All 30 Guides
+        </button>
+        <button type="button" class="category-filter-btn px-4 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-indigo-400 transition-all" data-category="pdf">
+          PDF Guides
+        </button>
+        <button type="button" class="category-filter-btn px-4 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-indigo-400 transition-all" data-category="image">
+          Image &amp; Design
+        </button>
+        <button type="button" class="category-filter-btn px-4 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-indigo-400 transition-all" data-category="creator">
+          Creator &amp; Print
+        </button>
+        <button type="button" class="category-filter-btn px-4 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-indigo-400 transition-all" data-category="finance">
+          Finance &amp; US Standards
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Cards Grid -->
+  <main class="flex-1 py-14 w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 w-full">
+    <div id="blog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="pdf">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            PDF Guides
+          </span>
+          <span class="text-xs text-slate-400 font-medium">6 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="how-to-convert-images-svg-to-pdf-offline.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            How to Convert Images & SVG Vectors to PDF Completely Offline
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Learn how to convert JPG, PNG, WebP, and scalable SVG vectors into crisp, print-ready PDF documents offline in your browser with zero server uploads.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="how-to-convert-images-svg-to-pdf-offline.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="creator">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Creator & Print
+          </span>
+          <span class="text-xs text-slate-400 font-medium">5 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="adobe-stock-shutterstock-resolution-guide.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            The Microstock Resolution Guide: 4MP Minimums & Aspect Ratios for Adobe Stock & Shutterstock
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Learn how to calculate exact aspect ratios, verify the mandatory 4-megapixel microstock threshold, and compute 2x/4x upscale dimensions for Adobe Stock and Shutterstock.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="adobe-stock-shutterstock-resolution-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="image">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Image & Design
+          </span>
+          <span class="text-xs text-slate-400 font-medium">5 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="bulk-image-resizing-batch-optimization-guide.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            Batch Image Resizing & Cropping: How to Optimize High-Volume Photos Fast
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Master high-speed batch image resizing, aspect-ratio locking, center cropping, and ZIP packaging in your browser with zero software installation.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="bulk-image-resizing-batch-optimization-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="image">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Image & Design
+          </span>
+          <span class="text-xs text-slate-400 font-medium">6 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="webp-vs-jpeg-png-website-speed-guide.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            WebP vs JPEG vs PNG: How Next-Gen Image Compression Boosts Google Core Web Vitals
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Compare WebP, JPEG, and PNG compression algorithms, analyze bandwidth savings, and discover how converting web assets to WebP optimizes Largest Contentful Paint (LCP).
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="webp-vs-jpeg-png-website-speed-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="image">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Image & Design
+          </span>
+          <span class="text-xs text-slate-400 font-medium">5 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="how-to-extract-color-palettes-from-images.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            How to Extract Beautiful Color Palettes & Dominant HEX Swatches from Any Image
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Learn how to sample dominant, vibrant, and harmonious color swatches from photographs with one-click HEX, RGB, and HSL code copying for UI design.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="how-to-extract-color-palettes-from-images.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="creator">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Creator & Print
+          </span>
+          <span class="text-xs text-slate-400 font-medium">7 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="etsy-ebay-amazon-fba-fee-profit-margin-guide.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            The 2026 E-Commerce Seller Fee Guide: Calculating Net Profit on Etsy, eBay & Amazon FBA
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Calculate real net profits, seller commission fees, transaction charges, and break-even retail prices across Etsy, eBay, and Amazon FBA for 2026.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="etsy-ebay-amazon-fba-fee-profit-margin-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="image">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Image & Design
+          </span>
+          <span class="text-xs text-slate-400 font-medium">6 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="complete-favicon-pwa-icon-setup-guide.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            The Modern Favicon & PWA App Icon Setup Guide: Best Sizes, Manifests & Retina Support
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Learn modern favicon standards, multi-resolution requirements, Apple Touch icons, Android PWA manifests, and HTML head tags for high-DPI displays.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="complete-favicon-pwa-icon-setup-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="image">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Image & Design
+          </span>
+          <span class="text-xs text-slate-400 font-medium">5 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="how-to-convert-jpg-png-webp-svg-in-browser.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            Converting JPG, PNG, WebP, and Vector SVG: Modern Browser-Based Image Conversion
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Learn how to convert between JPG, PNG, WebP, and SVG formats, embed raster graphics inside SVG containers, and rasterize vectors at 1x, 2x, and 3x scale.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="how-to-convert-jpg-png-webp-svg-in-browser.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="image">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Image & Design
+          </span>
+          <span class="text-xs text-slate-400 font-medium">5 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="how-to-remove-exif-gps-metadata-from-photos.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            How to Strip Hidden GPS Location & EXIF Camera Metadata from Photos Privately
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Protect your privacy by removing hidden GPS coordinates, camera serial numbers, and personal timestamps from photos before sharing online.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="how-to-remove-exif-gps-metadata-from-photos.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="pdf">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            PDF Guides
+          </span>
+          <span class="text-xs text-slate-400 font-medium">6 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="how-to-create-professional-us-business-invoices.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            How to Create Professional US Business Invoices & Receipts: Legal Standards & Tax Rules
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Learn legal invoicing standards for US freelancers and small businesses, understand sales tax requirements, and generate clean US Letter PDF invoices privately.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="how-to-create-professional-us-business-invoices.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="creator">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Creator & Print
+          </span>
+          <span class="text-xs text-slate-400 font-medium">6 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="amazon-kdp-cover-bleed-calculation-guide.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            Amazon KDP Book Cover Dimensions: Calculating Spine Width, Bleed & Margins at 300 DPI
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Learn the exact mathematical formulas for calculating Amazon KDP paperback and hardcover spine thickness, 0.125" bleed margins, and total pixel dimensions at 300 DPI.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="amazon-kdp-cover-bleed-calculation-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="creator">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Creator & Print
+          </span>
+          <span class="text-xs text-slate-400 font-medium">7 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="understanding-us-mortgage-payments-piti-guide.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            Understanding US Mortgage Payments (PITI): Principal, Interest, Taxes, Insurance & PMI
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Learn how Principal, Interest, Taxes, and Insurance (PITI) determine your true monthly housing payment, how PMI works, and how to analyze amortization schedules.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="understanding-us-mortgage-payments-piti-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="creator">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Creator & Print
+          </span>
+          <span class="text-xs text-slate-400 font-medium">6 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="how-to-take-print-us-passport-photo-at-home.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            How to Take and Print Official 2x2 US Passport Photos at Home for Under $0.50
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Learn official US State Department photo requirements, align biometric eye and head guidelines, and print 6 photos on a 4x6 sheet at Walgreens or CVS for under $0.50.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="how-to-take-print-us-passport-photo-at-home.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="pdf">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            PDF Guides
+          </span>
+          <span class="text-xs text-slate-400 font-medium">5 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="how-to-merge-reorder-pdf-pages-privately.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            How to Merge and Reorganize Multi-Page PDF Documents Privately in Your Browser
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Learn how to combine multiple PDF documents, sort page sequences, remove unwanted sheets, and export a clean consolidated PDF with zero cloud uploads.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="how-to-merge-reorder-pdf-pages-privately.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="pdf">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            PDF Guides
+          </span>
+          <span class="text-xs text-slate-400 font-medium">5 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="how-to-split-pdf-extract-pages-convert-images.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            How to Split Large PDFs, Extract Custom Page Ranges, and Convert Images to Clean Documents
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Learn how to extract specific page ranges from large PDFs, unpack all pages into individual files zipped client-side, and convert photo batches to PDF.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="how-to-split-pdf-extract-pages-convert-images.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="creator">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Creator & Print
+          </span>
+          <span class="text-xs text-slate-400 font-medium">5 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="high-resolution-custom-qr-codes-guide.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            How to Create High-Resolution Custom QR Codes for Wi-Fi, vCards, and Print Marketing
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Generate high-resolution QR codes for websites, automatic Wi-Fi logins, vCard digital business cards, and print collateral in high-DPI PNG and vector SVG.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="high-resolution-custom-qr-codes-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="creator">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Creator & Print
+          </span>
+          <span class="text-xs text-slate-400 font-medium">5 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="youtube-shorts-reels-safe-zone-guide.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            The 9:16 Vertical Video Safe Zone Guide: Avoiding UI Overlays on Shorts, Reels, and TikTok
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Learn the exact 9:16 safe zone dimensions for YouTube Shorts, Instagram Reels, and TikTok to keep text, titles, and faces clear of interface icons.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="youtube-shorts-reels-safe-zone-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="pdf">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            PDF Guides
+          </span>
+          <span class="text-xs text-slate-400 font-medium">5 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="how-to-create-legal-digital-signatures-online.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            How to Create a Legally Binding Digital Signature with Transparent Background
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Learn legal electronic signature standards under the ESIGN Act and UETA, draw or type calligraphic signatures, and export transparent PNGs and vector SVGs.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="how-to-create-legal-digital-signatures-online.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="image">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Image & Design
+          </span>
+          <span class="text-xs text-slate-400 font-medium">5 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="how-to-recolor-svg-vector-graphics-in-browser.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            How to Recolor SVG Vector Graphics and Export High-Resolution PNG Assets Without Illustrator
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Learn how to inspect, modify, and recolor complex SVG vector graphics directly in your browser, exporting clean vector code or 1x, 2x, 4x high-res PNG assets.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="how-to-recolor-svg-vector-graphics-in-browser.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="creator">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Creator & Print
+          </span>
+          <span class="text-xs text-slate-400 font-medium">6 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="how-to-test-youtube-thumbnails-mobile-desktop-ctr.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            How to Test YouTube Thumbnails for Desktop & Mobile Feeds to Maximize Click-Through Rates (CTR)
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Learn how to A/B test YouTube thumbnail legibility, text contrast, and title truncation across mobile home feeds, desktop sidebars, and dark mode viewports.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="how-to-test-youtube-thumbnails-mobile-desktop-ctr.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="finance">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Finance & US Standards
+          </span>
+          <span class="text-xs text-slate-400 font-medium">7 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="us-sales-tax-dining-tip-split-guide.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            US Sales Tax & Dining Tip Split: Complete 50-State Restaurant Etiquette Guide
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Learn standard American restaurant tipping percentages (15%, 18%, 20%, 25%), understand state sales tax rates, and master bill splitting etiquette among dinner parties.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="us-sales-tax-dining-tip-split-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="undefined">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Business & Remote Work
+          </span>
+          <span class="text-xs text-slate-400 font-medium">8 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="us-timezone-meeting-planner-remote-work-guide.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            US Time Zone Meeting Planning Guide: How to Bridge the 3-Hour Coast-to-Coast Divide
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Master remote work scheduling across Eastern, Central, Mountain, and Pacific time zones. Find the golden overlap window, handle Arizona DST rules, and prevent scheduling burnout.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="us-timezone-meeting-planner-remote-work-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="undefined">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Telecom & Postal Standards
+          </span>
+          <span class="text-xs text-slate-400 font-medium">8 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="us-area-code-zip-lookup-validator-guide.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            US Area Code & ZIP Code Lookup: Complete 50-State Postal & Telecom Guide
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Understand the North American Numbering Plan (NANP), decode 3-digit phone area codes, validate USPS 5-digit ZIP codes, and protect yourself against neighbor spoofing scams.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="us-area-code-zip-lookup-validator-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="undefined">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Design & Print Suite
+          </span>
+          <span class="text-xs text-slate-400 font-medium">9 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="how-to-design-print-us-business-cards-letterhead.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            How to Design & Print US Business Cards & Official Letterhead (8.5x11 & Avery 5371)
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Complete DIY printing guide for American 3.5x2 inch business cards on 10-up US Letter sheets (Avery 5371) and corporate letterhead PDFs. Paper stock, crop marks, and bleed margins.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="how-to-design-print-us-business-cards-letterhead.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="undefined">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Education & Academics
+          </span>
+          <span class="text-xs text-slate-400 font-medium">7 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="how-to-calculate-final-exam-grade-score.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            How to Calculate Your Final Exam Grade Score (What Do I Need to Pass?)
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Learn the exact mathematical formula to calculate what score you need on your final exam to pass or secure an A, B, or C. Master weighted syllabi, extra credit, and GPA recovery.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="how-to-calculate-final-exam-grade-score.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="undefined">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Automotive & Legal
+          </span>
+          <span class="text-xs text-slate-400 font-medium">9 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="us-vin-decoder-check-digit-lookup-guide.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            US VIN Decoder & Check Digit Verification Guide: Protect Yourself from Used Car Scams
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Learn how to decode any 17-digit US Vehicle Identification Number (VIN), compute official NHTSA Modulo 11 check digits, identify stolen cloned titles, and verify state license plate rules.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="us-vin-decoder-check-digit-lookup-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="undefined">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            E-Commerce & Shipping
+          </span>
+          <span class="text-xs text-slate-400 font-medium">8 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="print-shipping-labels-envelopes-thermal-avery-guide.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            How to Print 4x6 Thermal Shipping Labels & Avery 5160 Address Sheets at Home
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Complete DIY guide for American e-commerce sellers on eBay, Poshmark, Etsy, and Mercari. Print 4x6 thermal labels, 30-up Avery 5160 sheets, and #10 business envelopes.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="print-shipping-labels-envelopes-thermal-avery-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="undefined">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Home Improvement & DIY
+          </span>
+          <span class="text-xs text-slate-400 font-medium">9 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="diy-paint-mulch-concrete-calculator-guide.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            DIY Material Estimator Guide: How to Calculate Paint, Mulch & Concrete Slabs
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Learn standard US home improvement material math: calculate paint gallons with door/window deductions, convert cubic yards for garden mulch, and estimate 60lb/80lb concrete bags.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="diy-paint-mulch-concrete-calculator-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="undefined">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Time & Chronology
+          </span>
+          <span class="text-xs text-slate-400 font-medium">8 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="military-time-conversion-date-duration-guide.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            US Military Time (24-Hour) & Date Duration Calculation Guide
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Master 24-hour military time conversion, phonetic spoken pronunciations, hospital chart timekeeping, and business work-day duration calculation excluding US holidays.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="military-time-conversion-date-duration-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    <article class="blog-card card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex flex-col justify-between" data-category="undefined">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            Real Estate & Finance
+          </span>
+          <span class="text-xs text-slate-400 font-medium">9 min read</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+          <a href="real-estate-commission-broker-split-tax-guide.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            US Real Estate Commission & Agent Split Guide (2026 Post-NAR Rules)
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+          Understand how real estate commissions work in the USA: listing vs buyer broker splits, broker-agent contract tiers (70/30, 80/20), franchise fees, and 1099 self-employment tax reserves.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-400 font-medium">Nov 2026</span>
+        <a href="real-estate-commission-broker-split-tax-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+          <span>Read Tutorial</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+  
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-5 flex-wrap justify-center text-xs font-semibold">
+        <a href="https://x.com/Roni_rahman1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          <span>X / Twitter</span>
+        </a>
+        <a href="https://www.threads.com/@minecraft_gameplay90?hl=en" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+          <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 192 192" aria-hidden="true"><path d="M141.537 88.9883C140.71 88.5919 139.87 88.2104 139.019 87.8451C137.537 60.5382 122.616 44.905 97.5619 44.745C97.4484 44.7443 97.3355 44.7443 97.222 44.7443C82.2364 44.7443 69.7731 51.1409 62.102 62.7807L75.881 72.2328C81.6116 63.5383 90.6052 61.6848 97.2286 61.6848C97.3051 61.6848 97.3819 61.6848 97.4576 61.6855C105.707 61.7381 111.932 64.1366 115.961 68.814C118.893 72.2193 120.854 76.925 121.825 82.8638C114.511 81.6207 106.601 81.2385 98.145 81.7233C74.3247 83.0954 59.0111 96.9879 60.0396 116.292C60.5615 126.084 65.4397 134.508 73.775 140.011C80.8224 144.663 89.899 146.938 99.3323 146.423C111.79 145.74 121.563 140.987 128.381 132.296C133.559 125.696 136.834 117.143 138.28 106.366C144.217 109.949 148.617 114.664 151.047 120.332C155.179 129.967 155.42 145.8 142.501 158.708C131.182 170.016 117.576 174.908 97.0135 175.059C74.2042 174.89 56.9538 167.575 45.7381 153.317C35.2355 139.966 29.8077 120.682 29.6052 96C29.8077 71.3178 35.2355 52.0336 45.7381 38.6827C56.9538 24.4249 74.2039 17.11 97.0132 16.9405C119.988 17.1113 137.539 24.4614 149.184 38.788C154.894 45.8136 159.199 54.6488 162.037 64.9503L178.184 60.6422C174.744 47.9622 169.331 37.0357 161.965 27.974C147.036 9.60668 125.202 0.195148 97.0695 0H96.9569C68.8816 0.19447 47.2921 9.6418 32.7883 28.0793C19.8819 44.4864 13.2244 67.3157 13.0007 95.9325L13 96L13.0007 96.0675C13.2244 124.684 19.8819 147.514 32.7883 163.921C47.2921 182.358 68.8816 191.806 96.9569 192H97.0695C122.03 191.827 139.624 185.292 154.118 170.811C173.081 151.866 172.51 128.119 166.26 113.541C161.776 103.087 153.227 94.5962 141.537 88.9883ZM98.4405 129.507C88.0005 130.095 77.1544 125.409 76.6196 115.372C76.2232 107.93 81.9158 99.626 99.0812 98.6368C101.047 98.5234 102.976 98.468 104.871 98.468C111.106 98.468 116.939 99.0737 122.242 100.233C120.264 124.935 108.662 128.946 98.4405 129.507Z"/></svg>
+          <span>Threads</span>
+        </a>
+        <a href="https://github.com/Roni4050" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+          <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg>
+          <span>GitHub</span>
+        </a>
+        <span class="text-slate-300 dark:text-slate-700 hidden sm:inline">|</span>
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy</a>
+        <a href="../terms.html" class="hover:underline">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterBtns = document.querySelectorAll('.category-filter-btn');
+      const cards = document.querySelectorAll('.blog-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => {
+            b.classList.remove('bg-indigo-600', 'text-white', 'shadow-sm');
+            b.classList.add('bg-white', 'dark:bg-slate-900', 'text-slate-600', 'dark:text-slate-300');
+          });
+          btn.classList.add('bg-indigo-600', 'text-white', 'shadow-sm');
+          btn.classList.remove('bg-white', 'dark:bg-slate-900', 'text-slate-600', 'dark:text-slate-300');
+
+          const cat = btn.getAttribute('data-category');
+          cards.forEach(card => {
+            const cardCat = card.getAttribute('data-category');
+            if (cat === 'all' || cardCat === cat) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Etsy, eBay & Amazon FBA Fee & Profit Calculator (USA) | MultiTools Hub</title>
+  <meta name="description" content="Calculate accurate 2026 Etsy, eBay, and Amazon FBA selling fees, net profit margin, return on investment (ROI), and break-even price. 100% free, realtime, client-side.">
+  <link rel="canonical" href="https://multitools-hub.web.app/tools/ecommerce-fee-calculator.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multitools-hub.web.app/tools/ecommerce-fee-calculator.html">
+  <meta property="og:title" content="Etsy, eBay & Amazon FBA Fee & Profit Calculator - MultiTools Hub">
+  <meta property="og:description" content="Real-time profit, margin, and fee calculations for US e-commerce sellers on Etsy, eBay, and Amazon.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: {} } }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Etsy, eBay & Amazon FBA Fee & Profit Calculator",
+        "url": "https://multitools-hub.web.app/tools/ecommerce-fee-calculator.html",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Calculate exact selling fees, transaction commissions, payment processing charges, and net profit margins across Etsy, eBay, and Amazon FBA.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What are Etsy's exact fees for US sellers in 2026?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Etsy charges US sellers a $0.20 USD listing fee (active for 4 months or until sold), a 6.5% transaction fee on the total order value (item price + shipping charged), and a 3% + $0.25 USD payment processing fee per transaction."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does eBay calculate Final Value Fees (FVF)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For standard merchandise categories, eBay charges a Final Value Fee of 13.25% of the total amount of the sale (including the item price, shipping charged, and sales tax) plus $0.30 per order."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between Amazon Referral Fee and FBA Fulfillment Fee?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The Amazon Referral Fee is a commission paid for selling on the Amazon marketplace (typically 15% for most consumer categories). The FBA (Fulfillment by Amazon) fee covers Amazon warehouse picking, packing, shipping, customer service, and returns, starting at $3.22 for small standard items."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent hidden sm:inline">MultiTools Hub</span>
+        </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="ecommerce-fee-calculator.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">E-Commerce Calculator</a>
+        <a href="aspect-ratio-calculator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Aspect Ratio</a>
+        <a href="bulk-image-resizer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Bulk Resizer</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+        <a href="../about.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">About</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="window.toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="Toggle Dark/Light Mode">
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+        <a href="../index.html" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="All Tools">
+          <i data-lucide="layout-grid" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Title & Breadcrumb -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800/80 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-slate-500 mb-3">
+        <a href="../index.html" class="hover:text-indigo-600 transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-slate-400">Creator &amp; Print</span>
+        <span>/</span>
+        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Etsy, eBay &amp; Amazon Fee Calculator</span>
+      </nav>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Etsy, eBay &amp; Amazon FBA Fee &amp; Profit Calculator
+          </h1>
+          <p class="mt-1.5 text-sm text-slate-600 dark:text-slate-400 max-w-2xl">
+            Realtime net profit, profit margin, ROI, and break-even pricing calculation across top US e-commerce marketplaces with updated 2026 fee schedules.
+          </p>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 self-start sm:self-auto flex-shrink-0">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span>100% In-Browser Privacy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+      <!-- Left Input & Platform Workspace -->
+      <div class="lg:col-span-7 space-y-6">
+
+        <!-- Platform Tabs -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-2 shadow-sm flex gap-2">
+          <button type="button" data-ecom-tab="etsy" class="flex-1 py-2.5 px-4 rounded-xl text-sm font-semibold transition-all bg-indigo-600 text-white shadow-sm flex items-center justify-center gap-2">
+            <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+            <span>Etsy</span>
+          </button>
+          <button type="button" data-ecom-tab="ebay" class="flex-1 py-2.5 px-4 rounded-xl text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 bg-transparent hover:text-indigo-600 flex items-center justify-center gap-2">
+            <i data-lucide="tag" class="w-4 h-4"></i>
+            <span>eBay</span>
+          </button>
+          <button type="button" data-ecom-tab="amazon" class="flex-1 py-2.5 px-4 rounded-xl text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 bg-transparent hover:text-indigo-600 flex items-center justify-center gap-2">
+            <i data-lucide="box" class="w-4 h-4"></i>
+            <span>Amazon FBA</span>
+          </button>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 shadow-sm space-y-6">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
+            <h2 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <i data-lucide="calculator" class="w-4 h-4 text-indigo-600"></i>
+              Item &amp; Pricing Details (USD)
+            </h2>
+            <button type="button" id="ecom-sample-btn" class="px-3 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold hover:bg-indigo-100 transition-colors inline-flex items-center gap-1.5">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+              <span>Load Preset Sample</span>
+            </button>
+          </div>
+
+          <!-- Pricing Inputs -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="ecom-price" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">Item Selling Price ($)</label>
+              <div class="relative">
+                <span class="absolute left-3.5 top-3 text-slate-400 font-bold">$</span>
+                <input type="number" id="ecom-price" min="0" step="0.5" value="35.00" class="w-full pl-8 pr-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-mono font-bold text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500">
+              </div>
+            </div>
+
+            <div>
+              <label for="ecom-ship-charged" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">Shipping Charged to Buyer ($)</label>
+              <div class="relative">
+                <span class="absolute left-3.5 top-3 text-slate-400 font-bold">$</span>
+                <input type="number" id="ecom-ship-charged" min="0" step="0.25" value="4.99" class="w-full pl-8 pr-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-mono font-bold text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500">
+              </div>
+              <span class="text-[10px] text-slate-400 mt-0.5 block">Enter 0 if offering Free Shipping</span>
+            </div>
+
+            <div>
+              <label for="ecom-cogs" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">Item Cost / COGS ($)</label>
+              <div class="relative">
+                <span class="absolute left-3.5 top-3 text-slate-400 font-bold">$</span>
+                <input type="number" id="ecom-cogs" min="0" step="0.5" value="8.50" class="w-full pl-8 pr-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-mono font-bold text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500">
+              </div>
+              <span class="text-[10px] text-slate-400 mt-0.5 block">Cost to produce or purchase inventory</span>
+            </div>
+
+            <div>
+              <label for="ecom-ship-cost" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">Actual Shipping &amp; Packaging ($)</label>
+              <div class="relative">
+                <span class="absolute left-3.5 top-3 text-slate-400 font-bold">$</span>
+                <input type="number" id="ecom-ship-cost" min="0" step="0.25" value="3.75" class="w-full pl-8 pr-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-mono font-bold text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500">
+              </div>
+              <span class="text-[10px] text-slate-400 mt-0.5 block">USPS, UPS, box, bubble mailer</span>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label for="ecom-ad-cost" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">Advertising / Promoted Listing Cost ($ or %)</label>
+              <input type="number" id="ecom-ad-cost" min="0" step="0.25" value="0.00" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-mono font-bold text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500">
+            </div>
+          </div>
+
+          <!-- Platform Specific Options -->
+          <div id="ecom-ebay-row" class="hidden p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60">
+            <label for="ecom-ebay-cat" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">eBay Category Final Value Fee Rate</label>
+            <select id="ecom-ebay-cat" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold">
+              <option value="standard" selected>Standard Merchandise (13.25% + $0.30)</option>
+              <option value="books">Books, DVD &amp; Movies (14.55% + $0.30)</option>
+              <option value="guitars">Guitars &amp; Musical Equipment (6.35% + $0.30)</option>
+              <option value="electronics">Consumer Electronics (9.00% + $0.30)</option>
+            </select>
+          </div>
+
+          <div id="ecom-fba-row" class="hidden p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60">
+            <label for="ecom-fba-size" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">Amazon FBA Size &amp; Weight Tier</label>
+            <select id="ecom-fba-size" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold">
+              <option value="small_standard" selected>Small Standard (&lt; 6 oz) — $3.22</option>
+              <option value="large_1lb">Large Standard (Up to 1 lb) — $4.15</option>
+              <option value="large_2lb">Large Standard (1 to 2 lbs) — $5.40</option>
+              <option value="small_oversize">Small Oversize — $9.73</option>
+            </select>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Right Analytics & Output Cards Column -->
+      <div class="lg:col-span-5 space-y-6">
+
+        <!-- Top Profit Card -->
+        <div class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm space-y-6">
+          
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">Estimated Net Profit</span>
+            <div id="ecom-profit-val" class="text-3xl font-extrabold font-mono text-emerald-600">$0.00</div>
+          </div>
+
+          <!-- Secondary Metrics Grid -->
+          <div class="grid grid-cols-2 gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">Profit Margin</span>
+              <div id="ecom-margin-val" class="text-xl font-bold font-mono text-emerald-600">0.0%</div>
+            </div>
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">Return on Investment (ROI)</span>
+              <div id="ecom-roi-val" class="text-xl font-bold font-mono text-indigo-600">0.0%</div>
+            </div>
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">Total Platform Fees</span>
+              <div id="ecom-fees-val" class="text-xl font-bold font-mono text-slate-800 dark:text-slate-200">$0.00</div>
+            </div>
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">Break-Even Price</span>
+              <div id="ecom-breakeven-val" class="text-xl font-bold font-mono text-slate-800 dark:text-slate-200">$0.00</div>
+            </div>
+          </div>
+
+          <!-- Visual Breakdown Stack Bar -->
+          <div class="space-y-2 pt-4 border-t border-slate-100 dark:border-slate-800">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">Revenue Allocation</span>
+            <div class="h-4 w-full rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden flex shadow-inner">
+              <div id="bar-cogs" class="h-full bg-rose-500 transition-all" style="width: 25%" title="Item Cost"></div>
+              <div id="bar-ship" class="h-full bg-amber-500 transition-all" style="width: 15%" title="Shipping"></div>
+              <div id="bar-fees" class="h-full bg-violet-500 transition-all" style="width: 20%" title="Platform Fees"></div>
+              <div id="bar-profit" class="h-full bg-emerald-500 transition-all" style="width: 40%" title="Net Profit"></div>
+            </div>
+            <div class="flex items-center justify-between text-[10px] text-slate-500 pt-1">
+              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-rose-500"></span> Item Cost</span>
+              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Shipping</span>
+              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-violet-500"></span> Fees</span>
+              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Profit</span>
+            </div>
+          </div>
+
+          <!-- Itemized Fee Breakdown List -->
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Itemized Platform Fee Breakdown</span>
+            <div id="ecom-fee-breakdown" class="space-y-1"></div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- SEO Guide Section -->
+    <div class="mt-16 max-w-4xl mx-auto">
+      <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-10 shadow-sm space-y-8">
+        <header>
+          <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            How to Master E-Commerce Fees and Protect Your Profit Margins
+          </h2>
+          <p class="mt-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+            Running an e-commerce side hustle or scaling a full-time brand on Etsy, eBay, or Amazon requires strict attention to fee schedules. Without factoring in transaction commissions, payment processing charges, and packaging postage, many sellers unwittingly sell products at a net loss. This guide breaks down the math behind profitable online pricing.
+          </p>
+        </header>
+
+        <section>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+            Etsy Fee Formula Explained (2026 Updated)
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+            Every time a customer purchases an item on your US Etsy shop, four distinct cost buckets apply:
+          </p>
+          <ul class="list-disc list-inside space-y-1.5 text-sm text-slate-600 dark:text-slate-400">
+            <li><strong class="text-slate-800 dark:text-slate-200">Listing Fee ($0.20):</strong> Billed per item renewed or purchased.</li>
+            <li><strong class="text-slate-800 dark:text-slate-200">Transaction Fee (6.5%):</strong> Assessed on the entire customer order total, including shipping charges and gift wrapping.</li>
+            <li><strong class="text-slate-800 dark:text-slate-200">Etsy Payments Processing (3% + $0.25):</strong> Assessed for processing domestic credit card payments.</li>
+            <li><strong class="text-slate-800 dark:text-slate-200">Offsite Ads (12% to 15%):</strong> Only applies if the shopper clicked an Etsy-managed Google/Facebook advertisement.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+            How to Calculate Your Break-Even Selling Price
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            Your break-even price represents the absolute minimum retail price you can charge where revenue exactly equals total costs (COGS + Shipping + Platform Commissions), resulting in zero profit and zero loss. When setting product prices, always target a minimum of 30% net margin to absorb unexpected customer returns, carrier damage, and seasonal sales promotions.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+          <div class="space-y-3">
+            <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+              <summary class="flex items-center justify-between gap-4 p-5 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                Should I charge for shipping or offer Free Shipping?
+                <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400 flex-shrink-0"></i>
+              </summary>
+              <p class="px-5 pb-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Both Etsy and eBay take transaction fees on shipping charges regardless of whether shipping is charged separately or baked into the retail price. However, offering "Free Shipping" by rolling postage into your item price drastically improves conversion rates and search ranking on all platforms.</p>
+            </details>
+            <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+              <summary class="flex items-center justify-between gap-4 p-5 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                Are my confidential product costs saved anywhere?
+                <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400 flex-shrink-0"></i>
+              </summary>
+              <p class="px-5 pb-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">No. All calculations run strictly in your web browser's local memory. No financial figures or pricing strategies are ever uploaded to any server.</p>
+            </details>
+          </div>
+        </section>
+      </article>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/ecommerce-fee-calculator.js"></script>
+</body>
+</html>

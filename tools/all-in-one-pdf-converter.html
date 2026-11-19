@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All-in-One PDF Converter Studio - Convert Images, Vectors & PDF Online Free</title>
+  <meta name="description" content="Convert JPG, PNG, WebP, and SVG to PDF, or convert PDF pages to high-res images (JPG, PNG, WebP, SVG) and extract plain text or Markdown. 100% private, client-side in your browser.">
+  <link rel="canonical" href="https://multitools-hub.web.app/tools/all-in-one-pdf-converter.html">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:title" content="All-in-One PDF Converter Studio - MultiTools Hub">
+  <meta property="og:description" content="Convert images to PDF, rasterize vectors, extract PDF pages to high-res JPG/PNG/WebP/SVG, and extract formatted Markdown text locally in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multitools-hub.web.app/tools/all-in-one-pdf-converter.html">
+
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {} }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Vendor Libraries: pdf-lib, PDF.js, JSZip -->
+  <script src="../assets/js/vendor/pdf-lib.min.js"></script>
+  <script>window.PDFLib || document.write('<script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js"><\/script>')</script>
+
+  <script src="../assets/js/vendor/pdf.min.js"></script>
+  <script>window.pdfjsLib || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"><\/script>')</script>
+
+  <script src="../assets/js/vendor/jszip.min.js"></script>
+  <script>window.JSZip || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"><\/script>')</script>
+
+  <script>
+    if (window.pdfjsLib) {
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = '../assets/js/vendor/pdf.worker.min.js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Schema.org SoftwareApplication & FAQPage JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "All-in-One PDF Converter Studio",
+        "url": "https://multitools-hub.web.app/tools/all-in-one-pdf-converter.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Convert JPG, PNG, WEBP, and SVG to clean PDF documents, render PDF pages as high-resolution images, and extract plain text or Markdown directly in your browser with zero server uploads.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Are my confidential PDF documents uploaded to a remote server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. MultiTools Hub executes all PDF processing, image rasterization, and text extraction 100% inside your client-side browser using WebAssembly, HTML5 Canvas, and Mozilla PDF.js. Your files never touch external servers or cloud storage."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does vector SVG conversion maintain sharpness in the generated PDF?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "When SVG files are added, our studio parses their vector paths and rasterizes them on high-DPI virtual canvases at double and triple device pixel ratios before compiling them into standard PDF containers, preserving crisp lines, typography, and contrast."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I convert multiple PDF pages to individual images at once?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Tab 2 renders every page of your uploaded PDF document into real-time visual previews. You can choose from JPG, PNG, WebP, or SVG output formats, adjust resolution scale (1x, 2x, 3x), and download individual pages or batch export all pages inside a zipped archive."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does the text extractor preserve document layout and page breaks?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The PDF to Text and Markdown Extractor reconstructs continuous text streams while inserting structured markdown headers and horizontal separators for each page, making it effortless to copy into Obsidian, Notion, or plain text editors."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Top Glassmorphism Navigation -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <a href="../index.html" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+          <i data-lucide="layers" class="w-5 h-5"></i>
+        </div>
+        <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent">MultiTools Hub</span>
+      </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors" title="Back to All Tools">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+
+      <!-- Category Navigation Links -->
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="all-in-one-pdf-converter.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">PDF Converter Studio</a>
+        <a href="pdf-merger-organizer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">PDF Merger</a>
+        <a href="pdf-splitter-images.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">PDF Splitter</a>
+        <a href="bulk-image-resizer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Image Resizer</a>
+        <a href="aspect-ratio-calculator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Aspect Ratio</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+        <a href="../about.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">About</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="window.toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="Toggle Theme">
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+        <a href="../index.html" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="All Tools">
+          <i data-lucide="grid" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs & Tool Header -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800/80 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-slate-500 mb-2">
+        <a href="../index.html" class="hover:text-indigo-600">Home</a>
+        <span>/</span>
+        <span class="text-slate-400">PDF Suite</span>
+        <span>/</span>
+        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">All-in-One PDF Converter Studio</span>
+      </nav>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
+            <span>All-in-One PDF Converter Studio</span>
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 font-bold">New</span>
+          </h1>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
+            Convert Images and Vectors to PDF, export PDF pages to JPG/PNG/WebP/SVG, and extract clean plain text or Markdown.
+          </p>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 self-start sm:self-auto">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span>100% In-Browser Privacy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main 2-Column Workspace -->
+  <main class="flex-1 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Left 70% Tool Interface Card -->
+      <div class="lg:col-span-8 space-y-6">
+
+        <!-- Interactive 3-Tab Bar -->
+        <div class="flex p-1.5 rounded-2xl bg-slate-200/80 dark:bg-slate-800/80 border border-slate-300/60 dark:border-slate-700/60 gap-1.5">
+          <button type="button" id="tab-btn-img2pdf" class="flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold bg-white dark:bg-slate-900 shadow-sm text-indigo-600 dark:text-indigo-400 transition-all flex items-center justify-center gap-2">
+            <i data-lucide="file-image" class="w-4 h-4"></i>
+            <span>Images & SVG to PDF</span>
+          </button>
+          <button type="button" id="tab-btn-pdf2img" class="flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all flex items-center justify-center gap-2">
+            <i data-lucide="image" class="w-4 h-4"></i>
+            <span>PDF to Images / SVG</span>
+          </button>
+          <button type="button" id="tab-btn-pdf2txt" class="flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all flex items-center justify-center gap-2">
+            <i data-lucide="file-text" class="w-4 h-4"></i>
+            <span>Extract Text / MD</span>
+          </button>
+        </div>
+
+        <!-- ==================== TAB 1 PANEL: IMAGES & SVG TO PDF ==================== -->
+        <div id="panel-img2pdf" class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 shadow-sm space-y-6">
+          
+          <!-- Dropzone -->
+          <div id="img2pdf-dropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-400 rounded-2xl p-8 sm:p-10 text-center cursor-pointer transition-all bg-slate-50/50 dark:bg-slate-800/30">
+            <input type="file" id="img2pdf-file-input" multiple accept=".jpg,.jpeg,.png,.webp,.svg,image/jpeg,image/png,image/webp,image/svg+xml" class="hidden">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-3 shadow-sm">
+              <i data-lucide="image-plus" class="w-7 h-7"></i>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">
+              Drop JPG, PNG, WebP or SVG files here, or <span class="text-indigo-600 dark:text-indigo-400 underline">browse</span>
+            </h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+              Vectors are rasterized at high DPI • Reorder pages before compiling
+            </p>
+            <div class="mt-3">
+              <button type="button" id="img2pdf-sample-btn" class="px-4 py-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold hover:bg-indigo-100 dark:hover:bg-indigo-900/60 transition-colors inline-flex items-center gap-1.5 shadow-sm" onclick="event.stopPropagation()">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>Load Demo Images & SVG Badge</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Layout & Formatting Options -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 text-xs">
+            <div>
+              <label for="pdf-page-size" class="block font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">Page Format</label>
+              <select id="pdf-page-size" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-medium">
+                <option value="a4" selected>A4 (Standard 210 × 297 mm)</option>
+                <option value="letter">US Letter (8.5 × 11 in)</option>
+                <option value="fit">Fit to Image Proportions</option>
+              </select>
+            </div>
+            <div>
+              <label for="pdf-orientation" class="block font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">Orientation</label>
+              <select id="pdf-orientation" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-medium">
+                <option value="portrait" selected>Portrait</option>
+                <option value="landscape">Landscape</option>
+              </select>
+            </div>
+            <div>
+              <label for="pdf-margin" class="block font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">Page Margins</label>
+              <select id="pdf-margin" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-medium">
+                <option value="none">None (Border to Border)</option>
+                <option value="small" selected>Small (20 px)</option>
+                <option value="medium">Medium (40 px)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Empty State -->
+          <div id="img2pdf-empty-state" class="text-center py-6">
+            <p class="text-sm text-slate-400">No images or SVGs uploaded yet. Add files above to begin compiling your PDF.</p>
+          </div>
+
+          <!-- Sortable File List -->
+          <div id="img2pdf-file-list" class="hidden space-y-2.5">
+            <!-- Dynamic rows will render here -->
+          </div>
+
+          <!-- Bottom Action Toolbar -->
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+            <span id="img2pdf-stats" class="text-xs font-medium text-slate-500 dark:text-slate-400">0 items queued</span>
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+              <button type="button" id="img2pdf-clear-btn" disabled class="px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-semibold transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+                Clear All
+              </button>
+              <button type="button" id="img2pdf-compile-btn" disabled class="flex-1 sm:flex-initial px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold shadow-md shadow-indigo-600/20 transition-all flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                <i data-lucide="file-check-2" class="w-4 h-4"></i>
+                <span>Compile & Download PDF</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Compile Progress Bar -->
+          <div id="img2pdf-progress" class="hidden space-y-2">
+            <div class="flex justify-between text-xs font-semibold text-slate-600 dark:text-slate-300">
+              <span id="img2pdf-progress-text">Rasterizing vectors and embedding pages...</span>
+            </div>
+            <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2.5 overflow-hidden">
+              <div id="img2pdf-progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-200" style="width: 0%"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ==================== TAB 2 PANEL: PDF TO IMAGES / SVG ==================== -->
+        <div id="panel-pdf2img" class="hidden bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 shadow-sm space-y-6">
+          
+          <!-- Dropzone -->
+          <div id="pdf2img-dropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-indigo-500 rounded-2xl p-8 sm:p-10 text-center cursor-pointer transition-all bg-slate-50/50 dark:bg-slate-800/30">
+            <input type="file" id="pdf2img-file-input" accept=".pdf,application/pdf" class="hidden">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-3 shadow-sm">
+              <i data-lucide="file-up" class="w-7 h-7"></i>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">
+              Drop a PDF file to convert into images
+            </h3>
+            <p class="text-xs text-slate-500 mt-1">
+              Renders live thumbnails for every page • Export as JPG, PNG, WebP or SVG
+            </p>
+            <div class="mt-3">
+              <button type="button" id="pdf2img-sample-btn" class="px-4 py-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold hover:bg-indigo-100 dark:hover:bg-indigo-900/60 transition-colors inline-flex items-center gap-1.5 shadow-sm" onclick="event.stopPropagation()">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>Load Sample 3-Page Presentation PDF</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Active PDF Info & Options -->
+          <div id="pdf2img-workspace" class="hidden space-y-6">
+            
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="file-text" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 id="pdf2img-filename" class="text-sm font-bold text-slate-900 dark:text-white truncate max-w-xs sm:max-w-md">document.pdf</h4>
+                  <p id="pdf2img-filemeta" class="text-xs text-slate-500">3 pages • 250 KB</p>
+                </div>
+              </div>
+              <button type="button" id="pdf2img-reset-btn" class="text-xs text-slate-500 hover:text-rose-600 font-semibold transition-colors">
+                Change PDF File
+              </button>
+            </div>
+
+            <!-- Export Configuration Controls -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 text-xs">
+              <div>
+                <label for="pdf2img-format-select" class="block font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">Output Image Format</label>
+                <select id="pdf2img-format-select" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold">
+                  <option value="png" selected>PNG (Lossless & Crisp)</option>
+                  <option value="jpeg">JPG / JPEG (Standard Photo)</option>
+                  <option value="webp">WebP (Compact Web Format)</option>
+                  <option value="svg">SVG (Scalable Vector XML)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="pdf2img-scale-select" class="block font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">Resolution Scale</label>
+                <select id="pdf2img-scale-select" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold">
+                  <option value="1">1x Standard (72 DPI)</option>
+                  <option value="2" selected>2x High-Definition (144 DPI)</option>
+                  <option value="3">3x Print Ultra-HD (216 DPI)</option>
+                </select>
+              </div>
+
+              <div id="pdf2img-quality-box">
+                <div class="flex items-center justify-between mb-1">
+                  <label for="pdf2img-quality" class="font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">JPEG/WebP Quality</label>
+                  <span id="pdf2img-quality-val" class="font-mono text-indigo-600 dark:text-indigo-400 font-bold">90%</span>
+                </div>
+                <input type="range" id="pdf2img-quality" min="10" max="100" value="90" class="w-full accent-indigo-600 cursor-pointer mt-1.5">
+              </div>
+            </div>
+
+            <!-- Global Action Bar -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+              <span id="pdf2img-page-count-badge" class="text-xs font-medium text-slate-500">Showing 3 rendered pages</span>
+              <button type="button" id="pdf2img-download-zip-btn" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold shadow-md shadow-indigo-600/20 transition-all flex items-center justify-center gap-2">
+                <i data-lucide="archive" class="w-4 h-4"></i>
+                <span>Download All Pages as ZIP</span>
+              </button>
+            </div>
+
+            <!-- Grid of Page Thumbnails -->
+            <div id="pdf2img-pages-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <!-- Rendered page cards will mount here -->
+            </div>
+
+          </div>
+
+          <!-- Progress Bar Indicator -->
+          <div id="pdf2img-progress" class="hidden space-y-2">
+            <div class="flex justify-between text-xs font-semibold text-slate-600 dark:text-slate-300">
+              <span id="pdf2img-progress-text">Rendering pages with PDF.js...</span>
+            </div>
+            <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2.5 overflow-hidden">
+              <div id="pdf2img-progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-200" style="width: 0%"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ==================== TAB 3 PANEL: PDF TO TEXT & MARKDOWN ==================== -->
+        <div id="panel-pdf2txt" class="hidden bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 shadow-sm space-y-6">
+          
+          <!-- Dropzone -->
+          <div id="pdf2txt-dropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-indigo-500 rounded-2xl p-8 sm:p-10 text-center cursor-pointer transition-all bg-slate-50/50 dark:bg-slate-800/30">
+            <input type="file" id="pdf2txt-file-input" accept=".pdf,application/pdf" class="hidden">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-3 shadow-sm">
+              <i data-lucide="file-search" class="w-7 h-7"></i>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">
+              Drop a PDF to extract Plain Text & Markdown
+            </h3>
+            <p class="text-xs text-slate-500 mt-1">
+              Extracts text streams with structured page breaks • 100% private
+            </p>
+            <div class="mt-3">
+              <button type="button" id="pdf2txt-sample-btn" class="px-4 py-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold hover:bg-indigo-100 dark:hover:bg-indigo-900/60 transition-colors inline-flex items-center gap-1.5 shadow-sm" onclick="event.stopPropagation()">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>Load Sample PDF for Text Extraction</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Active Text Workspace -->
+          <div id="pdf2txt-workspace" class="hidden space-y-4">
+            
+            <div class="flex items-center justify-between pb-1 border-b border-slate-100 dark:border-slate-800 text-xs">
+              <div class="flex items-center gap-3">
+                <span class="font-bold text-slate-900 dark:text-white">Extracted Content Preview</span>
+                <span id="pdf2txt-counts" class="text-slate-500 font-mono">0 words • 0 characters</span>
+              </div>
+              <button type="button" id="pdf2txt-reset-btn" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">
+                Upload New PDF
+              </button>
+            </div>
+
+            <!-- Text Output Box -->
+            <textarea id="pdf2txt-output" rows="12" class="w-full p-4 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white font-mono text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all leading-relaxed" placeholder="Extracted text will appear here..."></textarea>
+
+            <!-- Export Buttons -->
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+              <button type="button" id="pdf2txt-copy-btn" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold transition-colors flex items-center gap-1.5">
+                <i data-lucide="copy" class="w-4 h-4"></i>
+                <span>Copy to Clipboard</span>
+              </button>
+              <div class="flex items-center gap-2">
+                <button type="button" id="pdf2txt-download-txt" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 text-xs font-semibold transition-colors flex items-center gap-1.5">
+                  <i data-lucide="download" class="w-4 h-4"></i>
+                  <span>Download .TXT</span>
+                </button>
+                <button type="button" id="pdf2txt-download-md" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold shadow-md shadow-indigo-600/20 transition-all flex items-center gap-1.5">
+                  <i data-lucide="file-code" class="w-4 h-4"></i>
+                  <span>Download .MD (Markdown)</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Progress Bar Indicator -->
+          <div id="pdf2txt-progress" class="hidden space-y-2">
+            <div class="flex justify-between text-xs font-semibold text-slate-600 dark:text-slate-300">
+              <span id="pdf2txt-progress-text">Extracting text streams...</span>
+            </div>
+            <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2.5 overflow-hidden">
+              <div id="pdf2txt-progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-200" style="width: 0%"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ==================== RICH 700+ WORD SEO ARTICLE ==================== -->
+        <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 shadow-sm space-y-8 text-slate-700 dark:text-slate-300 leading-relaxed text-sm">
+          
+          <div>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3">
+              All-in-One PDF Converter Studio: Convert Documents, Vectors & Images with Absolute Privacy
+            </h2>
+            <p>
+              In contemporary digital workflows, creative professionals, legal consultants, software engineers, and microstock contributors frequently need to pivot between diverse visual and document formats. Whether you are packaging high-resolution PNG product photos and scalable vector graphics (SVG) into a pitch-ready PDF portfolio, converting multi-page administrative documents into lossless PNG or WebP images, or extracting raw text and Markdown for AI processing, relying on cloud-based converters introduces major privacy risks and bandwidth bottlenecks.
+            </p>
+            <p class="mt-3">
+              MultiTools Hub’s <strong>All-in-One PDF Converter Studio</strong> eliminates these concerns entirely. Powered by Mozilla PDF.js, pdf-lib, and modern HTML5 Canvas Web APIs, every byte of your visual or textual data is parsed, rendered, and compressed 100% inside your local web browser. Your confidential contracts, proprietary artwork, and invoices never leave your computer.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+              How to Use the All-in-One PDF Converter (Step-by-Step)
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3">
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60">
+                <span class="w-6 h-6 rounded-md bg-indigo-600 text-white font-bold text-xs flex items-center justify-center mb-2">1</span>
+                <h4 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider mb-1">Convert Images & SVG to PDF</h4>
+                <p class="text-xs text-slate-500">
+                  Select Tab 1, drag-and-drop JPG, PNG, WebP, or SVG graphics, arrange them in your preferred reading order, choose standard A4 or US Letter page formats, and click "Compile & Download PDF".
+                </p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60">
+                <span class="w-6 h-6 rounded-md bg-indigo-600 text-white font-bold text-xs flex items-center justify-center mb-2">2</span>
+                <h4 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider mb-1">Export PDF to Images / SVG</h4>
+                <p class="text-xs text-slate-500">
+                  Switch to Tab 2, upload any multi-page PDF document, choose your output format (PNG, JPG, WebP, or SVG), pick a resolution scale (up to 3x 216 DPI print quality), and download individual slides or batch export as a ZIP.
+                </p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60">
+                <span class="w-6 h-6 rounded-md bg-indigo-600 text-white font-bold text-xs flex items-center justify-center mb-2">3</span>
+                <h4 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider mb-1">Extract Text & Markdown</h4>
+                <p class="text-xs text-slate-500">
+                  Select Tab 3 to extract raw text streams from your PDF. Review word counts in the live editable preview box, copy to your clipboard with one click, or download structured .TXT and .MD markdown documents.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+              Why Client-Side Browser Conversion Protects Your Privacy
+            </h3>
+            <p>
+              Traditional online PDF utility websites require you to upload your files to remote third-party servers. This architecture poses serious risks:
+            </p>
+            <ul class="list-disc list-inside mt-2 space-y-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              <li><strong>Zero Cloud Exposure:</strong> Proprietary graphics, NDAs, financial summaries, and personal tax documents remain strictly in your browser memory.</li>
+              <li><strong>Zero Upload Latency:</strong> Because files do not travel across the internet, conversions happen instantly, even with large multi-megabyte image batches.</li>
+              <li><strong>Unlimited Document Size & Usage:</strong> Unlike subscription SaaS tools that enforce daily conversion caps, MultiTools Hub offers unlimited conversions free forever.</li>
+              <li><strong>Bandwidth Friendly:</strong> Ideal for travelers and remote professionals on metered mobile hotspots or unstable connections.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+              High-DPI Vector Rasterization & Precision Typography
+            </h3>
+            <p>
+              When embedding Scalable Vector Graphics (SVG) into PDF documents, ordinary converters often distort fonts or produce pixelated results. Our studio resolves this by utilizing an offscreen HTML5 Canvas pipeline rendered at 2x and 3x device pixel ratios. Vector coordinates, Bezier curves, drop shadows, and color gradients are calculated at sub-pixel accuracy before being compiled into high-density PDF pages.
+            </p>
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">
+              Frequently Asked Questions (FAQ)
+            </h3>
+            <div class="space-y-3">
+              <details class="group p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60">
+                <summary class="font-semibold text-xs sm:text-sm cursor-pointer list-none flex items-center justify-between text-slate-900 dark:text-white">
+                  <span>Are my confidential PDF documents uploaded to a remote server?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-open:rotate-180"></i>
+                </summary>
+                <p class="mt-2 text-xs text-slate-500 leading-relaxed">
+                  No. MultiTools Hub executes all PDF processing, image rasterization, and text extraction 100% inside your client-side browser using WebAssembly, HTML5 Canvas, and Mozilla PDF.js. Your files never touch external servers or cloud storage.
+                </p>
+              </details>
+
+              <details class="group p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60">
+                <summary class="font-semibold text-xs sm:text-sm cursor-pointer list-none flex items-center justify-between text-slate-900 dark:text-white">
+                  <span>How does vector SVG conversion maintain sharpness in the generated PDF?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-open:rotate-180"></i>
+                </summary>
+                <p class="mt-2 text-xs text-slate-500 leading-relaxed">
+                  When SVG files are added, our studio parses their vector paths and rasterizes them on high-DPI virtual canvases at double and triple device pixel ratios before compiling them into standard PDF containers, preserving crisp lines, typography, and contrast.
+                </p>
+              </details>
+
+              <details class="group p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60">
+                <summary class="font-semibold text-xs sm:text-sm cursor-pointer list-none flex items-center justify-between text-slate-900 dark:text-white">
+                  <span>Can I convert multiple PDF pages to individual images at once?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-open:rotate-180"></i>
+                </summary>
+                <p class="mt-2 text-xs text-slate-500 leading-relaxed">
+                  Yes. Tab 2 renders every page of your uploaded PDF document into real-time visual previews. You can choose from JPG, PNG, WebP, or SVG output formats, adjust resolution scale (1x, 2x, 3x), and download individual pages or batch export all pages inside a zipped archive.
+                </p>
+              </details>
+
+              <details class="group p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60">
+                <summary class="font-semibold text-xs sm:text-sm cursor-pointer list-none flex items-center justify-between text-slate-900 dark:text-white">
+                  <span>Does the text extractor preserve document layout and page breaks?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-open:rotate-180"></i>
+                </summary>
+                <p class="mt-2 text-xs text-slate-500 leading-relaxed">
+                  The PDF to Text and Markdown Extractor reconstructs continuous text streams while inserting structured markdown headers and horizontal separators for each page, making it effortless to copy into Obsidian, Notion, or plain text editors.
+                </p>
+              </details>
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+
+      <!-- Right 30% Sticky Related Tools Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <!-- Related Step-by-Step Guide Card -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-900 dark:to-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 shadow-sm space-y-3">
+          <div class="flex items-center gap-2 text-indigo-700 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>Recommended Reading</span>
+          </div>
+          <h4 class="font-bold text-sm text-slate-900 dark:text-white leading-snug">
+            <a href="../blog/how-to-convert-images-svg-to-pdf-offline.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              How to Convert Images & SVG Vectors to PDF Completely Offline
+            </a>
+          </h4>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Read our complete 2026 problem-solving tutorial with step-by-step instructions, practical use cases, and expert tips.
+          </p>
+          <div class="pt-2">
+            <a href="../blog/how-to-convert-images-svg-to-pdf-offline.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+              <span>Read Step-by-Step Guide</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="sticky top-24 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm space-y-5">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500">Related Utility Tools</h3>
+          
+          <div class="space-y-3">
+            <a href="pdf-merger-organizer.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                <i data-lucide="merge" class="w-4 h-4"></i>
+              </div>
+              <div class="min-w-0">
+                <h4 class="text-xs font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors">PDF Merger & Organizer</h4>
+                <p class="text-[11px] text-slate-500 mt-0.5">Combine and reorder multiple PDF documents</p>
+              </div>
+            </a>
+
+            <a href="pdf-splitter-images.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                <i data-lucide="split" class="w-4 h-4"></i>
+              </div>
+              <div class="min-w-0">
+                <h4 class="text-xs font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors">PDF Splitter & Subsets</h4>
+                <p class="text-[11px] text-slate-500 mt-0.5">Extract custom page ranges or export to ZIP</p>
+              </div>
+            </a>
+
+            <a href="bulk-image-resizer.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                <i data-lucide="maximize" class="w-4 h-4"></i>
+              </div>
+              <div class="min-w-0">
+                <h4 class="text-xs font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors">Bulk Image Resizer</h4>
+                <p class="text-[11px] text-slate-500 mt-0.5">Resize photos with aspect ratio lock</p>
+              </div>
+            </a>
+
+            <a href="aspect-ratio-calculator.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                <i data-lucide="scaling" class="w-4 h-4"></i>
+              </div>
+              <div class="min-w-0">
+                <h4 class="text-xs font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors">Aspect Ratio Calculator</h4>
+                <p class="text-[11px] text-slate-500 mt-0.5">Detect aspect ratios & 4MP stock requirements</p>
+              </div>
+            </a>
+
+            <a href="svg-color-changer.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-violet-50 dark:bg-violet-950/60 text-violet-600 dark:text-violet-400 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                <i data-lucide="palette" class="w-4 h-4"></i>
+              </div>
+              <div class="min-w-0">
+                <h4 class="text-xs font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors">SVG Color Changer</h4>
+                <p class="text-[11px] text-slate-500 mt-0.5">Recolor vector assets & export in high-res PNG</p>
+              </div>
+            </a>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 text-center">
+            <a href="../index.html" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline inline-flex items-center gap-1.5">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+              <span>Browse All Tools</span>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/pdf-converter.js"></script>
+</body>
+</html>

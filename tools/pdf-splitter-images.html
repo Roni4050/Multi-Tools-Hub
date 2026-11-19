@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Splitter & Image to PDF Converter - MultiTools Hub</title>
+  <meta name="description" content="Split PDF pages by custom range, extract all pages to ZIP, or convert JPG/PNG images to PDF. 100% client-side in your browser, completely private and free.">
+  <link rel="canonical" href="https://multitools-hub.web.app/tools/pdf-splitter-images.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multitools-hub.web.app/tools/pdf-splitter-images.html">
+  <meta property="og:title" content="PDF Splitter & Image to PDF Converter - MultiTools Hub">
+  <meta property="og:description" content="Split PDF pages and convert photos into clean PDF documents directly in your browser.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {} }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- pdf-lib & JSZip (Local with CDN fallback) -->
+  <script src="../assets/js/vendor/pdf-lib.min.js"></script>
+  <script>window.PDFLib || document.write('<script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js"><\/script>')</script>
+  <script src="../assets/js/vendor/jszip.min.js"></script>
+  <script>window.JSZip || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"><\/script>')</script>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "PDF Splitter and Image to PDF Converter",
+        "url": "https://multitools-hub.web.app/tools/pdf-splitter-images.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Split PDF files into individual pages or custom ranges, and convert JPG, PNG, and WebP images to standard PDF documents privately.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does custom page range splitting work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can enter individual pages and page spans separated by commas, such as '1-3, 5, 8-10'. The browser tool extracts only those exact pages into a brand new PDF document."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I extract every single page into separate PDF files?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Clicking 'Extract All Pages to ZIP' splits each page into its own individual PDF (e.g., page-001.pdf, page-002.pdf) and archives them into a downloadable ZIP file."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What image formats are supported in the Images-to-PDF converter?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "JPG, JPEG, PNG, and WebP images are supported. Images can be arranged in custom sequences and formatted into standard A4, US Letter, or Fit-to-Image page dimensions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my images or PDF files uploaded to an external server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. All parsing, slicing, canvas rendering, and ZIP compression occur 100% client-side in your web browser session."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <a href="../index.html" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+          <i data-lucide="layers" class="w-5 h-5"></i>
+        </div>
+        <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent">MultiTools Hub</span>
+      </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors" title="Back to All Tools">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="all-in-one-pdf-converter.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">PDF Studio</a>
+        <a href="pdf-merger-organizer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">PDF Merger</a>
+        <a href="pdf-splitter-images.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">PDF Splitter</a>
+        <a href="bulk-image-resizer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Image Resizer</a>
+        <a href="safe-zone-checker.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Safe Zone</a>
+        <a href="kdp-bleed-calculator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">KDP Bleed</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+        <a href="../about.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">About</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="window.toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors">
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+        <a href="../index.html" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors">
+          <i data-lucide="grid" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs & Header -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800/80 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-slate-500 mb-2">
+        <a href="../index.html" class="hover:text-indigo-600">Home</a>
+        <span>/</span>
+        <span class="text-slate-400">PDF Suite</span>
+        <span>/</span>
+        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">PDF Splitter & Images</span>
+      </nav>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            PDF Splitter & Images to PDF Converter
+          </h1>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
+            Extract custom page ranges or batch convert JPG, PNG, and WebP images to clean PDF files.
+          </p>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 self-start sm:self-auto">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span>100% In-Browser Privacy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main 2-Column Workspace -->
+  <main class="flex-1 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Left 70% Tool Interface -->
+      <div class="lg:col-span-8 space-y-6">
+        
+        <!-- Tab Selector Container -->
+        <div class="p-1 rounded-2xl bg-slate-200/70 dark:bg-slate-800/80 inline-flex items-center gap-1">
+          <button type="button" id="tab-split-btn" class="px-5 py-2.5 rounded-xl text-sm font-bold bg-white dark:bg-slate-800 shadow-sm text-indigo-600 dark:text-indigo-400 transition-all flex items-center gap-2">
+            <i data-lucide="scissors" class="w-4 h-4"></i>
+            <span>Split PDF Document</span>
+          </button>
+          <button type="button" id="tab-images-btn" class="px-5 py-2.5 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all flex items-center gap-2">
+            <i data-lucide="images" class="w-4 h-4"></i>
+            <span>Convert Images to PDF</span>
+          </button>
+        </div>
+
+        <!-- PANEL A: SPLIT PDF -->
+        <div id="panel-split" class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 shadow-sm space-y-6">
+          
+          <div id="split-dropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-indigo-500 rounded-2xl p-8 sm:p-12 text-center cursor-pointer transition-all bg-slate-50/50 dark:bg-slate-800/30">
+            <input type="file" id="split-file-input" accept=".pdf,application/pdf" class="hidden">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-4">
+              <i data-lucide="file-up" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Select a PDF file to split</h3>
+            <p class="text-xs text-slate-500 mt-1">Extract specific page subsets or export every page to ZIP</p>
+            <div class="mt-3">
+              <button type="button" id="load-sample-split-pdf-btn" class="px-4 py-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold hover:bg-indigo-100 dark:hover:bg-indigo-900/60 transition-colors inline-flex items-center gap-1.5 shadow-sm">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>Load Sample 5-Page PDF</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Split Info Card -->
+          <div id="split-info-card" class="hidden space-y-5">
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+                  <i data-lucide="file-text" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 id="split-file-name" class="text-sm font-bold text-slate-900 dark:text-white truncate max-w-xs sm:max-w-md">document.pdf</h4>
+                  <p id="split-file-meta" class="text-xs text-slate-500">12 pages • 2.4 MB</p>
+                </div>
+              </div>
+              <button type="button" id="split-reset-btn" class="text-xs text-slate-500 hover:text-rose-600 font-semibold transition-colors">
+                Change File
+              </button>
+            </div>
+
+            <div class="space-y-2">
+              <label for="split-range-input" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
+                Custom Page Range (e.g. 1-3, 5, 7-10)
+              </label>
+              <input type="text" id="split-range-input" placeholder="e.g. 1-3, 5" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all">
+              <p class="text-[11px] text-slate-500">Enter comma-separated page numbers or ranges to extract into a single clean PDF.</p>
+            </div>
+
+            <div class="pt-2 flex flex-col sm:flex-row gap-3">
+              <button type="button" id="split-action-btn" class="flex-1 py-3 px-5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm transition-all shadow-md shadow-indigo-600/20 flex items-center justify-center gap-2">
+                <i data-lucide="download" class="w-4 h-4"></i>
+                <span>Download Extracted Pages (PDF)</span>
+              </button>
+              <button type="button" id="split-zip-btn" class="py-3 px-5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-sm transition-all flex items-center justify-center gap-2">
+                <i data-lucide="archive" class="w-4 h-4"></i>
+                <span>Extract All Pages (ZIP)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Split Progress Bar -->
+          <div id="split-progress" class="hidden space-y-2">
+            <div class="flex justify-between text-xs font-semibold text-slate-600 dark:text-slate-300">
+              <span id="split-progress-text">Processing pages...</span>
+            </div>
+            <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2.5 overflow-hidden">
+              <div id="split-progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-200" style="width: 0%"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- PANEL B: IMAGES TO PDF -->
+        <div id="panel-images" class="hidden bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 shadow-sm space-y-6">
+          
+          <div id="img-dropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-indigo-500 rounded-2xl p-8 sm:p-12 text-center cursor-pointer transition-all bg-slate-50/50 dark:bg-slate-800/30">
+            <input type="file" id="img-file-input" multiple accept="image/*" class="hidden">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-4">
+              <i data-lucide="images" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Drop images to convert to PDF</h3>
+            <p class="text-xs text-slate-500 mt-1">Supports JPG, PNG, WebP • Reorder images before compiling</p>
+            <div class="mt-3">
+              <button type="button" id="load-sample-images-pdf-btn" class="px-4 py-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold hover:bg-indigo-100 dark:hover:bg-indigo-900/60 transition-colors inline-flex items-center gap-1.5 shadow-sm">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>Load Sample Images (3 Pages)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Image Settings Options -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60">
+            <div>
+              <label for="page-size-select" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">Page Format</label>
+              <select id="page-size-select" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs">
+                <option value="a4">A4 (Standard)</option>
+                <option value="letter">US Letter</option>
+                <option value="fit">Fit to Image Size</option>
+              </select>
+            </div>
+            <div>
+              <label for="page-margin-select" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">Page Margins</label>
+              <select id="page-margin-select" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs">
+                <option value="none">No Margin (Full Bleed)</option>
+                <option value="small" selected>Small Margin (10mm)</option>
+                <option value="normal">Normal Margin (20mm)</option>
+              </select>
+            </div>
+            <div>
+              <label for="page-orient-select" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">Orientation</label>
+              <select id="page-orient-select" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs">
+                <option value="auto">Auto (Match Image)</option>
+                <option value="portrait">Portrait</option>
+                <option value="landscape">Landscape</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="img-empty-state" class="text-center py-6 text-slate-400 text-xs">
+            No images selected yet.
+          </div>
+
+          <!-- Interactive Image List -->
+          <div id="img-list" class="hidden space-y-2.5"></div>
+
+          <!-- Actions -->
+          <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+            <button type="button" id="img-clear-btn" disabled class="px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-all disabled:opacity-40">
+              Clear Images
+            </button>
+            <button type="button" id="img-convert-btn" disabled class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold shadow-md shadow-indigo-600/20 transition-all flex items-center gap-2 disabled:opacity-40">
+              <i data-lucide="file-check" class="w-4 h-4"></i>
+              <span>Generate PDF from Images</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- SEO Article Section (700+ Words) -->
+        <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-8 sm:p-10 shadow-sm space-y-8 text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+          
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Complete Guide to PDF Splitting & Image Compilation
+            </h2>
+            <p>
+              Managing large PDF documents frequently requires isolating specific sections—such as separating legal addendums, pulling out an invoice page from a 100-page bank record, or compiling digital artwork portfolios into single downloadable books. MultiTools Hub pairs a precision PDF page extractor with a versatile image-to-PDF compiler, all functioning completely client-side.
+            </p>
+          </div>
+
+          <div class="border-t border-slate-100 dark:border-slate-800 pt-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              How to Extract Exact Page Subsets or Individual Zips
+            </h2>
+            <p>
+              Our custom range syntax gives you granular control over exactly which pages survive into the final document:
+            </p>
+            <ul class="mt-3 space-y-2 list-disc list-inside text-slate-600 dark:text-slate-400">
+              <li><strong>Continuous Spans:</strong> Type <code>1-5</code> to extract the first five pages.</li>
+              <li><strong>Selective Pages:</strong> Type <code>1, 4, 9</code> to pull non-contiguous pages.</li>
+              <li><strong>Complex Combinations:</strong> Type <code>1-3, 7, 12-15</code> to extract mixed intervals in one click.</li>
+              <li><strong>Bulk Extraction:</strong> Use the <em>"Extract All Pages (ZIP)"</em> feature to instantly generate a portable ZIP archive where each page is saved as its own standalone PDF file.</li>
+            </ul>
+          </div>
+
+          <div class="border-t border-slate-100 dark:border-slate-800 pt-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Converting Multi-Format Images into Archival PDFs
+            </h2>
+            <p>
+              Freelancers and creators often receive assets in mixed formats: some in PNG with transparent backgrounds, high-resolution scans in JPG, and modern web graphics in WebP. Combining them conventionally usually requires expensive desktop software.
+            </p>
+            <p class="mt-3">
+              MultiTools Hub automatically processes transparency on HTML5 canvas with a clean white backdrop, normalizes image aspect ratios, and embeds them into standardized PDF dimensions (A4, US Letter, or native pixel sizing). You can adjust margins to ensure borderless full-bleed photography prints or clean 10mm margins for document binding.
+            </p>
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="border-t border-slate-100 dark:border-slate-800 pt-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Frequently Asked Questions (FAQ)
+            </h2>
+            <div class="space-y-3">
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>How does custom page range splitting work?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  You can enter individual pages and page spans separated by commas, such as '1-3, 5, 8-10'. The browser tool extracts only those exact pages into a brand new PDF document.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>Can I extract every single page into separate PDF files?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Yes! Clicking 'Extract All Pages to ZIP' splits each page into its own individual PDF (e.g., page-001.pdf, page-002.pdf) and archives them into a downloadable ZIP file.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>What image formats are supported in the Images-to-PDF converter?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  JPG, JPEG, PNG, and WebP images are supported. Images can be arranged in custom sequences and formatted into standard A4, US Letter, or Fit-to-Image page dimensions.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>Are my images or PDF files uploaded to an external server?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Never. All parsing, slicing, canvas rendering, and ZIP compression occur 100% client-side in your web browser session.
+                </p>
+              </details>
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+
+      <!-- Right 30% Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <!-- Related Step-by-Step Guide Card -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-900 dark:to-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 shadow-sm space-y-3">
+          <div class="flex items-center gap-2 text-indigo-700 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>Recommended Reading</span>
+          </div>
+          <h4 class="font-bold text-sm text-slate-900 dark:text-white leading-snug">
+            <a href="../blog/how-to-split-pdf-extract-pages-convert-images.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              How to Split Large PDFs, Extract Custom Page Ranges, and Convert Images to Clean Documents
+            </a>
+          </h4>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Read our complete 2026 problem-solving tutorial with step-by-step instructions, practical use cases, and expert tips.
+          </p>
+          <div class="pt-2">
+            <a href="../blog/how-to-split-pdf-extract-pages-convert-images.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+              <span>Read Step-by-Step Guide</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 text-slate-800 dark:text-slate-200">
+          <div class="flex items-center gap-2.5 text-indigo-700 dark:text-indigo-400 font-bold text-sm mb-2">
+            <i data-lucide="shield-check" class="w-5 h-5"></i>
+            <span>No File Size Restrictions</span>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Execute large extraction jobs and high-DPI image compiles directly on your device with no artificial cloud quotas.
+          </p>
+        </div>
+
+        <div class="sticky top-24 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm space-y-4">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">Related Utility Tools</h3>
+          
+          <div class="space-y-3">
+            <a href="all-in-one-pdf-converter.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="file-cog" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">All-in-One PDF Converter</p>
+                <p class="text-xs text-slate-500 mt-0.5">Images, SVG, PDF to images & text</p>
+              </div>
+            </a>
+
+            <a href="pdf-merger-organizer.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="file-stack" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">PDF Merger & Organizer</p>
+                <p class="text-xs text-slate-500 mt-0.5">Combine & reorder multiple PDFs</p>
+              </div>
+            </a>
+
+            <a href="bulk-webp-converter.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Bulk WebP Converter</p>
+                <p class="text-xs text-slate-500 mt-0.5">Compress & convert to next-gen WebP</p>
+              </div>
+            </a>
+
+            <a href="qr-code-generator.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-violet-100 dark:bg-violet-950/80 text-violet-600 dark:text-violet-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="qr-code" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Custom QR Generator</p>
+                <p class="text-xs text-slate-500 mt-0.5">Vector SVG and PNG QR codes</p>
+              </div>
+            </a>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+            <a href="../index.html" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 hover:text-indigo-600 text-slate-700 dark:text-slate-300 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+              <span>Browse All 14 Tools</span>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/pdf-splitter-images.js"></script>
+</body>
+</html>

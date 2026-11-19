@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - MultiTools Hub | Architecture & Mission</title>
+  <meta name="description" content="Discover MultiTools Hub: our mission, client-side browser technology, and commitment to 100% private digital utility tools for creators, designers, and self-publishers.">
+  <link rel="canonical" href="https://multitools-hub.web.app/about.html">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multitools-hub.web.app/about.html">
+  <meta property="og:title" content="About Us - MultiTools Hub">
+  <meta property="og:description" content="High-performance client-side utility suite engineered for privacy, speed, and creator independence.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {} }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-16 flex items-center justify-between gap-4">
+      <a href="index.html" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+          <i data-lucide="layers" class="w-5 h-5"></i>
+        </div>
+        <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent">MultiTools Hub</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-4 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">All Tools</a>
+        <a href="about.html" class="text-indigo-600 dark:text-indigo-400 font-semibold">About</a>
+        <a href="contact.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Contact</a>
+        <a href="privacy-policy.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Privacy</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="window.toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors">
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+        <button type="button" id="mobile-menu-btn" class="md:hidden p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="flex-1 py-12 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 mb-4">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          <span>Engineered for Independent Creators</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          About MultiTools Hub
+        </h1>
+        <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+          The all-in-one, privacy-focused utility suite built specifically for modern digital content creators, self-publishers, microstock contributors, and graphic artists.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-8 sm:p-12 shadow-sm space-y-10 text-slate-700 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+        
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2.5">
+            <i data-lucide="compass" class="w-6 h-6 text-indigo-600"></i>
+            Our Mission & Philosophy
+          </h2>
+          <p>
+            At <strong>MultiTools Hub</strong>, we believe creative professionals should never have to sacrifice their privacy or pay subscription fees just to perform essential daily tasks like merging PDF invoices, resizing images, stripping camera metadata, or previewing YouTube thumbnails.
+          </p>
+          <p class="mt-3">
+            Most online utility sites operate on outdated paradigms: they require uploading your sensitive files, proprietary photography, and personal documents to distant cloud servers. This introduces security risks, artificial file-size limits, slow upload queues, and aggressive pop-up advertisements. We engineered MultiTools Hub to prove there is a better way.
+          </p>
+        </section>
+
+        <section class="border-t border-slate-100 dark:border-slate-800 pt-8">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2.5">
+            <i data-lucide="cpu" class="w-6 h-6 text-indigo-600"></i>
+            Client-Side Browser Architecture
+          </h2>
+          <p>
+            Every single tool on MultiTools Hub runs <strong>100% locally in your web browser</strong>. When you drag and drop a 50MB PDF document or a batch of 40 high-resolution camera images into our interface:
+          </p>
+          <ul class="mt-3 space-y-2 list-disc list-inside text-slate-600 dark:text-slate-400">
+            <li><strong>Zero Data Uploads:</strong> Files are read directly from your local disk using the browser’s native <code>FileReader</code> API.</li>
+            <li><strong>Hardware-Accelerated Compute:</strong> Image transformations, color quantization, and canvas cropping utilize your computer's own GPU and CPU via the HTML5 Canvas API.</li>
+            <li><strong>Sandboxed Document Processing:</strong> PDF manipulation and page compilation are executed via <code>pdf-lib</code> inside your isolated browser sandbox.</li>
+            <li><strong>Local Compression:</strong> Batch archives are packaged instantly on client memory using <code>JSZip</code> without contacting any backend server.</li>
+          </ul>
+        </section>
+
+        <section class="border-t border-slate-100 dark:border-slate-800 pt-8">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2.5">
+            <i data-lucide="users" class="w-6 h-6 text-indigo-600"></i>
+            Who We Serve
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60">
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">Microstock Contributors</h3>
+              <p class="mt-1 text-xs text-slate-600 dark:text-slate-400">
+                Photographers and vector illustrators submitting to Adobe Stock, Shutterstock, and iStock who need 4MP resolution verification, EXIF sanitization, and watermark proofing.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60">
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">Video Creators & YouTubers</h3>
+              <p class="mt-1 text-xs text-slate-600 dark:text-slate-400">
+                Content creators needing to check safe zones for YouTube Shorts, Reels, and TikTok, or test thumbnail CTR and title readability across light and dark feeds.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60">
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">KDP Authors & Self-Publishers</h3>
+              <p class="mt-1 text-xs text-slate-600 dark:text-slate-400">
+                Independent authors calculating exact spine widths, paper caliper dimensions, and 0.125-inch print bleed requirements for Amazon KDP paperbacks and hardcovers.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60">
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">Designers & Web Developers</h3>
+              <p class="mt-1 text-xs text-slate-600 dark:text-slate-400">
+                Professionals requiring instant SVG color extraction, WebP format conversion, image optimization, and vector QR code generation.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="border-t border-slate-100 dark:border-slate-800 pt-8">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2.5">
+            <i data-lucide="shield-alert" class="w-6 h-6 text-indigo-600"></i>
+            Commitment to Free Access & Transparency
+          </h2>
+          <p>
+            MultiTools Hub is sustained through non-intrusive contextual advertising (such as Google AdSense) that respects your browsing experience. We will never sell your personal information, inject tracking beacons into your processed assets, or lock core features behind deceptive paywalls.
+          </p>
+          <p class="mt-3">
+            Have questions, feedback, or a tool request? Feel free to <a href="contact.html" class="text-indigo-600 dark:text-indigo-400 font-semibold underline">reach out to our development team</a> anytime.
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="about.html" class="hover:underline">About</a>
+        <a href="contact.html" class="hover:underline">Contact</a>
+        <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="terms.html" class="hover:underline">Terms of Service</a>
+        <a href="disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://multitools-hub.web.app/sitemap.xml

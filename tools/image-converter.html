@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Format Converter - JPG, PNG, WEBP, SVG Bulk Converter | MultiTools Hub</title>
+  <meta name="description" content="Convert images between JPG, PNG, WEBP formats in bulk. Embed raster images as scalable SVG, or rasterize SVG vectors to high-DPI PNG/JPG at 1x, 2x, or 3x. 100% client-side, zero uploads.">
+  <link rel="canonical" href="https://multitools-hub.web.app/tools/image-converter.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multitools-hub.web.app/tools/image-converter.html">
+  <meta property="og:title" content="Image Format Converter - MultiTools Hub">
+  <meta property="og:description" content="Convert JPG, PNG, WEBP, and SVG images in bulk with ZIP download. 100% client-side browser processing.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: {} } }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- JSZip (Local with CDN fallback) -->
+  <script src="../assets/js/vendor/jszip.min.js"></script>
+  <script>window.JSZip || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"><\/script>')</script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Image Format Converter",
+        "url": "https://multitools-hub.web.app/tools/image-converter.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Convert images between JPG, PNG, WEBP formats and convert between raster and SVG with bulk ZIP download. 100% client-side processing.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can I convert JPG to PNG without losing quality?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. When you select PNG as the output format, the converter uses lossless encoding via HTML5 Canvas. The image is decoded then re-encoded to PNG, which preserves all pixel data. For JPG-to-PNG specifically, the original JPEG compression is not undone, but no additional quality loss is introduced."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What does the Raster to SVG tab actually produce?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It wraps your original JPG, PNG, or WEBP as a base64-encoded data URI inside a valid SVG <image> element. The resulting SVG file is resolution-independent in size (scales to any viewport) while still displaying the original raster pixel data inside the vector container."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What scale should I use to rasterize an SVG for printing?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use 3x scale for print-quality output (approximately 300 DPI when the base SVG is designed at 96 DPI). Use 2x for high-resolution screen displays and Retina monitors. Use 1x for standard web use where file size is a priority."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my images uploaded to any server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. All conversions happen entirely inside your browser using the HTML5 Canvas API and FileReader. Your files never leave your device — no server receives or stores them."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Sticky Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+
+      <!-- Logo + Home -->
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent hidden sm:inline">MultiTools Hub</span>
+        </a>
+        <!-- Home text button -->
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+      </div>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="image-converter.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">Image Converter</a>
+        <a href="bulk-image-resizer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Bulk Resizer</a>
+        <a href="bulk-webp-converter.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">WebP Converter</a>
+        <a href="svg-color-changer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">SVG Editor</a>
+        <a href="image-watermark-exif-cleaner.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">EXIF Cleaner</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+        <a href="../about.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">About</a>
+      </nav>
+
+      <!-- Right Controls -->
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="window.toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="Toggle Dark/Light Mode">
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+        <a href="../index.html" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="All Tools">
+          <i data-lucide="layout-grid" class="w-4 h-4"></i>
+        </a>
+        <button type="button" id="mobile-menu-btn" class="md:hidden p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 text-slate-600 dark:text-slate-300" title="Open Menu">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-menu-backdrop" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden"></div>
+  <div id="mobile-menu-drawer" class="fixed top-0 right-0 z-50 h-full w-80 max-w-[85vw] bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 overflow-y-auto">
+    <div>
+      <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+        <span class="font-bold text-slate-900 dark:text-white">Menu</span>
+        <button type="button" id="mobile-menu-close" class="p-2 text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="mt-6 space-y-1">
+        <a href="../index.html" class="flex items-center gap-2 py-2.5 px-3 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-950/60 transition-colors">
+          <i data-lucide="home" class="w-4 h-4 text-indigo-500"></i> Home — All Tools
+        </a>
+        <a href="image-converter.html" class="flex items-center gap-2 py-2.5 px-3 rounded-lg text-sm bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 font-semibold">
+          <i data-lucide="refresh-cw" class="w-4 h-4"></i> Image Converter
+        </a>
+        <a href="bulk-image-resizer.html" class="flex items-center gap-2 py-2 px-3 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:text-indigo-600">
+          <i data-lucide="scaling" class="w-4 h-4 text-indigo-500"></i> Bulk Image Resizer
+        </a>
+        <a href="bulk-webp-converter.html" class="flex items-center gap-2 py-2 px-3 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:text-indigo-600">
+          <i data-lucide="sparkles" class="w-4 h-4 text-indigo-500"></i> Bulk WebP Converter
+        </a>
+        <a href="svg-color-changer.html" class="flex items-center gap-2 py-2 px-3 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:text-indigo-600">
+          <i data-lucide="feather" class="w-4 h-4 text-indigo-500"></i> SVG Color Changer
+        </a>
+        <a href="image-watermark-exif-cleaner.html" class="flex items-center gap-2 py-2 px-3 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:text-indigo-600">
+          <i data-lucide="shield-check" class="w-4 h-4 text-indigo-500"></i> EXIF Cleaner &amp; Watermark
+        </a>
+        <a href="color-palette-extractor.html" class="flex items-center gap-2 py-2 px-3 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:text-indigo-600">
+          <i data-lucide="palette" class="w-4 h-4 text-indigo-500"></i> Color Palette Extractor
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb + Page Header -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800/80 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-slate-500 mb-3">
+        <a href="../index.html" class="hover:text-indigo-600 transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-slate-400">Image &amp; Vector</span>
+        <span>/</span>
+        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Image Format Converter</span>
+      </nav>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Image Format Converter
+          </h1>
+          <p class="mt-1.5 text-sm text-slate-600 dark:text-slate-400 max-w-2xl">
+            Convert between JPG, PNG, WEBP — convert raster images to SVG containers — rasterize SVG vectors to high-DPI images. Bulk ZIP download. Zero uploads.
+          </p>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 self-start sm:self-auto flex-shrink-0">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span>100% In-Browser Privacy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+      <!-- Main Tool Area -->
+      <div class="lg:col-span-8 space-y-6">
+
+        <!-- Tab Navigation -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-2 shadow-sm flex gap-1 overflow-x-auto">
+          <button data-tab-btn="tab1" class="flex-1 min-w-max flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all bg-indigo-600 text-white shadow-sm">
+            <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+            <span>Format Converter</span>
+          </button>
+          <button data-tab-btn="tab2" class="flex-1 min-w-max flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 bg-transparent hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-950/50">
+            <i data-lucide="box" class="w-4 h-4"></i>
+            <span>Raster → SVG</span>
+          </button>
+          <button data-tab-btn="tab3" class="flex-1 min-w-max flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 bg-transparent hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-950/50">
+            <i data-lucide="aperture" class="w-4 h-4"></i>
+            <span>SVG → Raster</span>
+          </button>
+        </div>
+
+        <!-- ═══ TAB 1: FORMAT CONVERTER ═══ -->
+        <div data-tab-panel="tab1" class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 shadow-sm space-y-6">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <i data-lucide="refresh-cw" class="w-5 h-5 text-indigo-600"></i>
+              Raster Format Converter
+            </h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Convert JPG ↔ PNG, PNG → WEBP, WEBP → JPG and more. Up to 50 images. Single or ZIP download.</p>
+          </div>
+
+          <!-- Dropzone -->
+          <div id="t1-dropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-indigo-500 rounded-2xl p-10 sm:p-14 text-center cursor-pointer transition-all bg-slate-50/50 dark:bg-slate-800/30">
+            <input type="file" id="t1-file-input" multiple accept="image/jpeg,image/png,image/webp,image/gif,image/bmp" class="hidden">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-4">
+              <i data-lucide="image-plus" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Drop images here or click to upload</h3>
+            <p class="text-sm text-slate-500 mt-1.5">JPG, PNG, WEBP, GIF, BMP — up to 50 files</p>
+            <div class="mt-4">
+              <button type="button" id="t1-sample-btn" class="px-5 py-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-sm font-semibold hover:bg-indigo-100 dark:hover:bg-indigo-900/60 transition-colors inline-flex items-center gap-2 shadow-sm">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                <span>Load 3 Sample Images</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Settings -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60">
+            <div>
+              <label for="t1-output-format" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Output Format</label>
+              <select id="t1-output-format" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-semibold text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                <option value="webp">WEBP — Next-Gen Compressed</option>
+                <option value="jpeg">JPEG / JPG — Standard Photo</option>
+                <option value="png" selected>PNG — Lossless Transparency</option>
+              </select>
+            </div>
+            <div id="t1-quality-row" class="hidden">
+              <div class="flex items-center justify-between mb-2">
+                <label for="t1-quality" class="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">Quality</label>
+                <span id="t1-quality-val" class="font-mono text-indigo-600 dark:text-indigo-400 font-bold text-sm">90%</span>
+              </div>
+              <input type="range" id="t1-quality" min="10" max="100" value="90" class="w-full accent-indigo-600 cursor-pointer mt-1">
+            </div>
+          </div>
+
+          <!-- File List -->
+          <div id="t1-list-wrap" class="hidden space-y-2">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white">Files Queued</h3>
+              <button type="button" id="t1-clear-btn" class="text-xs text-slate-400 hover:text-rose-500 font-semibold transition-colors flex items-center gap-1">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Clear All
+              </button>
+            </div>
+            <div id="t1-file-list" class="space-y-2 max-h-72 overflow-y-auto pr-1"></div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div id="t1-action-row" class="hidden flex flex-col sm:flex-row gap-3">
+            <button id="t1-convert-btn" type="button" class="flex-1 py-3.5 px-6 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm flex items-center justify-center gap-2 transition-colors shadow-md shadow-indigo-500/20">
+              <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+              <span>Convert &amp; Download</span>
+            </button>
+            <button id="t1-zip-btn" type="button" class="py-3.5 px-6 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-sm flex items-center justify-center gap-2 transition-colors">
+              <i data-lucide="archive" class="w-4 h-4"></i>
+              <span>Download ZIP</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ═══ TAB 2: RASTER → SVG ═══ -->
+        <div data-tab-panel="tab2" class="hidden bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 shadow-sm space-y-6">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <i data-lucide="box" class="w-5 h-5 text-violet-600"></i>
+              Raster Image → SVG Container
+            </h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Embed JPG, PNG, or WEBP images inside a valid SVG <code class="text-xs bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">&lt;image&gt;</code> wrapper. The result is a scalable SVG file that contains your raster image.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-violet-50 dark:bg-violet-950/40 border border-violet-200/80 dark:border-violet-800/60 text-xs text-violet-800 dark:text-violet-300 flex items-start gap-2.5">
+            <i data-lucide="info" class="w-4 h-4 flex-shrink-0 mt-0.5"></i>
+            <span>The output SVG embeds your image as a base64 data URI. This preserves the original image quality pixel-for-pixel inside a scalable SVG container. The file size will be ~33% larger than the original due to base64 encoding.</span>
+          </div>
+
+          <!-- Dropzone -->
+          <div id="t2-dropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-violet-500 rounded-2xl p-10 sm:p-14 text-center cursor-pointer transition-all bg-slate-50/50 dark:bg-slate-800/30">
+            <input type="file" id="t2-file-input" multiple accept="image/jpeg,image/png,image/webp" class="hidden">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-violet-50 dark:bg-violet-950/70 text-violet-600 dark:text-violet-400 flex items-center justify-center mb-4">
+              <i data-lucide="box" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Drop JPG / PNG / WEBP images</h3>
+            <p class="text-sm text-slate-500 mt-1.5">Each image will be wrapped in a valid SVG container</p>
+            <div class="mt-4">
+              <button type="button" id="t2-sample-btn" class="px-5 py-2.5 rounded-xl bg-violet-50 dark:bg-violet-950/80 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800 text-sm font-semibold hover:bg-violet-100 transition-colors inline-flex items-center gap-2 shadow-sm">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                <span>Load Sample PNG</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- File List -->
+          <div id="t2-list-wrap" class="hidden space-y-2">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white">Files Queued</h3>
+              <button type="button" id="t2-clear-btn" class="text-xs text-slate-400 hover:text-rose-500 font-semibold transition-colors flex items-center gap-1">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Clear All
+              </button>
+            </div>
+            <div id="t2-file-list" class="space-y-2 max-h-72 overflow-y-auto pr-1"></div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div id="t2-action-row" class="hidden flex flex-col sm:flex-row gap-3">
+            <button id="t2-convert-btn" type="button" class="flex-1 py-3.5 px-6 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-bold text-sm flex items-center justify-center gap-2 transition-colors shadow-md shadow-violet-500/20">
+              <i data-lucide="download" class="w-4 h-4"></i>
+              <span>Convert &amp; Download SVG(s)</span>
+            </button>
+            <button id="t2-zip-btn" type="button" class="py-3.5 px-6 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-sm flex items-center justify-center gap-2 transition-colors">
+              <i data-lucide="archive" class="w-4 h-4"></i>
+              <span>Download ZIP</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ═══ TAB 3: SVG → RASTER ═══ -->
+        <div data-tab-panel="tab3" class="hidden bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 shadow-sm space-y-6">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <i data-lucide="aperture" class="w-5 h-5 text-emerald-600"></i>
+              SVG Vector → Raster Image
+            </h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Rasterize SVG files to PNG, JPG, or WEBP at 1x, 2x, or 3x high-DPI scale using HTML5 Canvas. Perfect for exporting icons, illustrations, and graphics.</p>
+          </div>
+
+          <!-- Settings -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60">
+            <div>
+              <label for="t3-scale" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Output Scale</label>
+              <select id="t3-scale" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-semibold text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                <option value="1">1x — Standard (96 DPI)</option>
+                <option value="2" selected>2x — Retina / Hi-Res</option>
+                <option value="3">3x — Print Quality (~288 DPI)</option>
+              </select>
+            </div>
+            <div>
+              <label for="t3-output-format" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Output Format</label>
+              <select id="t3-output-format" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-semibold text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                <option value="png" selected>PNG — Lossless</option>
+                <option value="jpeg">JPEG — Compressed</option>
+                <option value="webp">WEBP — Next-Gen</option>
+              </select>
+            </div>
+            <div id="t3-quality-row" class="hidden">
+              <div class="flex items-center justify-between mb-2">
+                <label for="t3-quality" class="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">Quality</label>
+                <span id="t3-quality-val" class="font-mono text-indigo-600 dark:text-indigo-400 font-bold text-sm">90%</span>
+              </div>
+              <input type="range" id="t3-quality" min="10" max="100" value="90" class="w-full accent-indigo-600 cursor-pointer mt-1">
+            </div>
+          </div>
+
+          <!-- Dropzone -->
+          <div id="t3-dropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-emerald-500 rounded-2xl p-10 sm:p-14 text-center cursor-pointer transition-all bg-slate-50/50 dark:bg-slate-800/30">
+            <input type="file" id="t3-file-input" multiple accept="image/svg+xml,.svg" class="hidden">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-emerald-50 dark:bg-emerald-950/70 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
+              <i data-lucide="file-code-2" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Drop SVG files here or click to upload</h3>
+            <p class="text-sm text-slate-500 mt-1.5">Only .svg files accepted — rasterized via offscreen Canvas</p>
+            <div class="mt-4">
+              <button type="button" id="t3-sample-btn" class="px-5 py-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-sm font-semibold hover:bg-emerald-100 transition-colors inline-flex items-center gap-2 shadow-sm">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                <span>Load Sample SVG</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- File List -->
+          <div id="t3-list-wrap" class="hidden space-y-2">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white">SVG Files Queued</h3>
+              <button type="button" id="t3-clear-btn" class="text-xs text-slate-400 hover:text-rose-500 font-semibold transition-colors flex items-center gap-1">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Clear All
+              </button>
+            </div>
+            <div id="t3-file-list" class="space-y-2 max-h-72 overflow-y-auto pr-1"></div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div id="t3-action-row" class="hidden flex flex-col sm:flex-row gap-3">
+            <button id="t3-convert-btn" type="button" class="flex-1 py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm flex items-center justify-center gap-2 transition-colors shadow-md shadow-emerald-500/20">
+              <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+              <span>Convert &amp; Download</span>
+            </button>
+            <button id="t3-zip-btn" type="button" class="py-3.5 px-6 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-sm flex items-center justify-center gap-2 transition-colors">
+              <i data-lucide="archive" class="w-4 h-4"></i>
+              <span>Download ZIP</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- SEO Guide Article -->
+        <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-10 shadow-sm space-y-8">
+          <header>
+            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">Complete Guide to Browser-Based Image Format Conversion</h2>
+            <p class="mt-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+              Whether you are a web developer optimizing page assets, a graphic designer exporting artwork, or a microstock photographer preparing image submissions, the right output format makes a critical difference in quality, compatibility, and file size. This guide explains every conversion mode available in MultiTools Hub's Image Converter.
+            </p>
+          </header>
+
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Tab 1: Format Converter — How to Use (Step-by-Step)</h2>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-3">The Format Converter tab handles all raster-to-raster conversions: JPG to PNG, PNG to WEBP, WEBP to JPEG, and many more combinations.</p>
+            <ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-400">
+              <li><strong class="text-slate-800 dark:text-slate-200">Upload images</strong> by dragging them onto the dropzone or clicking it to open the file picker. Up to 50 images are accepted simultaneously.</li>
+              <li><strong class="text-slate-800 dark:text-slate-200">Select your output format</strong> from the dropdown: PNG for lossless transparency, JPEG for compressed photos, WEBP for maximum web compression.</li>
+              <li><strong class="text-slate-800 dark:text-slate-200">Adjust quality</strong> (for JPEG and WEBP only) using the slider. 85–92% is recommended for a great balance of sharpness and file size.</li>
+              <li><strong class="text-slate-800 dark:text-slate-200">Click Convert &amp; Download</strong> to instantly download individual files, or click <strong>Download ZIP</strong> to package all converted images into a single archive.</li>
+            </ol>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Tab 2: Raster to SVG — What It Does and When to Use It</h2>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+              This tab converts JPG, PNG, and WEBP images into SVG container files. The original pixel data is base64-encoded and embedded inside a standard SVG <code class="text-xs bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">&lt;image&gt;</code> element. While the image inside remains raster-based, the SVG wrapper gives it resolution-independent scaling properties within HTML documents.
+            </p>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Practical Use Cases</h3>
+            <ul class="list-disc list-inside space-y-1.5 text-sm text-slate-600 dark:text-slate-400">
+              <li>Embedding product photos inside SVG-based infographic templates without external file dependencies.</li>
+              <li>Creating self-contained SVG files that bundle images for email signatures or document embeds.</li>
+              <li>Generating SVG assets for Figma, Inkscape, or Illustrator that reference raster images internally.</li>
+              <li>Producing single-file SVG assets for educational or presentation materials that do not rely on external image paths.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Tab 3: SVG to Raster — Exporting Vectors at High DPI</h2>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+              This tab rasterizes SVG vector files to PNG, JPEG, or WEBP output using the HTML5 Canvas API at 1x, 2x, or 3x resolution scale. This is especially useful for exporting icon sets, illustrations, and brand graphics to fixed-pixel formats required by print workflows or social media platforms.
+            </p>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Choosing the Right Scale</h3>
+            <ul class="list-disc list-inside space-y-1.5 text-sm text-slate-600 dark:text-slate-400">
+              <li><strong class="text-slate-800 dark:text-slate-200">1x (Standard)</strong> — Good for standard 96 DPI screen displays or small icon sets.</li>
+              <li><strong class="text-slate-800 dark:text-slate-200">2x (Hi-Res)</strong> — Recommended for Retina / HiDPI screens and social media posts.</li>
+              <li><strong class="text-slate-800 dark:text-slate-200">3x (Print Quality)</strong> — Ideal for print graphics, stationery, and high-resolution stock image submissions.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Why Client-Side Conversion Protects Your Privacy</h2>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Traditional online image converters route your files through a remote server for processing before returning the result. This approach exposes your proprietary images, confidential product photography, or sensitive documents to third-party servers, logging systems, and cloud storage. MultiTools Hub is architecturally different: every conversion runs entirely inside your web browser using the HTML5 Canvas API and FileReader. When you drop an image onto the tool, it is decoded in memory, processed on your CPU, and encoded back to your selected format without ever leaving your computer. No network request is made for the image data. This zero-upload design is especially important for microstock photographers protecting unreleased photos, designers working on NDA-protected branding, and businesses handling confidential internal imagery.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div class="space-y-3">
+              <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+                <summary class="flex items-center justify-between gap-4 p-5 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                  Can I convert JPG to PNG without losing quality?
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400 flex-shrink-0"></i>
+                </summary>
+                <p class="px-5 pb-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Yes. PNG uses lossless encoding, so converting to it via Canvas does not degrade the image further. However, the original JPEG compression that occurred when the JPG was first created is irreversible — you are simply storing the decompressed pixels in a lossless container.</p>
+              </details>
+              <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+                <summary class="flex items-center justify-between gap-4 p-5 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                  What does the Raster to SVG tab produce?
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400 flex-shrink-0"></i>
+                </summary>
+                <p class="px-5 pb-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">It wraps your original image as a base64 data URI inside a valid SVG &lt;image&gt; element, with correct width/height dimensions. The result is a self-contained SVG file that embeds your raster image — it scales to any container size in a browser but the internal image data remains raster-based.</p>
+              </details>
+              <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+                <summary class="flex items-center justify-between gap-4 p-5 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                  What scale should I use for printing?
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400 flex-shrink-0"></i>
+                </summary>
+                <p class="px-5 pb-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Use 3x for print-quality output. If your SVG is designed at the standard browser resolution of 96 DPI, a 3x export produces approximately 288 DPI — suitable for most professional print applications. For premium print requiring true 300 DPI, design your SVG at a slightly larger base size before exporting.</p>
+              </details>
+              <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+                <summary class="flex items-center justify-between gap-4 p-5 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                  Are my images ever uploaded to a server?
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400 flex-shrink-0"></i>
+                </summary>
+                <p class="px-5 pb-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">No. All conversion processing runs 100% locally inside your browser using the Canvas API. Your files never leave your device, no account is needed, and there are no file size limits imposed by server quotas.</p>
+              </details>
+            </div>
+          </section>
+        </article>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <!-- Related Step-by-Step Guide Card -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-900 dark:to-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 shadow-sm space-y-3">
+          <div class="flex items-center gap-2 text-indigo-700 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>Recommended Reading</span>
+          </div>
+          <h4 class="font-bold text-sm text-slate-900 dark:text-white leading-snug">
+            <a href="../blog/how-to-convert-jpg-png-webp-svg-in-browser.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              Converting JPG, PNG, WebP, and Vector SVG: Modern Browser-Based Image Conversion
+            </a>
+          </h4>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Read our complete 2026 problem-solving tutorial with step-by-step instructions, practical use cases, and expert tips.
+          </p>
+          <div class="pt-2">
+            <a href="../blog/how-to-convert-jpg-png-webp-svg-in-browser.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+              <span>Read Step-by-Step Guide</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Info Card -->
+        <div class="p-6 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 text-slate-800 dark:text-slate-200">
+          <div class="flex items-center gap-2.5 text-indigo-700 dark:text-indigo-400 font-bold text-sm mb-3">
+            <i data-lucide="zap" class="w-5 h-5"></i>
+            <span>Supported Conversions</span>
+          </div>
+          <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
+            <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> JPG / JPEG → PNG, WEBP</li>
+            <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> PNG → JPG, WEBP</li>
+            <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> WEBP → JPG, PNG</li>
+            <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> JPG / PNG / WEBP → SVG container</li>
+            <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> SVG → PNG, JPG, WEBP (1x/2x/3x)</li>
+            <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Bulk ZIP download for all tabs</li>
+          </ul>
+        </div>
+
+        <!-- Related Tools -->
+        <div class="sticky top-24 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm space-y-4">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">Related Image Tools</h3>
+          <div class="space-y-3">
+
+            <a href="bulk-webp-converter.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Bulk WebP Converter</p>
+                <p class="text-xs text-slate-500 mt-0.5">Compress images to WebP with savings stats</p>
+              </div>
+            </a>
+
+            <a href="bulk-image-resizer.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="scaling" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Bulk Image Resizer</p>
+                <p class="text-xs text-slate-500 mt-0.5">Resize batches to exact pixel dimensions</p>
+              </div>
+            </a>
+
+            <a href="svg-color-changer.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-violet-100 dark:bg-violet-950/80 text-violet-600 dark:text-violet-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="feather" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">SVG Color Changer</p>
+                <p class="text-xs text-slate-500 mt-0.5">Recolor SVG vectors and export PNG</p>
+              </div>
+            </a>
+
+            <a href="image-watermark-exif-cleaner.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-rose-100 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="shield-check" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">EXIF Cleaner &amp; Watermark</p>
+                <p class="text-xs text-slate-500 mt-0.5">Strip GPS metadata and add copyright</p>
+              </div>
+            </a>
+
+            <a href="color-palette-extractor.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-amber-100 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="palette" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Color Palette Extractor</p>
+                <p class="text-xs text-slate-500 mt-0.5">Extract dominant HEX colors from images</p>
+              </div>
+            </a>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+            <a href="../index.html" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 hover:text-indigo-600 text-slate-700 dark:text-slate-300 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+              <span>Browse All 14 Tools</span>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/image-converter.js"></script>
+</body>
+</html>

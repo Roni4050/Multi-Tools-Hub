@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>US Real Estate Commission & Agent Split Calculator | MultiTools Hub</title>
+  <meta name="description" content="Calculate real estate agent commission splits, listing vs buyer brokerage shares, franchise royalty fees, desk fees, and net take-home earnings after self-employment taxes.">
+  <link rel="canonical" href="real-estate-commission-calculator.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Real Estate Commission & Agent Split Calculator - MultiTools Hub">
+  <meta property="og:description" content="Calculate listing vs buyer broker splits, franchise fees, and net agent earnings after self-employment taxes.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: {} } }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "US Real Estate Commission & Agent Split Calculator",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Calculate exact real estate commissions, listing vs buyer broker splits, franchise royalties, and net agent income.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the standard real estate commission rate in the USA?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Historically, total real estate commissions in the United States ranged between 5% and 6% of the final home sales price, split equally (2.5% to 3% each) between the listing brokerage and the buyer's brokerage. Following the 2024 NAR settlement, commissions are fully negotiable between consumers and brokerages."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does an agent/broker commission split work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "When a real estate transaction closes, the full commission check is legally paid directly to the sponsoring brokerage. The broker then distributes the funds to the agent according to their contracted split agreement (commonly 70/30, 80/20, or 90/10), minus any desk fees, E&O insurance, and national franchise fees."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent hidden sm:inline">MultiTools Hub</span>
+        </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="real-estate-commission-calculator.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">Real Estate Calculator</a>
+        <a href="mortgage-loan-calculator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Mortgage PITI</a>
+        <a href="sales-tax-tip-calculator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Sales Tax & Tip</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+      </nav>
+
+      <div class="flex items-center gap-2.5">
+        <button type="button" onclick="toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" aria-label="Toggle theme">
+          <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 py-8 md:py-12">
+    <div class="mb-8">
+      <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+        <i data-lucide="building" class="w-4 h-4"></i>
+        <span>US Real Estate Financial Modeling</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">US Real Estate Commission & Agent Split Calculator</h1>
+      <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-3xl leading-relaxed">
+        Calculate gross and net commissions on home sales, listing vs buyer brokerage splits, brokerage broker/agent cuts, franchise royalties, and estimated net income after self-employment taxes.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Left 2 Cols: Interactive Tool -->
+      <div class="lg:col-span-2 space-y-6">
+        
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+          
+          <!-- 1. Home Sale Price -->
+          <div>
+            <label for="home-price" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+              Property Final Sale Price ($)
+            </label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-lg">$</span>
+              <input type="number" id="home-price" class="w-full pl-9 pr-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 text-slate-900 dark:text-white font-bold text-2xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" value="550000" step="5000" min="10000">
+            </div>
+          </div>
+
+          <!-- 2. Commission Rate & Presets -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <label for="commission-rate" class="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                Total Gross Commission Rate (%)
+              </label>
+              <span class="text-xs text-slate-500">Negotiable Standard</span>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-2">
+              <button type="button" class="comm-preset-btn px-3 py-2 rounded-xl border text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-rate="4.5">4.5%</button>
+              <button type="button" class="comm-preset-btn px-3 py-2 rounded-xl border text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-rate="5.0">5.0%</button>
+              <button type="button" class="comm-preset-btn px-3 py-2 rounded-xl border text-xs font-bold transition-all bg-indigo-600 text-white border-indigo-600 shadow-sm" data-rate="5.5">5.5% ⭐</button>
+              <button type="button" class="comm-preset-btn px-3 py-2 rounded-xl border text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300" data-rate="6.0">6.0%</button>
+            </div>
+            <input type="number" id="commission-rate" class="w-full sm:w-36 px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" value="5.5" step="0.1" min="0" max="15">
+          </div>
+
+          <!-- 3. Splits & Deductions Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-slate-100 dark:border-slate-800">
+            <div>
+              <label for="side-split" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                Your Side Split (Listing or Buyer)
+              </label>
+              <select id="side-split" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-xs font-bold">
+                <option value="0.50" selected>50% (Standard Co-Broke Half)</option>
+                <option value="0.55">55% / 45%</option>
+                <option value="0.60">60% / 40%</option>
+                <option value="1.00">100% (Dual Agency / Both Sides)</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="agent-split" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                Agent / Brokerage Contract Split
+              </label>
+              <select id="agent-split" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-xs font-bold">
+                <option value="0.60">60% Agent / 40% Broker</option>
+                <option value="0.70" selected>70% Agent / 30% Broker</option>
+                <option value="0.80">80% Agent / 20% Broker</option>
+                <option value="0.90">90% Agent / 10% Broker</option>
+                <option value="1.00">100% Agent (100% Commission Model)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 4. Fees & Tax Reserves -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label for="franchise-fee" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                Franchise Royalty (%)
+              </label>
+              <input type="number" id="franchise-fee" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-bold" value="6" step="0.5" min="0" max="15">
+              <span class="text-[10px] text-slate-400">e.g. KW, RE/MAX (0-8%)</span>
+            </div>
+            <div>
+              <label for="desk-fee" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                Desk / E&O Insurance ($)
+              </label>
+              <input type="number" id="desk-fee" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-bold" value="250" step="25" min="0">
+              <span class="text-[10px] text-slate-400">Transaction or monthly fee</span>
+            </div>
+            <div>
+              <label for="tax-reserve" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                Income Tax Reserve (%)
+              </label>
+              <input type="number" id="tax-reserve" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-bold" value="28" step="1" min="0" max="50">
+              <span class="text-[10px] text-slate-400">Fed + 15.3% Self-Emp</span>
+            </div>
+          </div>
+
+          <!-- Copy Button -->
+          <button type="button" id="copy-breakdown-btn" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-colors inline-flex items-center gap-2 shadow-sm">
+            <i data-lucide="copy" class="w-4 h-4"></i>
+            <span>Copy Full Commission Breakdown</span>
+          </button>
+
+        </div>
+
+        <!-- Financial Summary Card -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-indigo-50/80 via-white to-violet-50/80 dark:from-indigo-950/40 dark:via-slate-900 dark:to-slate-900 border border-indigo-200 dark:border-indigo-800/60 shadow-sm space-y-5">
+          <div class="flex items-center justify-between border-b border-indigo-100 dark:border-slate-800 pb-3">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-950 dark:text-indigo-300">Transaction Net Payout Summary</h3>
+            <span class="text-[11px] font-semibold text-slate-500">100% Local Math</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+            <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80">
+              <span class="text-slate-500 dark:text-slate-400 block mb-0.5">Total Deal Commission</span>
+              <span id="out-total-comm" class="text-base font-black text-slate-900 dark:text-white">$0.00</span>
+            </div>
+            <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80">
+              <span class="text-slate-500 dark:text-slate-400 block mb-0.5">Your Side Gross</span>
+              <span id="out-side-comm" class="text-base font-black text-indigo-600 dark:text-indigo-400">$0.00</span>
+            </div>
+            <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80">
+              <span class="text-slate-500 dark:text-slate-400 block mb-0.5">Brokerage Cut & Fees</span>
+              <span id="out-broker-cut" class="text-base font-black text-rose-600 dark:text-rose-400">$0.00</span>
+            </div>
+            <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80">
+              <span class="text-slate-500 dark:text-slate-400 block mb-0.5">Agent Gross Commission</span>
+              <span id="out-agent-gross" class="text-base font-black text-slate-900 dark:text-white">$0.00</span>
+            </div>
+            <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80">
+              <span class="text-slate-500 dark:text-slate-400 block mb-0.5">Estimated Tax Reserve</span>
+              <span id="out-tax-deduction" class="text-base font-black text-amber-600 dark:text-amber-400">$0.00</span>
+            </div>
+            <div class="p-3 rounded-xl bg-emerald-600 text-white shadow-md">
+              <span class="text-emerald-100 block mb-0.5 font-medium">Net Take-Home Pay</span>
+              <span id="out-agent-net" class="text-xl font-black text-white">$0.00</span>
+            </div>
+          </div>
+
+          <!-- Visual Distribution Bar -->
+          <div class="space-y-1.5 pt-2">
+            <span class="text-xs font-semibold text-slate-600 dark:text-slate-400 block">Payout Distribution Breakdown:</span>
+            <div class="w-full h-3 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden flex">
+              <div id="bar-net" class="h-full bg-emerald-500 transition-all duration-300" title="Net Take-Home"></div>
+              <div id="bar-tax" class="h-full bg-amber-500 transition-all duration-300" title="Taxes"></div>
+              <div id="bar-broker" class="h-full bg-rose-500 transition-all duration-300" title="Brokerage"></div>
+            </div>
+            <div class="flex items-center gap-4 text-[10px] text-slate-500">
+              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Take-Home Pay</span>
+              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Tax Reserve</span>
+              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-rose-500"></span> Broker & Fees</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Educational Section -->
+        <article class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">How Real Estate Commissions Function in the United States</h2>
+            <p>
+              In US real estate, real estate agents operate as independent 1099 contractors sponsored by a licensed broker. Although closing settlement statements (ALTA/CD) show a lump sum commission, that money is split multiple times: between the listing and buyer brokerages, between the managing broker and the agent, through franchise royalties (e.g. Keller Williams, Coldwell Banker), and finally through federal and state self-employment tax liabilities.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-base font-bold text-slate-900 dark:text-white mb-3">Frequently Asked Questions</h2>
+            <div class="space-y-3">
+              <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+                <summary class="flex items-center justify-between gap-4 p-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                  Why do real estate agents set aside 25% to 30% for taxes?
+                  <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 flex-shrink-0"></i>
+                </summary>
+                <p class="px-4 pb-4 text-xs text-slate-600 dark:text-slate-400">
+                  Because real estate agents receive gross 1099 income with zero tax withholding, they are responsible for both the employer and employee portions of FICA (15.3% Self-Employment Tax for Social Security and Medicare) plus ordinary federal and state income taxes.
+                </p>
+              </details>
+            </div>
+          </section>
+        </article>
+
+      </div>
+
+      <!-- Right Column: Sidebar -->
+      <aside class="space-y-6">
+        <!-- Recommended Reading Card -->
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-indigo-50/90 to-violet-50/90 dark:from-indigo-950/60 dark:to-slate-900 border border-indigo-200 dark:border-indigo-800/80 shadow-sm">
+          <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>Recommended Reading</span>
+          </div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1.5 leading-snug">
+            Real Estate Commission & Agent Split Guide (2026 Post-NAR Rules)
+          </h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+            Understand how agent/broker split tiers work, franchise royalty caps, and 1099 tax optimization for Realtors.
+          </p>
+          <a href="../blog/real-estate-commission-broker-split-tax-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 px-3.5 py-2 rounded-xl transition-colors shadow-sm">
+            <span>Read Complete Guide</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+
+        <!-- Quick Feature Specs -->
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider">Features & Reliability</h3>
+          <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-400">
+            <li class="flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+              <span>Listing vs Buyer brokerage co-broke splits</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+              <span>Agent/Broker contract tiers (60/40 up to 100%)</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+              <span>Franchise fee & E&O desk fee deductions</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="shield-check" class="w-4 h-4 text-indigo-500"></i>
+              <span>100% Client-side browser calculation</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Related Tools -->
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider">Related US Tools</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="mortgage-loan-calculator.html" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">US Mortgage Loan (PITI) Calculator</a></li>
+            <li><a href="lawn-paint-concrete-diy-estimator.html" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">Lawn, Paint & Concrete DIY Estimator</a></li>
+            <li><a href="sales-tax-tip-calculator.html" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">Sales Tax & Tip Calculator</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/real-estate-commission-calculator.js"></script>
+</body>
+</html>

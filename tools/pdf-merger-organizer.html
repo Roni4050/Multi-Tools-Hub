@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Merger & Page Organizer - Free Online Tool | MultiTools Hub</title>
+  <meta name="description" content="Merge multiple PDF files into one document in your browser. 100% client-side privacy, reorder pages with drag and drop, zero server uploads, fast and free.">
+  <link rel="canonical" href="https://multitools-hub.web.app/tools/pdf-merger-organizer.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multitools-hub.web.app/tools/pdf-merger-organizer.html">
+  <meta property="og:title" content="PDF Merger & Page Organizer - MultiTools Hub">
+  <meta property="og:description" content="Merge multiple PDF files securely in your browser with zero server uploads. Reorder pages and download instantly.">
+
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {} }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- pdf-lib (Local with CDN fallback) -->
+  <script src="../assets/js/vendor/pdf-lib.min.js"></script>
+  <script>window.PDFLib || document.write('<script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js"><\/script>')</script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Schema.org SoftwareApplication & FAQPage JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "PDF Merger and Page Organizer",
+        "url": "https://multitools-hub.web.app/tools/pdf-merger-organizer.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Client-side PDF merger that combines multiple PDF documents directly inside your browser without uploading files to remote servers.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Are my sensitive PDF documents uploaded to your servers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. MultiTools Hub processes all PDF files 100% client-side inside your browser using pdf-lib WebAssembly technology. Your files never touch our servers or any third-party cloud infrastructure."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a limit to how many PDF files I can merge?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Because processing happens directly on your device utilizing your local memory and CPU, there are no artificial file limits. You can combine dozens of files as long as your browser has sufficient available RAM."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I reorder the sequence of PDF documents before merging?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Once you select or drop your PDF files, each document appears in an interactive list with up and down controls allowing you to rearrange the exact order before generating the merged file."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does merging affect the quality or resolution of PDF images and text?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not at all. The underlying PDF vector paths, embedded fonts, form structures, and high-resolution images are copied losslessly without compression artifacts or resolution downsampling."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Top Glassmorphism Navigation -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <a href="../index.html" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+          <i data-lucide="layers" class="w-5 h-5"></i>
+        </div>
+        <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent">MultiTools Hub</span>
+      </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors" title="Back to All Tools">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+
+      <!-- Category Navigation Links -->
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="all-in-one-pdf-converter.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">PDF Studio</a>
+        <a href="pdf-merger-organizer.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">PDF Merger</a>
+        <a href="pdf-splitter-images.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">PDF Splitter</a>
+        <a href="bulk-image-resizer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Image Resizer</a>
+        <a href="safe-zone-checker.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Safe Zone</a>
+        <a href="kdp-bleed-calculator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">KDP Bleed</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+        <a href="../about.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">About</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="window.toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="Toggle Theme">
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+        <a href="../index.html" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="All 12 Tools">
+          <i data-lucide="grid" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs & Tool Header -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800/80 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-slate-500 mb-2">
+        <a href="../index.html" class="hover:text-indigo-600">Home</a>
+        <span>/</span>
+        <span class="text-slate-400">PDF Suite</span>
+        <span>/</span>
+        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">PDF Merger & Organizer</span>
+      </nav>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            PDF Merger & Page Organizer
+          </h1>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
+            Combine multiple PDF documents into a single organized file with instant drag-and-drop page sorting.
+          </p>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 self-start sm:self-auto">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span>100% In-Browser Privacy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main 2-Column Workspace -->
+  <main class="flex-1 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Left 70% Tool Interface Card -->
+      <div class="lg:col-span-8 space-y-6">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 shadow-sm">
+          
+          <!-- Drag & Drop Upload Zone -->
+          <div id="pdf-dropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-400 rounded-2xl p-8 sm:p-12 text-center cursor-pointer transition-all bg-slate-50/50 dark:bg-slate-800/30">
+            <input type="file" id="pdf-file-input" multiple accept=".pdf,application/pdf" class="hidden">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-4 shadow-sm">
+              <i data-lucide="file-up" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">
+              Drop your PDF files here, or <span class="text-indigo-600 dark:text-indigo-400 underline">browse</span>
+            </h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5">
+              Supports multiple PDF selection • Processed locally via WebAssembly
+            </p>
+          </div>
+
+          <!-- Empty State (Shown when no files are loaded) -->
+          <div id="empty-state" class="text-center py-8">
+            <p class="text-sm text-slate-400">No PDF files loaded yet. Add files above to begin organizing.</p>
+            <div class="mt-3">
+              <button type="button" id="load-sample-pdfs-btn" class="px-4 py-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold hover:bg-indigo-100 dark:hover:bg-indigo-900/60 transition-colors inline-flex items-center gap-1.5 shadow-sm">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>Load 2 Demo PDF Files</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Loaded Files List Container -->
+          <div id="pdf-file-list" class="hidden space-y-2.5 mt-6">
+            <!-- Dynamic PDF rows will render here -->
+          </div>
+
+          <!-- Total Stats Bar -->
+          <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+            <span id="total-stats" class="text-xs font-medium text-slate-500 dark:text-slate-400">0 files • 0 pages</span>
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+              <button type="button" id="clear-btn" disabled class="px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+                Clear All
+              </button>
+              <button type="button" id="merge-btn" disabled class="flex-1 sm:flex-initial px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold shadow-md shadow-indigo-600/20 transition-all flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                <i data-lucide="merge" class="w-4 h-4"></i>
+                <span>Merge & Download PDF</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Progress Bar Indicator -->
+          <div id="progress-container" class="hidden mt-6 space-y-2">
+            <div class="flex justify-between text-xs font-semibold text-slate-600 dark:text-slate-300">
+              <span id="progress-text">Merging PDF pages...</span>
+            </div>
+            <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2.5 overflow-hidden">
+              <div id="progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-200" style="width: 0%"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- SEO Guide Article Section (700+ Words for AdSense Authority) -->
+        <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-8 sm:p-10 shadow-sm space-y-8 text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+          
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              How to Merge PDF Documents in Your Browser (Step-by-Step)
+            </h2>
+            <p>
+              Combining multiple PDF documents into a coherent, organized master document is an indispensable workflow for accountants, freelancers, self-publishers, students, and legal professionals. MultiTools Hub makes this process effortless, private, and instantaneous:
+            </p>
+            <ol class="mt-4 space-y-3 list-decimal list-inside text-slate-600 dark:text-slate-400">
+              <li><strong>Select or Drag Files:</strong> Click the upload zone to choose two or more PDF files from your computer, or drag them directly into the dashed box.</li>
+              <li><strong>Verify Page Counts:</strong> Our in-browser parser instantly inspects each document, displaying its file size and total page count without uploading any bytes to a server.</li>
+              <li><strong>Reorder the Sequence:</strong> Use the intuitive up and down arrows on each card to arrange files into your desired page order. If an unwanted document was added, click the trash icon to remove it.</li>
+              <li><strong>Generate Master PDF:</strong> Click <em>"Merge & Download PDF"</em>. The client engine synthesizes the pages into a single unified PDF and initiates a direct download in seconds.</li>
+            </ol>
+          </div>
+
+          <div class="border-t border-slate-100 dark:border-slate-800 pt-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Why Client-Side PDF Merging Protects Confidentiality
+            </h2>
+            <p>
+              Traditional online PDF services operate on a legacy cloud-upload model. When you upload financial statements, tax forms, medical records, or proprietary book manuscripts to standard converter websites, those files are transmitted over public networks to third-party servers. Even if a service claims to delete files after a few hours, your confidential data remains temporarily stored on unknown machines and is vulnerable to interception, data breaches, and unauthorized internal access.
+            </p>
+            <p class="mt-3">
+              MultiTools Hub utilizes <strong>WebAssembly and client-side JavaScript (pdf-lib)</strong> to execute the entire PDF merge algorithm directly inside your browser sandbox. The binary PDF structures are parsed in your computer’s local memory, concatenated losslessly, and saved straight to your local disk. At no point does a single byte leave your workstation, providing complete compliance with GDPR, HIPAA, and internal enterprise data security protocols.
+            </p>
+          </div>
+
+          <div class="border-t border-slate-100 dark:border-slate-800 pt-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Pro Tips for Flawless PDF Document Assembly
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80">
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">Consistent Orientation</h3>
+                <p class="mt-1 text-xs text-slate-600 dark:text-slate-400">
+                  Ensure all pages within your documents share compatible orientations (portrait vs landscape) prior to merging so readers experience seamless viewing on tablet and desktop screens.
+                </p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80">
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">Resolution Preservation</h3>
+                <p class="mt-1 text-xs text-slate-600 dark:text-slate-400">
+                  Our tool does not compress embedded vector graphics or high-DPI scans, ensuring sharp text rendering when producing client presentations or printed proofs.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Frequently Asked Questions Accordion -->
+          <div class="border-t border-slate-100 dark:border-slate-800 pt-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Frequently Asked Questions (FAQ)
+            </h2>
+            <div class="space-y-3">
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>Are my sensitive PDF documents uploaded to your servers?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  No. MultiTools Hub processes all PDF files 100% client-side inside your browser using pdf-lib WebAssembly technology. Your files never touch our servers or any third-party cloud infrastructure.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>Is there a limit to how many PDF files I can merge?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Because processing happens directly on your device utilizing your local memory and CPU, there are no artificial file limits. You can combine dozens of files as long as your browser has sufficient available RAM.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>Can I reorder the sequence of PDF documents before merging?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Yes. Once you select or drop your PDF files, each document appears in an interactive list with up and down controls allowing you to rearrange the exact order before generating the merged file.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>Does merging affect the quality or resolution of PDF images and text?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Not at all. The underlying PDF vector paths, embedded fonts, form structures, and high-resolution images are copied losslessly without compression artifacts or resolution downsampling.
+                </p>
+              </details>
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+
+      <!-- Right 30% Sticky Related Utility Tools Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <!-- Related Step-by-Step Guide Card -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-900 dark:to-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 shadow-sm space-y-3">
+          <div class="flex items-center gap-2 text-indigo-700 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>Recommended Reading</span>
+          </div>
+          <h4 class="font-bold text-sm text-slate-900 dark:text-white leading-snug">
+            <a href="../blog/how-to-merge-reorder-pdf-pages-privately.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              How to Merge and Reorganize Multi-Page PDF Documents Privately in Your Browser
+            </a>
+          </h4>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Read our complete 2026 problem-solving tutorial with step-by-step instructions, practical use cases, and expert tips.
+          </p>
+          <div class="pt-2">
+            <a href="../blog/how-to-merge-reorder-pdf-pages-privately.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+              <span>Read Step-by-Step Guide</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+
+        
+        <!-- Privacy Guarantee Card -->
+        <div class="p-6 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 text-slate-800 dark:text-slate-200">
+          <div class="flex items-center gap-2.5 text-indigo-700 dark:text-indigo-400 font-bold text-sm mb-2">
+            <i data-lucide="shield-check" class="w-5 h-5"></i>
+            <span>Browser Privacy Verified</span>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            MultiTools Hub does not maintain database storage or file ingest servers. All documents remain completely isolated within your browser session.
+          </p>
+        </div>
+
+        <!-- Sticky Related Tools Card -->
+        <div class="sticky top-24 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm space-y-4">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">Related Utility Tools</h3>
+          
+          <div class="space-y-3">
+            <a href="all-in-one-pdf-converter.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="file-cog" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">All-in-One PDF Converter</p>
+                <p class="text-xs text-slate-500 mt-0.5">Images, SVG, PDF to images & text</p>
+              </div>
+            </a>
+
+            <a href="pdf-splitter-images.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="scissors" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">PDF Splitter & Images</p>
+                <p class="text-xs text-slate-500 mt-0.5">Extract ranges or turn photos to PDF</p>
+              </div>
+            </a>
+
+            <a href="image-watermark-exif-cleaner.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="shield-check" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">EXIF Cleaner & Watermark</p>
+                <p class="text-xs text-slate-500 mt-0.5">Strip GPS tags and apply proofing</p>
+              </div>
+            </a>
+
+            <a href="kdp-bleed-calculator.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-violet-100 dark:bg-violet-950/80 text-violet-600 dark:text-violet-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="book-open" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Amazon KDP Calculator</p>
+                <p class="text-xs text-slate-500 mt-0.5">Spine width & print cover blueprint</p>
+              </div>
+            </a>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+            <a href="../index.html" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 hover:text-indigo-600 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+              <span>Browse All 14 Tools</span>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/pdf-merger-organizer.js"></script>
+</body>
+</html>

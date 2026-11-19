@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>US Time Zone Meeting Planner (EST, CST, MST, PST) | MultiTools Hub</title>
+  <meta name="description" content="Coordinate remote team meetings and client calls across all 6 US time zones (Eastern, Central, Mountain, Pacific, Alaska, Hawaii). Visual business hour overlap & 1-click invite copy.">
+  <link rel="canonical" href="us-timezone-meeting-planner.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="US Time Zone Meeting Planner & Converter - MultiTools Hub">
+  <meta property="og:description" content="Coordinate cross-country US team meetings with real-time synchronized clocks and business hours overlap.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: {} } }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "US Time Zone Meeting Planner & Converter",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Interactive cross-zone meeting scheduler for US business teams across Eastern, Central, Mountain, and Pacific time zones.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the best time for a nationwide US business meeting?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The golden overlap window for continental US business meetings is between 2:00 PM and 5:00 PM Eastern Time (11:00 AM to 2:00 PM Pacific Time). During this window, standard 9 AM to 5 PM office hours are active simultaneously in New York, Chicago, Denver, and Los Angeles."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Arizona observe Daylight Saving Time?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most of Arizona does not observe Daylight Saving Time (DST) and remains on Mountain Standard Time (MST, UTC-7) year-round. This means during summer months, Arizona aligns with Pacific Daylight Time (PDT), and during winter months, it aligns with Mountain Standard Time."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent hidden sm:inline">MultiTools Hub</span>
+        </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="us-timezone-meeting-planner.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">Meeting Planner</a>
+        <a href="sales-tax-tip-calculator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Sales Tax & Tip</a>
+        <a href="us-zip-areacode-lookup.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">ZIP & Area Code</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+      </nav>
+
+      <div class="flex items-center gap-2.5">
+        <button type="button" onclick="toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" aria-label="Toggle theme">
+          <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 py-8 md:py-12">
+    <div class="mb-8">
+      <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+        <i data-lucide="clock" class="w-4 h-4"></i>
+        <span>Remote Work & Executive Scheduling</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">US Time Zone Meeting Planner & Converter</h1>
+      <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-3xl leading-relaxed">
+        Synchronize cross-country meetings between Eastern (ET), Central (CT), Mountain (MT), and Pacific (PT) time zones with instant working hours detection and 1-click calendar invites.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Left 2 Cols: Interactive Tool -->
+      <div class="lg:col-span-2 space-y-6">
+        
+        <!-- Controls Card -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+          
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label for="meeting-date" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Meeting Date</label>
+              <input type="date" id="meeting-date" class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-xs font-bold">
+            </div>
+            <div>
+              <label for="meeting-title" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Meeting Title</label>
+              <input type="text" id="meeting-title" class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-xs font-semibold" value="Team Strategy Sync" placeholder="Title">
+            </div>
+            <div>
+              <label for="meeting-duration" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Duration</label>
+              <select id="meeting-duration" class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-xs font-bold">
+                <option value="15">15 Minutes</option>
+                <option value="30" selected>30 Minutes</option>
+                <option value="45">45 Minutes</option>
+                <option value="60">60 Minutes (1 Hour)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Time Slider -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <label for="time-slider" class="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                Adjust Eastern Time (ET) Master Reference
+              </label>
+              <span class="text-xs font-semibold text-indigo-600 dark:text-indigo-400">Scrub slider to see live updates</span>
+            </div>
+            <input type="range" id="time-slider" min="0" max="1410" step="30" class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-600">
+            
+            <div class="flex flex-wrap items-center gap-1.5 mt-3">
+              <span class="text-xs text-slate-500 mr-1">Quick Hours (ET):</span>
+              <button type="button" class="quick-hour-btn px-2.5 py-1 text-xs font-bold rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-600 hover:text-white transition-colors" data-hour="9">9:00 AM</button>
+              <button type="button" class="quick-hour-btn px-2.5 py-1 text-xs font-bold rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-600 hover:text-white transition-colors" data-hour="11">11:00 AM</button>
+              <button type="button" class="quick-hour-btn px-2.5 py-1 text-xs font-bold rounded-lg bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 hover:bg-indigo-600 hover:text-white transition-colors" data-hour="14">2:00 PM ⭐</button>
+              <button type="button" class="quick-hour-btn px-2.5 py-1 text-xs font-bold rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-600 hover:text-white transition-colors" data-hour="16">4:00 PM</button>
+            </div>
+          </div>
+
+          <!-- Overlap Status Banner -->
+          <div id="overlap-status-badge" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-100 text-emerald-800">
+            <!-- Populated via JS -->
+          </div>
+
+          <!-- 6 Zone Cards Grid -->
+          <div id="zone-cards-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <!-- Populated via JS -->
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+            <button type="button" id="copy-invite-btn" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-colors inline-flex items-center gap-2 shadow-sm">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+              <span>Copy Formatted Meeting Invite</span>
+            </button>
+            <button type="button" id="gcal-btn" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold transition-colors inline-flex items-center gap-2">
+              <i data-lucide="calendar" class="w-4 h-4 text-indigo-500"></i>
+              <span>Add to Google Calendar</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Educational Section -->
+        <article class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">US Time Zone Primer for Remote Workers & Executives</h2>
+            <p>
+              The continental United States spans four principal time zones across approximately 3,000 miles. When scheduling conference calls, client presentations, or webinars, coordinating across these three hours of differential is crucial to ensure nobody is dialed in outside reasonable working hours.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-base font-bold text-slate-900 dark:text-white mb-2">The Four Continental Zones at a Glance</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800">
+                <strong class="text-slate-900 dark:text-white block mb-0.5">Eastern Time (ET - UTC-5 / UTC-4)</strong>
+                Home to New York, Washington D.C., Boston, and Miami. Sets the financial opening bell (9:30 AM ET).
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800">
+                <strong class="text-slate-900 dark:text-white block mb-0.5">Central Time (CT - UTC-6 / UTC-5)</strong>
+                One hour behind Eastern. Major hubs include Chicago, Dallas, Houston, and Minneapolis.
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800">
+                <strong class="text-slate-900 dark:text-white block mb-0.5">Mountain Time (MT - UTC-7 / UTC-6)</strong>
+                Two hours behind Eastern. Denver, Salt Lake City, and Phoenix (note: Arizona does not observe DST).
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800">
+                <strong class="text-slate-900 dark:text-white block mb-0.5">Pacific Time (PT - UTC-8 / UTC-7)</strong>
+                Three hours behind Eastern. Tech & entertainment centers: Silicon Valley, Seattle, Los Angeles.
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 class="text-base font-bold text-slate-900 dark:text-white mb-3">Frequently Asked Questions</h2>
+            <div class="space-y-3">
+              <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+                <summary class="flex items-center justify-between gap-4 p-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                  When is the best overlap window for coast-to-coast US teams?
+                  <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 flex-shrink-0"></i>
+                </summary>
+                <p class="px-4 pb-4 text-xs text-slate-600 dark:text-slate-400">
+                  Between 2:00 PM and 5:00 PM Eastern Time. During this exact 3-hour window, Pacific Coast teams have started their workday (11:00 AM - 2:00 PM PT), Central teams are in the afternoon (1:00 PM - 4:00 PM CT), and Mountain teams are midway (12:00 PM - 3:00 PM MT).
+                </p>
+              </details>
+            </div>
+          </section>
+        </article>
+
+      </div>
+
+      <!-- Right Column: Sidebar -->
+      <aside class="space-y-6">
+        <!-- Recommended Reading Card -->
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-indigo-50/90 to-violet-50/90 dark:from-indigo-950/60 dark:to-slate-900 border border-indigo-200 dark:border-indigo-800/80 shadow-sm">
+          <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>Recommended Reading</span>
+          </div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1.5 leading-snug">
+            US Time Zone Meeting Planning Guide: Overcoming the 3-Hour Divide
+          </h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+            Master cross-country remote collaboration, Daylight Saving Time exceptions, and the golden overlap window for distributed companies.
+          </p>
+          <a href="../blog/us-timezone-meeting-planner-remote-work-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 px-3.5 py-2 rounded-xl transition-colors shadow-sm">
+            <span>Read Complete Guide</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+
+        <!-- Quick Feature Specs -->
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider">Features & Reliability</h3>
+          <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-400">
+            <li class="flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+              <span>All 6 US zones (ET, CT, MT, PT, AKT, HST)</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+              <span>Working hours highlight (9 AM - 5 PM)</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+              <span>1-Click invitation text clipboard copy</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="shield-check" class="w-4 h-4 text-indigo-500"></i>
+              <span>100% Client-side browser calculation</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Related Tools -->
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider">Related US Tools</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="military-time-date-calculator.html" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">Military Time & Date Duration Calculator</a></li>
+            <li><a href="sales-tax-tip-calculator.html" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">US Sales Tax & Tip Split Calculator</a></li>
+            <li><a href="us-zip-areacode-lookup.html" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">US Area Code & ZIP Code Lookup</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/us-timezone-meeting-planner.js"></script>
+</body>
+</html>

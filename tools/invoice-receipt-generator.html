@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free PDF Invoice & Receipt Generator (US Business Standard) | MultiTools Hub</title>
+  <meta name="description" content="Generate professional US Letter (8.5x11 in) PDF invoices and receipts with custom branding, sales tax, discounts, and itemized rows. 100% free, private, client-side browser generation.">
+  <link rel="canonical" href="https://multitools-hub.web.app/tools/invoice-receipt-generator.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multitools-hub.web.app/tools/invoice-receipt-generator.html">
+  <meta property="og:title" content="Free PDF Invoice & Receipt Generator - MultiTools Hub">
+  <meta property="og:description" content="Create US Letter PDF invoices and payment receipts with instant live preview. Zero server uploads.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: {} } }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Local pdf-lib with CDN fallback -->
+  <script src="../assets/js/vendor/pdf-lib.min.js"></script>
+  <script>window.PDFLib || document.write('<script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js"><\/script>')</script>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Free PDF Invoice & Receipt Generator",
+        "url": "https://multitools-hub.web.app/tools/invoice-receipt-generator.html",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Generate professional US Business Standard PDF invoices and receipts with logo upload, sales tax calculator, itemized billing, and instant US Letter download.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is this invoice generator free for commercial business use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, 100% free with no monthly subscription, no account creation, and no watermark on your generated PDF files. You can generate unlimited invoices and payment receipts for your clients or accounting records."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What page format does the PDF export in?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The PDF is formatted to the standard North American US Letter paper size (8.5 x 11 inches / 612 x 792 points at 72 DPI vector scaling), which is the universal standard for US business accounting, billing, and tax audits."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I calculate US state and local sales tax accurately?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The sales tax field allows you to enter any decimal rate (such as 8.25% in Texas or 8.875% in NYC). The tool automatically computes the taxable total after line-item discounts are factored in."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my client names and financial billing amounts kept private?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. MultiTools Hub generates the PDF entirely on the client side using your browser's WebAssembly and JavaScript engines. No billing data, financial amounts, or client contact details are ever sent to a remote server."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent hidden sm:inline">MultiTools Hub</span>
+        </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="invoice-receipt-generator.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">Invoice &amp; Receipt</a>
+        <a href="all-in-one-pdf-converter.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">PDF Studio</a>
+        <a href="pdf-merger-organizer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">PDF Merger</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+        <a href="../about.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">About</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="window.toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="Toggle Dark/Light Mode">
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+        <a href="../index.html" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="All Tools">
+          <i data-lucide="layout-grid" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Breadcrumb & Title -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800/80 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-slate-500 mb-3">
+        <a href="../index.html" class="hover:text-indigo-600 transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-slate-400">PDF Suite</span>
+        <span>/</span>
+        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Free PDF Invoice &amp; Receipt Generator</span>
+      </nav>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Free PDF Invoice &amp; Receipt Generator
+          </h1>
+          <p class="mt-1.5 text-sm text-slate-600 dark:text-slate-400 max-w-2xl">
+            Create professional US Letter (8.5x11 in) PDF invoices and payment receipts with customizable branding, line items, sales tax, and live instant preview.
+          </p>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 self-start sm:self-auto flex-shrink-0">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span>100% Private Client-Side Compute</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+
+      <!-- Form Inputs Column (6 cols on XL) -->
+      <div class="xl:col-span-6 space-y-6">
+
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 shadow-sm space-y-6">
+          
+          <!-- Top Row: Doc Type & Number -->
+          <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+            <div class="flex items-center gap-3">
+              <div>
+                <label for="inv-doc-type" class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Document Type</label>
+                <select id="inv-doc-type" class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-bold text-indigo-600 dark:text-indigo-400">
+                  <option value="INVOICE" selected>Invoice</option>
+                  <option value="RECEIPT">Payment Receipt</option>
+                  <option value="QUOTE">Price Quote / Estimate</option>
+                  <option value="PROFORMA">Proforma Invoice</option>
+                </select>
+              </div>
+            </div>
+            <button type="button" id="inv-sample-btn" class="px-3 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold hover:bg-indigo-100 transition-colors inline-flex items-center gap-1.5">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+              <span>Load Sample</span>
+            </button>
+          </div>
+
+          <!-- Document Meta (Number, PO, Dates) -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div>
+              <label for="inv-number" class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">Invoice #</label>
+              <input type="text" id="inv-number" value="INV-2026-001" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-mono font-semibold text-slate-900 dark:text-white">
+            </div>
+            <div>
+              <label for="inv-po" class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">PO # (Optional)</label>
+              <input type="text" id="inv-po" placeholder="e.g. PO-9812" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-mono text-slate-900 dark:text-white">
+            </div>
+            <div>
+              <label for="inv-date" class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">Issue Date</label>
+              <input type="date" id="inv-date" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs text-slate-900 dark:text-white">
+            </div>
+            <div>
+              <label for="inv-due-date" class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">Due Date</label>
+              <input type="date" id="inv-due-date" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs text-slate-900 dark:text-white">
+            </div>
+          </div>
+
+          <!-- Business & Client Addresses -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label class="block text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Your Business (Sender)</label>
+              <input type="text" id="inv-biz-name" value="Acme Creative Studio LLC" placeholder="Business Name" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white">
+              <textarea id="inv-biz-addr" rows="3" placeholder="Street Address, City, State ZIP&#10;Email & Phone" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300">100 Broadway, Suite 400
+New York, NY 10005
+contact@acmecreative.com</textarea>
+              <div class="flex items-center gap-2">
+                <label class="px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer text-[11px] font-semibold text-slate-600 dark:text-slate-300 flex items-center gap-1.5 transition-colors">
+                  <i data-lucide="image" class="w-3.5 h-3.5 text-indigo-600"></i>
+                  <span>Upload Logo</span>
+                  <input type="file" id="inv-logo-input" accept="image/*" class="hidden">
+                </label>
+                <button type="button" id="inv-remove-logo-btn" class="hidden text-[11px] text-rose-500 hover:underline">Remove</button>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Client / Customer (Billed To)</label>
+              <input type="text" id="inv-client-name" value="Global Horizon Tech Corp" placeholder="Client Name or Company" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white">
+              <textarea id="inv-client-addr" rows="3" placeholder="Client Address, City, State ZIP&#10;Billing Email" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300">500 Silicon Vista Blvd
+Austin, TX 78701
+billing@globalhorizon.com</textarea>
+              <div>
+                <label for="inv-currency" class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-0.5">Currency</label>
+                <select id="inv-currency" class="px-2.5 py-1 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold">
+                  <option value="$" selected>USD ($)</option>
+                  <option value="€">EUR (€)</option>
+                  <option value="£">GBP (£)</option>
+                  <option value="CA$">CAD (CA$)</option>
+                  <option value="A$">AUD (A$)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Items Table -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">Line Items &amp; Services</h3>
+              <button type="button" id="inv-add-item-btn" class="px-3 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold flex items-center gap-1.5 transition-colors">
+                <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                <span>Add Item</span>
+              </button>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left">
+                <thead>
+                  <tr class="text-[10px] uppercase font-bold text-slate-400 border-b border-slate-200 dark:border-slate-800">
+                    <th class="pb-1.5">Description</th>
+                    <th class="pb-1.5 text-center w-20">Qty / Hrs</th>
+                    <th class="pb-1.5 text-right w-24">Rate</th>
+                    <th class="pb-1.5 text-right w-24">Total</th>
+                    <th class="pb-1.5 w-10"></th>
+                  </tr>
+                </thead>
+                <tbody id="inv-items-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Tax, Discount, Shipping -->
+          <div class="grid grid-cols-3 gap-3 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60">
+            <div>
+              <label for="inv-tax-rate" class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Sales Tax (%)</label>
+              <input type="number" id="inv-tax-rate" min="0" step="0.01" value="8.25" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold">
+            </div>
+            <div>
+              <label for="inv-discount-rate" class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Discount (%)</label>
+              <input type="number" id="inv-discount-rate" min="0" step="0.1" value="0" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold">
+            </div>
+            <div>
+              <label for="inv-shipping" class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Shipping ($)</label>
+              <input type="number" id="inv-shipping" min="0" step="0.5" value="0" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold">
+            </div>
+          </div>
+
+          <!-- Terms & Notes -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="inv-terms" class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">Payment Terms</label>
+              <textarea id="inv-terms" rows="2" class="w-full px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300">Payment due within 14 days of issue date via ACH or wire transfer.</textarea>
+            </div>
+            <div>
+              <label for="inv-notes" class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">Notes / Memo</label>
+              <textarea id="inv-notes" rows="2" class="w-full px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300">Thank you for your business! Please include the invoice number in the payment memo.</textarea>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex flex-col sm:flex-row gap-3 pt-2">
+            <button type="button" id="inv-download-pdf-btn" class="flex-1 py-3.5 px-6 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-md shadow-indigo-500/20">
+              <i data-lucide="file-down" class="w-4 h-4"></i>
+              <span>Download US Letter PDF</span>
+            </button>
+            <button type="button" id="inv-print-btn" class="py-3.5 px-6 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-sm flex items-center justify-center gap-2 transition-all">
+              <i data-lucide="printer" class="w-4 h-4"></i>
+              <span>Print Sheet</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Live Preview Column (6 cols on XL) -->
+      <div class="xl:col-span-6 space-y-6">
+        <div class="sticky top-24">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+              <i data-lucide="eye" class="w-4 h-4 text-indigo-500"></i>
+              <span>Live Interactive Preview (US Letter Format)</span>
+            </h3>
+            <span class="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">Live Updating</span>
+          </div>
+
+          <!-- Document Render Frame -->
+          <div id="inv-preview-sheet" class="overflow-hidden"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SEO Guide Section (Full Width) -->
+    <div class="mt-16 max-w-4xl mx-auto">
+      <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-10 shadow-sm space-y-8">
+        <header>
+          <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            How to Generate Compliant Invoices and Receipts for US Businesses
+          </h2>
+          <p class="mt-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+            Whether you operate as an independent contractor (1099 freelancer), an LLC owner, or an e-commerce seller, maintaining clear, professional invoices and payment receipts is essential for cash flow, legal client relationships, and IRS tax compliance. This guide outlines standard practices for US business documentation.
+          </p>
+        </header>
+
+        <section>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+            Key Elements Required on Every US Business Invoice
+          </h2>
+          <ul class="list-disc list-inside space-y-2 text-sm text-slate-600 dark:text-slate-400">
+            <li><strong class="text-slate-800 dark:text-slate-200">Legal Business Information:</strong> Your registered trade name (DBA or LLC), street address, state, ZIP code, contact telephone, and billing email.</li>
+            <li><strong class="text-slate-800 dark:text-slate-200">Unique Sequential Invoice Number:</strong> Essential for your bookkeeping and your client's accounts payable system (e.g. INV-2026-001).</li>
+            <li><strong class="text-slate-800 dark:text-slate-200">Issue Date &amp; Due Date:</strong> Prevents ambiguities regarding payment windows (such as Net 14, Net 30, or Due on Receipt).</li>
+            <li><strong class="text-slate-800 dark:text-slate-200">Itemized Breakdown:</strong> Individual line items detailing the service or product delivered, quantity/hours, unit price, and subtotal.</li>
+            <li><strong class="text-slate-800 dark:text-slate-200">Applicable Sales Tax:</strong> Calculated on taxable goods or services based on your local or destination state tax jurisdiction.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+            Why Client-Side Invoicing Keeps Your Finances Confidential
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            Most online invoicing software requires you to upload your clients' confidential names, emails, addresses, and private hourly billing rates to third-party databases. MultiTools Hub is engineered with a strict privacy-first architecture. The PDF is assembled right inside your browser session using <code class="text-xs bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">pdf-lib</code> and vector font rendering. When you click Download, the file is saved directly from local browser RAM to your hard drive. Zero data is ever stored, analyzed, or shared.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+          <div class="space-y-3">
+            <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+              <summary class="flex items-center justify-between gap-4 p-5 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                Can I convert this invoice to a Payment Receipt after getting paid?
+                <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400 flex-shrink-0"></i>
+              </summary>
+              <p class="px-5 pb-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Yes! Simply select "Payment Receipt" from the Document Type dropdown at the top. The document header updates to "RECEIPT", providing your customer with official documentation that their payment was received in full.</p>
+            </details>
+            <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+              <summary class="flex items-center justify-between gap-4 p-5 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                Will this PDF print cleanly on a home or office printer?
+                <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400 flex-shrink-0"></i>
+              </summary>
+              <p class="px-5 pb-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Yes. The generated PDF strictly conforms to standard US Letter dimensions (8.5 x 11 inches) with 0.625 inch margins, ensuring perfect printing on any inkjet or laser printer without clipping borders.</p>
+            </details>
+          </div>
+        </section>
+      </article>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/invoice-receipt-generator.js"></script>
+</body>
+</html>

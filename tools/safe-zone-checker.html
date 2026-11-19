@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Media Safe Zone Checker - YouTube Shorts, Reels, TikTok | MultiTools Hub</title>
+  <meta name="description" content="Check 9:16 vertical video and image safe zones for YouTube Shorts, Instagram Reels, and TikTok. Test UI button cutoffs, caption zones, and download composite guides client-side.">
+  <link rel="canonical" href="https://multitools-hub.web.app/tools/safe-zone-checker.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multitools-hub.web.app/tools/safe-zone-checker.html">
+  <meta property="og:title" content="Social Media Safe Zone Checker - MultiTools Hub">
+  <meta property="og:description" content="Inspect 9:16 vertical frames against YouTube Shorts, Reels, and TikTok interface buttons and captions in real-time.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {} }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Social Media Safe Zone Checker",
+        "url": "https://multitools-hub.web.app/tools/safe-zone-checker.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Interactive 9:16 vertical frame inspector that simulates mobile UI overlays for YouTube Shorts, Instagram Reels, and TikTok.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What are safe zones in vertical 9:16 short-form video?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Safe zones are the unobstructed viewable areas of a 9:16 screen that are free from native platform UI elements such as like buttons, comments, captions, sound titles, and header navigation."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why do captions and important text get cut off in Shorts and Reels?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The bottom 20% to 25% of mobile screens are occupied by channel handles, captions, audio tags, and system navigation bars. Any text placed in this zone becomes obscured by the platform interface."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I download the preview with the safe zone overlay included?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Clicking 'Download Composite Preview' generates a high-resolution PNG with the exact overlay guides and UI indicators, perfect for sharing with clients or editing teams."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this tool upload my proprietary video frames to any server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The entire rendering, scaling, overlay drawing, and image export happen 100% locally inside your browser on HTML5 Canvas."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <a href="../index.html" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+          <i data-lucide="layers" class="w-5 h-5"></i>
+        </div>
+        <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent">MultiTools Hub</span>
+      </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors" title="Back to All Tools">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="safe-zone-checker.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">Safe Zone</a>
+        <a href="thumbnail-previewer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Thumbnail Test</a>
+        <a href="aspect-ratio-calculator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Aspect Ratio</a>
+        <a href="bulk-image-resizer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Image Resizer</a>
+        <a href="kdp-bleed-calculator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">KDP Bleed</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+        <a href="../about.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">About</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="window.toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors">
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+        <a href="../index.html" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors">
+          <i data-lucide="grid" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs & Header -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800/80 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-slate-500 mb-2">
+        <a href="../index.html" class="hover:text-indigo-600">Home</a>
+        <span>/</span>
+        <span class="text-slate-400">Creator & Print</span>
+        <span>/</span>
+        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Safe Zone Checker</span>
+      </nav>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Social Media Safe Zone Checker
+          </h1>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
+            Inspect vertical 9:16 video and graphic frames against YouTube Shorts, Reels, and TikTok overlays.
+          </p>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 self-start sm:self-auto">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span>100% In-Browser Privacy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main 2-Column Workspace -->
+  <main class="flex-1 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Left 70% Tool Interface -->
+      <div class="lg:col-span-8 space-y-6">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 shadow-sm space-y-6">
+          
+          <!-- Dropzone -->
+          <div id="safezone-dropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-indigo-500 rounded-2xl p-8 sm:p-12 text-center cursor-pointer transition-all bg-slate-50/50 dark:bg-slate-800/30">
+            <input type="file" id="safezone-file-input" accept="image/*" class="hidden">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-violet-50 dark:bg-violet-950/70 text-violet-600 dark:text-violet-400 flex items-center justify-center mb-4">
+              <i data-lucide="image-plus" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Upload image or video frame</h3>
+            <p class="text-xs text-slate-500 mt-1">Click to select an image or drag & drop (Recommended 1080×1920 px 9:16)</p>
+            <div class="mt-4">
+              <button type="button" id="safezone-sample-btn" class="px-4 py-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold hover:bg-indigo-100 dark:hover:bg-indigo-900/60 transition-colors inline-flex items-center gap-1.5 shadow-sm" onclick="event.stopPropagation()">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>Or Load Sample 9:16 Creator Frame</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Preview & Controls Workspace -->
+          <div id="safezone-preview-card" class="hidden space-y-6">
+            
+            <!-- Controls Bar -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 text-xs">
+              <div>
+                <label for="platform-select" class="block font-semibold uppercase tracking-wider text-slate-500 mb-1">Platform Overlay</label>
+                <select id="platform-select" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 font-medium">
+                  <option value="shorts" selected>YouTube Shorts</option>
+                  <option value="reels">Instagram Reels</option>
+                  <option value="tiktok">TikTok</option>
+                </select>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between mb-1">
+                  <label for="opacity-slider" class="font-semibold uppercase tracking-wider text-slate-500">Overlay Opacity</label>
+                  <span id="opacity-value-text" class="font-mono text-indigo-600 dark:text-indigo-400 font-bold">70%</span>
+                </div>
+                <input type="range" id="opacity-slider" min="10" max="100" value="70" class="w-full accent-indigo-600 cursor-pointer">
+              </div>
+
+              <div class="flex flex-col justify-center space-y-1.5 pt-1">
+                <label class="flex items-center gap-2 cursor-pointer font-medium text-slate-700 dark:text-slate-300">
+                  <input type="checkbox" id="dim-unsafe-check" checked class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500">
+                  <span>Dim Blocked Areas</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer font-medium text-slate-700 dark:text-slate-300">
+                  <input type="checkbox" id="show-center-check" checked class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500">
+                  <span>Show Center Grid</span>
+                </label>
+              </div>
+
+              <div class="flex items-center justify-end">
+                <button type="button" id="safezone-reset-btn" class="text-xs px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 font-semibold transition-colors">
+                  Change Image
+                </button>
+              </div>
+            </div>
+
+            <!-- Canvas Container -->
+            <div class="flex justify-center bg-slate-950 p-4 rounded-2xl border border-slate-800 overflow-hidden shadow-inner">
+              <canvas id="safezone-canvas" class="max-h-[640px] w-auto rounded-xl shadow-2xl"></canvas>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-3 pt-2">
+              <button type="button" id="download-composite-btn" class="flex-1 py-3 px-5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm transition-all shadow-md shadow-indigo-600/20 flex items-center justify-center gap-2">
+                <i data-lucide="download" class="w-4 h-4"></i>
+                <span>Download Composite Preview (with Overlay)</span>
+              </button>
+              <button type="button" id="download-clean-btn" class="py-3 px-5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-sm transition-all flex items-center justify-center gap-2">
+                <i data-lucide="crop" class="w-4 h-4"></i>
+                <span>Download Clean 9:16 Crop</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- SEO Guide Article Section (700+ Words) -->
+        <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-8 sm:p-10 shadow-sm space-y-8 text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+          
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Mastering Mobile Safe Zones for Shorts, Reels, and TikTok
+            </h2>
+            <p>
+              In short-form vertical video (9:16 ratio, 1080×1920 pixels), visual competition is fierce. One of the most common pitfalls creator editors face is placing crucial subtitles, product callouts, or key visual subjects in zones where native social media interface elements overlay them.
+            </p>
+            <p class="mt-3">
+              When like counts, share arrows, caption accordions, or audio discs obscure your text, viewer retention drops immediately. MultiTools Hub provides an interactive safe-zone inspector that replicates real mobile UI coordinates for YouTube Shorts, Instagram Reels, and TikTok in real-time.
+            </p>
+          </div>
+
+          <div class="border-t border-slate-100 dark:border-slate-800 pt-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Platform Safe Zone Breakdown (1080 × 1920 px)
+            </h2>
+            <div class="space-y-4">
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80">
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">YouTube Shorts Margins</h3>
+                <p class="mt-1 text-xs text-slate-600 dark:text-slate-400">
+                  Keep critical text between Y: 240px and Y: 1440px. The top 240px contains camera/search controls, while the bottom 480px holds your channel badge, subscribe button, and sound info. The right-hand 180px margin holds the engagement stack.
+                </p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80">
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">Instagram Reels Margins</h3>
+                <p class="mt-1 text-xs text-slate-600 dark:text-slate-400">
+                  Reels overlays a 2-3 line caption zone at the bottom (Y: 1420px to 1920px). The top 220px is reserved for header controls, and the right 160px houses the heart, comment, and send icons. Keep subjects centrally focused.
+                </p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80">
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">TikTok Margins</h3>
+                <p class="mt-1 text-xs text-slate-600 dark:text-slate-400">
+                  The top header (LIVE, Following, For You) covers 0 to 200px. The bottom caption and spinning sound disc take up 460px. Placing focal graphics in the center 1080×1080 box guarantees 100% visibility across all phone form factors.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="border-t border-slate-100 dark:border-slate-800 pt-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Frequently Asked Questions (FAQ)
+            </h2>
+            <div class="space-y-3">
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>What are safe zones in vertical 9:16 short-form video?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Safe zones are the unobstructed viewable areas of a 9:16 screen that are free from native platform UI elements such as like buttons, comments, captions, sound titles, and header navigation.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>Why do captions and important text get cut off in Shorts and Reels?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  The bottom 20% to 25% of mobile screens are occupied by channel handles, captions, audio tags, and system navigation bars. Any text placed in this zone becomes obscured by the platform interface.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>Can I download the preview with the safe zone overlay included?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Yes! Clicking 'Download Composite Preview' generates a high-resolution PNG with the exact overlay guides and UI indicators, perfect for sharing with clients or editing teams.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>Does this tool upload my proprietary video frames to any server?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  No. The entire rendering, scaling, overlay drawing, and image export happen 100% locally inside your browser on HTML5 Canvas.
+                </p>
+              </details>
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+
+      <!-- Right 30% Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <!-- Related Step-by-Step Guide Card -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-900 dark:to-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 shadow-sm space-y-3">
+          <div class="flex items-center gap-2 text-indigo-700 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>Recommended Reading</span>
+          </div>
+          <h4 class="font-bold text-sm text-slate-900 dark:text-white leading-snug">
+            <a href="../blog/youtube-shorts-reels-safe-zone-guide.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              The 9:16 Vertical Video Safe Zone Guide: Avoiding UI Overlays on Shorts, Reels, and TikTok
+            </a>
+          </h4>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Read our complete 2026 problem-solving tutorial with step-by-step instructions, practical use cases, and expert tips.
+          </p>
+          <div class="pt-2">
+            <a href="../blog/youtube-shorts-reels-safe-zone-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+              <span>Read Step-by-Step Guide</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 text-slate-800 dark:text-slate-200">
+          <div class="flex items-center gap-2.5 text-indigo-700 dark:text-indigo-400 font-bold text-sm mb-2">
+            <i data-lucide="video" class="w-5 h-5"></i>
+            <span>Creator Workflow Tip</span>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Export a frame grab from Premiere, DaVinci, or CapCut and drop it here before publishing to catch overlapping text early.
+          </p>
+        </div>
+
+        <div class="sticky top-24 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm space-y-4">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">Related Utility Tools</h3>
+          
+          <div class="space-y-3">
+            <a href="thumbnail-previewer.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="layout" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Thumbnail Previewer</p>
+                <p class="text-xs text-slate-500 mt-0.5">Desktop & Mobile YouTube feed mockups</p>
+              </div>
+            </a>
+
+            <a href="aspect-ratio-calculator.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-violet-100 dark:bg-violet-950/80 text-violet-600 dark:text-violet-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="calculator" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Aspect Ratio Calculator</p>
+                <p class="text-xs text-slate-500 mt-0.5">Simplify ratios & verify 4MP resolution</p>
+              </div>
+            </a>
+
+            <a href="bulk-image-resizer.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="scaling" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Bulk Image Resizer</p>
+                <p class="text-xs text-slate-500 mt-0.5">Crop to exact 1080×1920 dimensions</p>
+              </div>
+            </a>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+            <a href="../index.html" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 hover:text-indigo-600 text-slate-700 dark:text-slate-300 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+              <span>Browse All 14 Tools</span>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/safe-zone-checker.js"></script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>US Standard Envelope & Shipping Label Printer (4x6 & Avery 5160) | MultiTools Hub</title>
+  <meta name="description" content="Generate 4x6 inch direct thermal shipping labels, Avery 5160 peel-and-stick address sheets (30 per US Letter page), and #10 business envelope PDFs for instant local printing.">
+  <link rel="canonical" href="shipping-label-envelope-printer.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="US Shipping Label & Envelope Address Printer - MultiTools Hub">
+  <meta property="og:description" content="Create 4x6 inch thermal shipping labels, Avery 5160 sheets, and #10 envelope PDFs 100% in your browser.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: {} } }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "US Shipping Label & Envelope Address Printer",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Print-ready 4x6 thermal shipping labels, Avery 5160 30-up address label sheets, and standard #10 business envelopes.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What thermal printers are compatible with 4x6 shipping label PDFs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Any standard 4x6 direct thermal printer is compatible, including Rollo, Munbyn, Zebra (ZD420/LP2844), Brother (QL series), and Dymo 4XL. Simply select 4x6 paper size in your printer driver settings and set scale to 100%."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are the exact dimensions of Avery 5160 address labels?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Avery 5160 (and compatible 5260, 8160, 8460) label sheets contain 30 individual labels arranged in 3 columns of 10 rows on standard 8.5 x 11 inch US Letter paper. Each label measures exactly 1.0 inch high by 2.625 inches wide."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent hidden sm:inline">MultiTools Hub</span>
+        </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="shipping-label-envelope-printer.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">Shipping Labels</a>
+        <a href="business-card-letterhead-maker.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Cards & Letterhead</a>
+        <a href="ecommerce-fee-calculator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">E-Commerce Fees</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+      </nav>
+
+      <div class="flex items-center gap-2.5">
+        <button type="button" onclick="toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" aria-label="Toggle theme">
+          <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 py-8 md:py-12">
+    <div class="mb-8">
+      <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+        <i data-lucide="package" class="w-4 h-4"></i>
+        <span>US E-Commerce & Postal Shipping Suite</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">US Standard Envelope & Shipping Label Printer</h1>
+      <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-3xl leading-relaxed">
+        Generate print-ready 4x6 inch direct thermal shipping labels (USPS Priority style), Avery 5160 30-up address label sheets on 8.5x11" US Letter, or standard #10 business envelope PDFs.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Left 6 Cols: Form Inputs -->
+      <div class="lg:col-span-6 space-y-6">
+        
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
+          
+          <!-- Mode Switcher -->
+          <div class="flex items-center gap-2 p-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+            <button type="button" id="mode-4x6-btn" class="flex-1 py-2 px-2.5 rounded-lg text-xs font-bold transition-all bg-indigo-600 text-white shadow-sm">
+              4" x 6" Thermal Label
+            </button>
+            <button type="button" id="mode-avery-btn" class="flex-1 py-2 px-2.5 rounded-lg text-xs font-bold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300">
+              Avery 5160 (30-Up)
+            </button>
+            <button type="button" id="mode-envelope-btn" class="flex-1 py-2 px-2.5 rounded-lg text-xs font-bold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300">
+              #10 Envelope
+            </button>
+          </div>
+
+          <!-- FROM / SENDER -->
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-3">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 block">Sender / Return Address</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <input type="text" id="sender-name" class="px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-medium" placeholder="Sender Name" value="Jane Doe">
+              <input type="text" id="sender-company" class="px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" placeholder="Company (Optional)" value="Studio Crafts LLC">
+            </div>
+            <input type="text" id="sender-street" class="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" placeholder="Street Address" value="742 Evergreen Terrace">
+            <div class="grid grid-cols-3 gap-2">
+              <input type="text" id="sender-city" class="px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" placeholder="City" value="Springfield">
+              <input type="text" id="sender-state" class="px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" placeholder="State (e.g. OR)" value="OR">
+              <input type="text" id="sender-zip" class="px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" placeholder="ZIP" value="97477">
+            </div>
+          </div>
+
+          <!-- TO / RECIPIENT -->
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-3">
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 block">Recipient / Ship To Address</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <input type="text" id="recip-name" class="px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-semibold" placeholder="Recipient Name" value="Johnathan Smith">
+              <input type="text" id="recip-company" class="px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" placeholder="Company (Optional)" value="Acme Logistics Corp">
+            </div>
+            <input type="text" id="recip-street" class="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" placeholder="Street Address" value="123 Market Street, Suite 400">
+            <div class="grid grid-cols-3 gap-2">
+              <input type="text" id="recip-city" class="px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" placeholder="City" value="San Francisco">
+              <input type="text" id="recip-state" class="px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" placeholder="State" value="CA">
+              <input type="text" id="recip-zip" class="px-3 py-2 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" placeholder="ZIP" value="94105">
+            </div>
+          </div>
+
+          <!-- Thermal 4x6 Specific Fields -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+            <div>
+              <label for="service-class" class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Service Class</label>
+              <input type="text" id="service-class" class="w-full px-2.5 py-1.5 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-bold" value="USPS PRIORITY MAIL 2-DAY®">
+            </div>
+            <div>
+              <label for="package-weight" class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Weight</label>
+              <input type="text" id="package-weight" class="w-full px-2.5 py-1.5 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-semibold" value="1 LB 4 OZ">
+            </div>
+            <div>
+              <label for="tracking-number" class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Tracking String</label>
+              <input type="text" id="tracking-number" class="w-full px-2.5 py-1.5 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-mono" value="9400 1118 9956 4321 0000 00">
+            </div>
+          </div>
+
+          <!-- Download Action -->
+          <div class="pt-3">
+            <button type="button" id="download-shipping-pdf-btn" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md shadow-indigo-500/20 transition-all flex items-center justify-center gap-2">
+              <i data-lucide="printer" class="w-4 h-4"></i>
+              <span>Download Print-Ready PDF</span>
+            </button>
+            <p class="text-[11px] text-center text-slate-400 mt-2">
+              Compatible with Munbyn, Rollo, Zebra thermal printers, and standard home inkjet/laser printers.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Right 6 Cols: Canvas Live Preview -->
+      <div class="lg:col-span-6 space-y-6">
+        
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Live Visual Document Preview</h3>
+            <span class="text-[11px] font-semibold text-indigo-600 dark:text-indigo-400">Exact Print Scale</span>
+          </div>
+
+          <div class="flex items-center justify-center bg-slate-100 dark:bg-slate-950 p-4 rounded-xl border border-slate-200/80 dark:border-slate-800 overflow-hidden">
+            <canvas id="shipping-preview-canvas" class="max-w-full h-auto rounded-lg shadow-lg border border-slate-200 dark:border-slate-700"></canvas>
+          </div>
+        </div>
+
+        <!-- Recommended Reading Card -->
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-indigo-50/90 to-violet-50/90 dark:from-indigo-950/60 dark:to-slate-900 border border-indigo-200 dark:border-indigo-800/80 shadow-sm">
+          <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>Recommended Reading</span>
+          </div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1.5 leading-snug">
+            How to Print 4x6 Thermal Shipping Labels & Avery 5160 Sheets at Home
+          </h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+            Master thermal printer calibration (Rollo, Munbyn, Zebra), 100% scale PDF printing, and USPS barcode scanner readability guidelines.
+          </p>
+          <a href="../blog/print-shipping-labels-envelopes-thermal-avery-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 px-3.5 py-2 rounded-xl transition-colors shadow-sm">
+            <span>Read Complete Guide</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/shipping-label-envelope-printer.js"></script>
+</body>
+</html>

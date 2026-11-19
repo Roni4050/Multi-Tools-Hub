@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>US Area Code & ZIP Code Lookup & Validator | MultiTools Hub</title>
+  <meta name="description" content="Instant offline search for all US phone area codes (e.g. 212 NYC, 310 LA) and 5-digit postal ZIP code format validation with state, capital, and time zone data.">
+  <link rel="canonical" href="us-zip-areacode-lookup.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="US Area Code & ZIP Code Lookup & Validator - MultiTools Hub">
+  <meta property="og:description" content="Instant offline lookup for US phone area codes and 5-digit postal ZIP codes across all 50 states.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: {} } }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "US Area Code & ZIP Code Lookup & Validator",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Decode US phone area codes and USPS postal ZIP codes offline with instant state and metro mapping.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does the US ZIP code numbering system work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The United States Postal Service (USPS) divides the country into 10 geographical areas numbered 0 through 9, starting from the East Coast (0 in New England) and progressing westward to 9 (California, Washington, Hawaii, Alaska). The first digit represents a national group of states, digits 2 and 3 pinpoint a sectional center facility (mail sorting hub), and digits 4 and 5 designate the local post office or delivery station."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is an area code overlay?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "An overlay occurs when a second (or third) area code is added to the exact same geographical territory as an existing area code because telephone numbers in the original code have been exhausted. For example, in New York City, 646 and 332 overlay the iconic 212 Manhattan code."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent hidden sm:inline">MultiTools Hub</span>
+        </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="us-zip-areacode-lookup.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">ZIP & Area Code</a>
+        <a href="us-timezone-meeting-planner.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Meeting Planner</a>
+        <a href="sales-tax-tip-calculator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Sales Tax & Tip</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+      </nav>
+
+      <div class="flex items-center gap-2.5">
+        <button type="button" onclick="toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" aria-label="Toggle theme">
+          <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 py-8 md:py-12">
+    <div class="mb-8">
+      <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+        <i data-lucide="map-pin" class="w-4 h-4"></i>
+        <span>US Telecom & Postal Intelligence</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">US Area Code & ZIP Code Lookup / Validator</h1>
+      <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-3xl leading-relaxed">
+        Search any 3-digit US telephone area code or 5-digit USPS postal ZIP code offline to immediately identify the state, major metropolitan area, capital city, and regional time zone.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Left 2 Cols: Interactive Tool -->
+      <div class="lg:col-span-2 space-y-6">
+        
+        <!-- Navigation Tabs -->
+        <div class="flex items-center gap-2 p-1.5 rounded-2xl bg-slate-200/60 dark:bg-slate-900 border border-slate-300/60 dark:border-slate-800 max-w-md">
+          <button type="button" class="lookup-tab-btn flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-sm" data-tab="tab-areacode">
+            Area Code Lookup
+          </button>
+          <button type="button" class="lookup-tab-btn flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300" data-tab="tab-zipcode">
+            ZIP Code Validator
+          </button>
+          <button type="button" class="lookup-tab-btn flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300" data-tab="tab-states">
+            50 States Directory
+          </button>
+        </div>
+
+        <!-- TAB 1: Area Code -->
+        <div id="tab-areacode" class="lookup-tab-panel space-y-6">
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <div>
+              <label for="area-code-input" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+                Enter 3-Digit US Area Code or City Name
+              </label>
+              <div class="relative">
+                <i data-lucide="phone-call" class="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="area-code-input" class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-bold text-base focus:ring-2 focus:ring-indigo-500 focus:outline-none" placeholder="e.g. 212, 310, 415, Chicago, Texas" autofocus>
+              </div>
+            </div>
+
+            <!-- Area Code Results Grid -->
+            <div id="area-code-results" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 pt-2">
+              <!-- Populated via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: ZIP Code Validator -->
+        <div id="tab-zipcode" class="lookup-tab-panel hidden space-y-6">
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <div>
+              <label for="zip-code-input" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+                Enter 5-Digit US Postal ZIP Code
+              </label>
+              <div class="relative">
+                <i data-lucide="mail" class="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="zip-code-input" class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-black text-xl tracking-wider focus:ring-2 focus:ring-indigo-500 focus:outline-none" placeholder="90210" maxlength="5">
+              </div>
+            </div>
+
+            <div id="zip-result-card" class="pt-2">
+              <!-- Populated via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: States Directory -->
+        <div id="tab-states" class="lookup-tab-panel hidden space-y-6">
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <div>
+              <label for="state-search-input" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+                Filter 50 States by Name, Abbreviation or Capital
+              </label>
+              <input type="text" id="state-search-input" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm font-semibold" placeholder="Filter states (e.g. Florida, TX, Albany)">
+            </div>
+
+            <div id="states-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <!-- Populated via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Educational Section -->
+        <article class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">History & Anatomy of the North American Numbering Plan (NANP)</h2>
+            <p>
+              In 1947, AT&T and the Bell System introduced the North American Numbering Plan (NANP) to automate long-distance telephone calling. Under this system, the most populous cities received area codes with the fastest rotary dial times—hence 212 was assigned to New York City, 213 to Los Angeles, and 312 to Chicago.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-base font-bold text-slate-900 dark:text-white mb-3">Frequently Asked Questions</h2>
+            <div class="space-y-3">
+              <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+                <summary class="flex items-center justify-between gap-4 p-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                  Can an unknown phone call with a local area code be spoofed?
+                  <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 flex-shrink-0"></i>
+                </summary>
+                <p class="px-4 pb-4 text-xs text-slate-600 dark:text-slate-400">
+                  Yes. Robocallers frequently execute "neighbor spoofing," falsifying caller ID to display your local 3-digit area code so you are more likely to answer. Always verify unfamiliar numbers with an official directory.
+                </p>
+              </details>
+            </div>
+          </section>
+        </article>
+
+      </div>
+
+      <!-- Right Column: Sidebar -->
+      <aside class="space-y-6">
+        <!-- Recommended Reading Card -->
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-indigo-50/90 to-violet-50/90 dark:from-indigo-950/60 dark:to-slate-900 border border-indigo-200 dark:border-indigo-800/80 shadow-sm">
+          <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>Recommended Reading</span>
+          </div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1.5 leading-snug">
+            US Area Code & ZIP Code Lookup: Complete 50-State Guide
+          </h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+            Explore how USPS 5-digit ZIP prefixes route mail, identify area code overlays, and prevent neighbor spoofing scams.
+          </p>
+          <a href="../blog/us-area-code-zip-lookup-validator-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 px-3.5 py-2 rounded-xl transition-colors shadow-sm">
+            <span>Read Complete Guide</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+
+        <!-- Quick Feature Specs -->
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider">Features & Reliability</h3>
+          <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-400">
+            <li class="flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+              <span>All major US 3-digit phone area codes</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+              <span>USPS 5-digit ZIP code prefix validation</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+              <span>Instant client-side offline database</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="shield-check" class="w-4 h-4 text-indigo-500"></i>
+              <span>Zero server logging or tracking</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Related Tools -->
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider">Related US Tools</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="us-timezone-meeting-planner.html" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">US Time Zone Meeting Planner</a></li>
+            <li><a href="shipping-label-envelope-printer.html" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">Shipping Label & Envelope Printer</a></li>
+            <li><a href="us-vin-decoder-validator.html" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">US VIN Decoder & Check Digit Validator</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/us-zip-areacode-lookup.js"></script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>US Military Time (24-Hour) & Date Duration Calculator | MultiTools Hub</title>
+  <meta name="description" content="Convert 12-hour AM/PM to 24-hour US military time with phonetic pronunciation, calculate exact date durations, business days excluding weekends, and add/subtract calendar dates.">
+  <link rel="canonical" href="military-time-date-calculator.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Military Time & Date Duration Calculator - MultiTools Hub">
+  <meta property="og:description" content="Convert 24-hour military time, calculate business working days, and perform calendar date math.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: {} } }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "US Military Time & Date Duration Calculator",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Convert 24-hour military time, calculate net business days between calendar dates, and perform date additions.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How is military time pronounced verbally?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Military time is spoken as hundreds for on-the-hour times (e.g. 0800 is spoken 'Zero Eight Hundred Hours', 1400 is 'Fourteen Hundred Hours'). When minutes are included, state the hours then minutes (e.g. 1945 is spoken 'Nineteen Forty-Five Hours', 0705 is 'Zero Seven Zero Five Hours')."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why do hospitals, pilots, and military personnel use 24-hour time?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The 24-hour clock completely eliminates ambiguity between morning (AM) and evening (PM). In healthcare, aviation, and emergency defense, confusing 7:00 AM with 7:00 PM on medication charts or flight manifests could have catastrophic consequences."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent hidden sm:inline">MultiTools Hub</span>
+        </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="military-time-date-calculator.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">Military Time</a>
+        <a href="us-timezone-meeting-planner.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Meeting Planner</a>
+        <a href="final-grade-exam-calculator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Grade Calculator</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+      </nav>
+
+      <div class="flex items-center gap-2.5">
+        <button type="button" onclick="toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" aria-label="Toggle theme">
+          <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 py-8 md:py-12">
+    <div class="mb-8">
+      <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+        <i data-lucide="shield" class="w-4 h-4"></i>
+        <span>Time & Chronological Intelligence</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">US Military Time (24-Hour) & Date Duration Calculator</h1>
+      <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-3xl leading-relaxed">
+        Convert between standard 12-hour AM/PM and 24-hour military time with verbal phonetic pronunciations, calculate business working days between dates, and project calendar deadlines.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Left 2 Cols: Interactive Tool -->
+      <div class="lg:col-span-2 space-y-6">
+        
+        <!-- Navigation Tabs -->
+        <div class="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-slate-200/60 dark:bg-slate-900 border border-slate-300/60 dark:border-slate-800 max-w-lg">
+          <button type="button" class="time-tab-btn flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-sm" data-tab="tab-mil">
+            Military Time Converter
+          </button>
+          <button type="button" class="time-tab-btn flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300" data-tab="tab-duration">
+            Date Duration & Work Days
+          </button>
+          <button type="button" class="time-tab-btn flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300" data-tab="tab-addsub">
+            Add/Subtract Dates
+          </button>
+        </div>
+
+        <!-- TAB 1: Military Time -->
+        <div id="tab-mil" class="time-tab-panel space-y-6">
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Standard 12-Hour -->
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 block">Standard Time (12-Hour AM/PM)</span>
+                <div class="flex items-center gap-2">
+                  <input type="number" id="std-hours" class="w-16 px-3 py-2 text-center text-lg font-black rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" value="2" min="1" max="12">
+                  <span class="font-bold text-lg">:</span>
+                  <input type="number" id="std-mins" class="w-16 px-3 py-2 text-center text-lg font-black rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" value="30" min="0" max="59">
+                  <select id="std-ampm" class="px-3 py-2 text-sm font-black rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400">
+                    <option value="AM">AM</option>
+                    <option value="PM" selected>PM</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Military 24-Hour -->
+              <div class="p-4 rounded-xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/80 space-y-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-indigo-700 dark:text-indigo-300 block">Military Time (24-Hour)</span>
+                <div class="relative">
+                  <input type="text" id="mil-input" class="w-full px-4 py-2 font-mono text-xl font-black rounded-xl border border-indigo-300 dark:border-indigo-700 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 tracking-widest" placeholder="1430" maxlength="4">
+                  <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">Hours</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Phonetic verbal reading output -->
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-2">
+              <span id="out-mil-phonetic" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 block">
+                🗣️ Pronounced: "Fourteen Thirty Hours"
+              </span>
+              <p class="text-xs text-slate-500">
+                In US armed forces, law enforcement, and emergency medical triage, times are spoken with four digits to guarantee zero miscommunication.
+              </p>
+            </div>
+
+            <!-- 24-Hour Comparison Quick Table -->
+            <div>
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">Common 24-Hour Military Time Equivalents</h4>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                <div class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800/80 text-center"><span class="font-bold">0800</span> = 8:00 AM</div>
+                <div class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800/80 text-center"><span class="font-bold">1200</span> = 12:00 PM (Noon)</div>
+                <div class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800/80 text-center"><span class="font-bold">1700</span> = 5:00 PM</div>
+                <div class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800/80 text-center"><span class="font-bold">2400 / 0000</span> = Midnight</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TAB 2: Date Duration & Work Days -->
+        <div id="tab-duration" class="time-tab-panel hidden space-y-6">
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="start-date" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Start Date</label>
+                <input type="date" id="start-date" class="w-full px-3 py-2 text-xs font-bold rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white">
+              </div>
+              <div>
+                <label for="end-date" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">End Date</label>
+                <input type="date" id="end-date" class="w-full px-3 py-2 text-xs font-bold rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white">
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <input type="checkbox" id="exclude-us-holidays" class="rounded text-indigo-600" checked>
+              <label for="exclude-us-holidays" class="text-xs text-slate-600 dark:text-slate-400 cursor-pointer">
+                Exclude US Federal Holidays (New Year's, Memorial Day, July 4th, Labor Day, Thanksgiving, Christmas)
+              </label>
+            </div>
+
+            <!-- Duration Results -->
+            <div class="p-4 rounded-xl bg-indigo-50/80 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/80 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+              <div>
+                <span class="text-xs text-slate-500 block">Total Days</span>
+                <span id="out-total-days" class="text-lg font-black text-slate-900 dark:text-white">0 Days</span>
+              </div>
+              <div>
+                <span class="text-xs text-slate-500 block">Business Working Days</span>
+                <span id="out-work-days" class="text-xl font-black text-indigo-600 dark:text-indigo-400">0 Days</span>
+              </div>
+              <div>
+                <span class="text-xs text-slate-500 block">Weekend Days</span>
+                <span id="out-weekend-days" class="text-base font-bold text-slate-700 dark:text-slate-300">0 Days</span>
+              </div>
+              <div>
+                <span class="text-xs text-slate-500 block">Weeks Breakdown</span>
+                <span id="out-weeks-breakdown" class="text-xs font-bold text-slate-700 dark:text-slate-300">0 Weeks</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: Add / Subtract Dates -->
+        <div id="tab-addsub" class="time-tab-panel hidden space-y-6">
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+              <div class="sm:col-span-2">
+                <label for="calc-base-date" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Starting Baseline Date</label>
+                <input type="date" id="calc-base-date" class="w-full px-3 py-2 text-xs font-bold rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white">
+              </div>
+              <div>
+                <label for="calc-op" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Operation</label>
+                <select id="calc-op" class="w-full px-3 py-2 text-xs font-bold rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white">
+                  <option value="add">Add (+)</option>
+                  <option value="subtract">Subtract (-)</option>
+                </select>
+              </div>
+              <div>
+                <label for="calc-amount" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Amount</label>
+                <input type="number" id="calc-amount" class="w-full px-3 py-2 text-xs font-bold rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" value="45" min="1">
+              </div>
+            </div>
+
+            <div>
+              <label for="calc-unit" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Unit of Time</label>
+              <select id="calc-unit" class="w-full sm:w-48 px-3 py-2 text-xs font-bold rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white">
+                <option value="days" selected>Days</option>
+                <option value="weeks">Weeks</option>
+                <option value="months">Months</option>
+                <option value="years">Years</option>
+              </select>
+            </div>
+
+            <!-- Projected Result -->
+            <div class="p-5 rounded-2xl bg-indigo-50/80 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/80 text-center space-y-1">
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Target Calendar Date</span>
+              <div id="out-calc-result-date" class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+                --
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Educational Section -->
+        <article class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Why 24-Hour Time is Mandated in Essential US Industries</h2>
+            <p>
+              In healthcare, aviation, cybersecurity, and the military, mistaking morning for evening can lead to lethal medication overdoses or flight dispatch failures. By numbering each hour consecutively from 0000 to 2359, 24-hour time ensures instantaneous precision without reliance on AM/PM suffixes.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-base font-bold text-slate-900 dark:text-white mb-3">Frequently Asked Questions</h2>
+            <div class="space-y-3">
+              <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+                <summary class="flex items-center justify-between gap-4 p-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                  Is midnight 2400 or 0000?
+                  <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 flex-shrink-0"></i>
+                </summary>
+                <p class="px-4 pb-4 text-xs text-slate-600 dark:text-slate-400">
+                  Both are used depending on context: 2400 designates the exact end of a calendar day, while 0000 designates the beginning of the new calendar day.
+                </p>
+              </details>
+            </div>
+          </section>
+        </article>
+
+      </div>
+
+      <!-- Right Column: Sidebar -->
+      <aside class="space-y-6">
+        <!-- Recommended Reading Card -->
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-indigo-50/90 to-violet-50/90 dark:from-indigo-950/60 dark:to-slate-900 border border-indigo-200 dark:border-indigo-800/80 shadow-sm">
+          <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>Recommended Reading</span>
+          </div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1.5 leading-snug">
+            US Military Time & Date Duration Calculation Guide
+          </h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+            Master phonetic military time speaking rules, hospital chart timekeeping, and business work-day calculation excluding holidays.
+          </p>
+          <a href="../blog/military-time-conversion-date-duration-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 px-3.5 py-2 rounded-xl transition-colors shadow-sm">
+            <span>Read Complete Guide</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+
+        <!-- Quick Feature Specs -->
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider">Features & Reliability</h3>
+          <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-400">
+            <li class="flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+              <span>Two-way 12-hour and 24-hour converter</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+              <span>Spoken phonetic military pronunciation guide</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+              <span>Net working business days excluding holidays</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="shield-check" class="w-4 h-4 text-indigo-500"></i>
+              <span>100% Client-side browser calculation</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Related Tools -->
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider">Related US Tools</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="us-timezone-meeting-planner.html" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">US Time Zone Meeting Planner</a></li>
+            <li><a href="final-grade-exam-calculator.html" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">Final Exam Grade Calculator</a></li>
+            <li><a href="sales-tax-tip-calculator.html" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">Sales Tax & Tip Calculator</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/military-time-date-calculator.js"></script>
+</body>
+</html>

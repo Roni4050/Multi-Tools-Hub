@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>US Sales Tax & Tip Split Calculator | MultiTools Hub</title>
+  <meta name="description" content="Calculate accurate US state sales tax, restaurant dining tip percentages (15%, 18%, 20%, 25%), and split bills evenly with friends. 100% private, client-side.">
+  <link rel="canonical" href="sales-tax-tip-calculator.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="US Sales Tax & Tip Split Calculator - MultiTools Hub">
+  <meta property="og:description" content="Calculate exact US state sales tax and dining tips, and split restaurant bills with zero server uploads.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: {} } }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "US Sales Tax & Tip Split Calculator",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Calculate exact state sales tax across all 50 US states, custom dining gratuities, and per-person bill splits.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Should you calculate tip on the pre-tax or post-tax bill amount in the USA?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Traditional US etiquette dictates tipping on the pre-tax food and beverage subtotal. However, many modern point-of-sale systems (like Toast and Square) compute suggested tips on the post-tax total. Our calculator gives you a one-click toggle to calculate either way."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which US states have 0% state sales tax?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Five US states do not levy a general state sales tax: Alaska, Delaware, Montana, New Hampshire, and Oregon (often remembered as the NOMAD states). Alaska does, however, permit local municipality sales taxes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the standard tipping percentage at American restaurants?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In 2026, 18% to 20% is the standard baseline gratuity for good sit-down table service in the United States. 15% is typically considered acceptable for average service, while 22% to 25% is common for exceptional dining experiences."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent hidden sm:inline">MultiTools Hub</span>
+        </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="sales-tax-tip-calculator.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">Sales Tax & Tip</a>
+        <a href="us-timezone-meeting-planner.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Meeting Planner</a>
+        <a href="ecommerce-fee-calculator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">E-Commerce</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+      </nav>
+
+      <div class="flex items-center gap-2.5">
+        <button type="button" onclick="toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" aria-label="Toggle theme">
+          <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 py-8 md:py-12">
+    <div class="mb-8">
+      <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+        <i data-lucide="calculator" class="w-4 h-4"></i>
+        <span>US Financial & Dining Utility</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">US Sales Tax & Tip Split Calculator</h1>
+      <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-3xl leading-relaxed">
+        Select your US state to auto-fill sales tax rates, pick your dining gratuity percentage (15%, 18%, 20%, 25%), and calculate each person's exact split with rounding options.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Left 2 Cols: Interactive Tool -->
+      <div class="lg:col-span-2 space-y-6">
+        
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+          
+          <!-- 1. Bill Subtotal -->
+          <div>
+            <label for="bill-amount" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+              Bill Subtotal (Before Tax) ($)
+            </label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-lg">$</span>
+              <input type="number" id="bill-amount" class="w-full pl-9 pr-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 text-slate-900 dark:text-white font-bold text-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" placeholder="0.00" step="0.01" min="0">
+            </div>
+          </div>
+
+          <!-- 2. US State & Tax Rate -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="sm:col-span-2">
+              <label for="state-select" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
+                US State (Pre-fills Base Sales Tax)
+              </label>
+              <select id="state-select" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-100 text-sm font-semibold focus:ring-2 focus:ring-indigo-500">
+                <!-- Populated via JS -->
+              </select>
+            </div>
+            <div>
+              <label for="local-tax-rate" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
+                Local/City Tax (%)
+              </label>
+              <input type="number" id="local-tax-rate" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-100 text-sm font-bold" value="0.0" step="0.1" min="0">
+              <input type="hidden" id="tax-rate" value="0.0">
+            </div>
+          </div>
+
+          <!-- 3. Tip Percent Selection -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <label class="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                Tip Percentage
+              </label>
+              <label class="inline-flex items-center gap-1.5 text-xs text-slate-500 cursor-pointer">
+                <input type="checkbox" id="tip-before-tax" class="rounded text-indigo-600 focus:ring-indigo-500" checked>
+                <span>Calculate tip on pre-tax bill</span>
+              </label>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+              <button type="button" class="tip-btn px-3 py-2.5 rounded-xl border text-sm font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200" data-tip="10">10%</button>
+              <button type="button" class="tip-btn px-3 py-2.5 rounded-xl border text-sm font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200" data-tip="15">15%</button>
+              <button type="button" class="tip-btn px-3 py-2.5 rounded-xl border text-sm font-bold transition-all bg-indigo-600 text-white border-indigo-600 shadow-sm" data-tip="18">18% ⭐</button>
+              <button type="button" class="tip-btn px-3 py-2.5 rounded-xl border text-sm font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200" data-tip="20">20%</button>
+              <button type="button" class="tip-btn px-3 py-2.5 rounded-xl border text-sm font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200" data-tip="25">25%</button>
+            </div>
+            <div class="mt-2.5 flex items-center gap-2">
+              <span class="text-xs text-slate-500">Or Custom Tip:</span>
+              <div class="relative w-28">
+                <input type="number" id="custom-tip" class="w-full px-3 py-1.5 pr-6 text-xs font-bold rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" placeholder="Custom" min="0" max="100">
+                <span class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs">%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Split With Guests -->
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <span class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-0.5">Split Bill Between</span>
+              <span id="guests-count-display" class="text-sm font-semibold text-indigo-600 dark:text-indigo-400">1 Person</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button type="button" id="decrease-guests" class="w-9 h-9 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-lg hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center">-</button>
+              <input type="number" id="split-guests" class="w-16 text-center py-1.5 font-bold text-base rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" value="1" min="1" max="50">
+              <button type="button" id="increase-guests" class="w-9 h-9 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-lg hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center">+</button>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap items-center gap-2 pt-2">
+            <button type="button" id="round-up-btn" class="px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors inline-flex items-center gap-1.5">
+              <i data-lucide="arrow-up-circle" class="w-4 h-4"></i>
+              <span>Round Up Grand Total</span>
+            </button>
+            <button type="button" id="copy-summary-btn" class="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-colors inline-flex items-center gap-1.5">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+              <span>Copy Bill Breakdown</span>
+            </button>
+            <button type="button" id="reset-btn" class="px-3 py-2 rounded-xl text-xs font-semibold text-slate-500 hover:text-rose-600 transition-colors ml-auto">
+              Reset
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Calculated Summary Card -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-indigo-50/80 via-white to-violet-50/80 dark:from-indigo-950/40 dark:via-slate-900 dark:to-slate-900 border border-indigo-200 dark:border-indigo-800/60 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b border-indigo-100 dark:border-slate-800 pb-3">
+            <h2 class="text-sm font-bold uppercase tracking-wider text-indigo-950 dark:text-indigo-300">Itemized Bill Summary</h2>
+            <span class="text-xs font-medium text-slate-500">100% Client-Side</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+            <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80">
+              <span class="text-slate-500 dark:text-slate-400 block mb-0.5">Subtotal</span>
+              <span id="out-subtotal" class="text-base font-black text-slate-900 dark:text-white">$0.00</span>
+            </div>
+            <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80">
+              <span class="text-slate-500 dark:text-slate-400 block mb-0.5">Sales Tax</span>
+              <span id="out-tax" class="text-base font-black text-slate-900 dark:text-white">$0.00</span>
+            </div>
+            <div class="p-3 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80">
+              <span class="text-slate-500 dark:text-slate-400 block mb-0.5">Gratuity Tip</span>
+              <span id="out-tip" class="text-base font-black text-indigo-600 dark:text-indigo-400">$0.00</span>
+            </div>
+            <div class="p-3 rounded-xl bg-indigo-600 text-white shadow-md">
+              <span class="text-indigo-200 block mb-0.5 font-medium">Grand Total</span>
+              <span id="out-grand-total" class="text-xl font-black text-white">$0.00</span>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-indigo-100/60 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-900 dark:text-indigo-300">Each Person's Share</span>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400">Includes equal share of bill, state tax, and gratuity</p>
+            </div>
+            <div class="text-right">
+              <span id="out-per-person-total" class="text-2xl sm:text-3xl font-black text-indigo-600 dark:text-indigo-400">$0.00</span>
+              <div class="text-[11px] text-slate-500 mt-0.5">
+                (Tip: <span id="out-per-person-tip">$0.00</span> • Tax: <span id="out-per-person-tax">$0.00</span>)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Educational Section -->
+        <article class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">US Restaurant Tipping Etiquette & Best Practices</h2>
+            <p>
+              Unlike European and Asian countries where hospitality service charges are bundled directly into the menu pricing, the United States relies heavily on voluntary gratuity. In standard US restaurants, servers frequently earn a sub-minimum tipped wage (as low as $2.13/hour under federal law), meaning your tips constitute the majority of their actual income.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-base font-bold text-slate-900 dark:text-white mb-2">Standard US Tipping Benchmarks</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800">
+                <span class="font-bold text-slate-900 dark:text-white block mb-1">15% - Acceptable Baseline</span>
+                Standard gratuity for polite, average service without notable extras.
+              </div>
+              <div class="p-3 rounded-xl bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-800">
+                <span class="font-bold text-indigo-700 dark:text-indigo-300 block mb-1">18% to 20% - US Standard</span>
+                The expected benchmark for good, attentive sit-down table service in modern American dining.
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800">
+                <span class="font-bold text-slate-900 dark:text-white block mb-1">22% to 25% - Exceptional</span>
+                Reserved for fine dining, large parties with complex orders, or holiday hospitality.
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 class="text-base font-bold text-slate-900 dark:text-white mb-3">Frequently Asked Questions</h2>
+            <div class="space-y-3">
+              <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+                <summary class="flex items-center justify-between gap-4 p-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                  Do I tip before or after sales tax?
+                  <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 flex-shrink-0"></i>
+                </summary>
+                <p class="px-4 pb-4 text-xs text-slate-600 dark:text-slate-400">
+                  Etiquette experts agree that tipping on the pre-tax subtotal is traditional, as sales tax is paid directly to the government, not the service staff. However, tipping on the post-tax total has become widespread with automated handheld payment terminals. Our calculator supports both.
+                </p>
+              </details>
+              <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+                <summary class="flex items-center justify-between gap-4 p-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                  What is automatic gratuity (Auto-Grat)?
+                  <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 flex-shrink-0"></i>
+                </summary>
+                <p class="px-4 pb-4 text-xs text-slate-600 dark:text-slate-400">
+                  Many US restaurants automatically apply an 18% or 20% service fee for parties of 6 or more guests. Always inspect your itemized check before adding an additional tip so you do not accidentally double-tip!
+                </p>
+              </details>
+            </div>
+          </section>
+        </article>
+
+      </div>
+
+      <!-- Right Column: Sidebar -->
+      <aside class="space-y-6">
+        <!-- Recommended Reading Card -->
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-indigo-50/90 to-violet-50/90 dark:from-indigo-950/60 dark:to-slate-900 border border-indigo-200 dark:border-indigo-800/80 shadow-sm">
+          <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>Recommended Reading</span>
+          </div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1.5 leading-snug">
+            US Sales Tax & Dining Tip Split: Complete Guide to 50 States
+          </h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+            Learn state-by-state tax rates, auto-gratuity laws for large parties, and the mathematical difference between pre-tax vs post-tax tipping.
+          </p>
+          <a href="../blog/us-sales-tax-dining-tip-split-guide.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 px-3.5 py-2 rounded-xl transition-colors shadow-sm">
+            <span>Read Complete Guide</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+
+        <!-- Quick Feature Specs -->
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider">Features & Reliability</h3>
+          <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-400">
+            <li class="flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+              <span>50 US States + DC pre-loaded tax rates</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+              <span>10%, 15%, 18%, 20%, 25% + custom presets</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+              <span>1 to 50 person equal bill splitter</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="shield-check" class="w-4 h-4 text-indigo-500"></i>
+              <span>100% Client-side browser calculation</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Related Tools -->
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider">Related US Calculators</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="ecommerce-fee-calculator.html" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">E-Commerce Fee & Profit Calculator</a></li>
+            <li><a href="mortgage-loan-calculator.html" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">US Mortgage Loan (PITI) Calculator</a></li>
+            <li><a href="invoice-receipt-generator.html" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">Free PDF Invoice Generator</a></li>
+            <li><a href="real-estate-commission-calculator.html" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium">Real Estate Commission Calculator</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/sales-tax-tip-calculator.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "multitools-hub",
+  "version": "1.0.0",
+  "description": "MultiTools Hub - Creator, PDF & Microstock Utility Suite",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "serve": "node server.js"
+  },
+  "keywords": [
+    "pdf",
+    "image-resizer",
+    "webp-converter",
+    "safe-zone",
+    "exif-cleaner",
+    "color-palette",
+    "svg-editor",
+    "kdp-calculator",
+    "qr-code"
+  ],
+  "author": "MultiTools Hub Team",
+  "license": "MIT",
+  "dependencies": {
+    "firebase": "^13.4.0"
+  }
+}

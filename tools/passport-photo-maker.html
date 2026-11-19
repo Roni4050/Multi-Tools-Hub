@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>US 2x2 Passport & Visa Photo Maker - Print Sheet Generator | MultiTools Hub</title>
+  <meta name="description" content="Free US 2x2 inch Passport and Visa Photo Maker. Crop, align biometric eye & head guidelines, and download single 600x600 px (300 DPI) photos or 4x6 print sheets holding 6 photos for CVS, Walgreens, or Walmart. 100% private.">
+  <link rel="canonical" href="https://multitools-hub.web.app/tools/passport-photo-maker.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multitools-hub.web.app/tools/passport-photo-maker.html">
+  <meta property="og:title" content="US 2x2 Passport & Visa Photo Maker - MultiTools Hub">
+  <meta property="og:description" content="Generate official 2x2 US Passport and Visa photos with 4x6 print sheets. Zero server uploads.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: {} } }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "US 2x2 Passport & Visa Photo Maker",
+        "url": "https://multitools-hub.web.app/tools/passport-photo-maker.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Create official 2x2 inch US Passport and Visa photos with biometric head/eye alignment guidelines and 4x6 inch 6-photo print sheets for 300 DPI printing.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What are the official US Passport photo dimension requirements?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The US Department of State requires a 2x2 inch (51x51 mm) square photo with a plain white or off-white background. The digital image must be exactly 600x600 pixels minimum at 300 DPI. The head height from the bottom of the chin to the top of the head (crown) must be between 1 inch and 1 3/8 inches (25 mm to 35 mm, or 50% to 69% of the photo's total height)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does the 4x6 inch print sheet save money at Walgreens, CVS, or Walmart?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Pharmacy chains charge between $15.00 and $21.99 to take and print two passport photos. However, printing a standard 4x6 inch photo print at the same store costs only $0.35 to $0.40. Our tool packages 6 perfectly sized 2x2 passport photos onto a standard 4x6 inch print sheet with cutting marks, allowing you to print 6 photos for under 50 cents."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I wear eyeglasses or head coverings in a US Passport photo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Eyeglasses are strictly not permitted in US passport photos unless accompanied by a signed medical doctor's statement. Hats, caps, and hair coverings are only allowed for documented religious or medical purposes, and your full face from the hairline to the chin must remain completely visible."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my portrait photo uploaded to an external server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. MultiTools Hub processes 100% of your image data locally inside your web browser using HTML5 Canvas. Your personal biometric photo never leaves your device and is never transmitted to any cloud server."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Sticky Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent hidden sm:inline">MultiTools Hub</span>
+        </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="passport-photo-maker.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">Passport Photo</a>
+        <a href="image-converter.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Image Converter</a>
+        <a href="bulk-image-resizer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Bulk Resizer</a>
+        <a href="bulk-webp-converter.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">WebP Converter</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+        <a href="../about.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">About</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="window.toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="Toggle Dark/Light Mode">
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+        <a href="../index.html" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="All Tools">
+          <i data-lucide="layout-grid" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Title & Breadcrumb -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800/80 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-slate-500 mb-3">
+        <a href="../index.html" class="hover:text-indigo-600 transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-slate-400">Creator &amp; Print</span>
+        <span>/</span>
+        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">US 2x2 Passport Photo Maker</span>
+      </nav>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            US 2x2 Passport &amp; Visa Photo Maker
+          </h1>
+          <p class="mt-1.5 text-sm text-slate-600 dark:text-slate-400 max-w-2xl">
+            Align official US State Department head and eye guidelines, crop to exact 2x2 inch (600x600 px @ 300 DPI), and export a 4x6 inch print sheet with 6 photos.
+          </p>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 self-start sm:self-auto flex-shrink-0">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span>100% In-Browser Privacy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+      <!-- Left Tool Workspace -->
+      <div class="lg:col-span-8 space-y-6">
+
+        <!-- Top Dropzone / Upload -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 shadow-sm space-y-6">
+
+          <!-- Dropzone -->
+          <div id="passport-dropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-indigo-500 rounded-2xl p-8 sm:p-12 text-center cursor-pointer transition-all bg-slate-50/50 dark:bg-slate-800/30">
+            <input type="file" id="passport-file-input" accept="image/jpeg,image/png,image/webp" class="hidden">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-4 shadow-sm">
+              <i data-lucide="user-square" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Drop your portrait photo here or click to browse</h3>
+            <p class="text-sm text-slate-500 mt-1">Plain background recommended • JPG, PNG, or WEBP</p>
+            <div class="mt-4">
+              <button type="button" id="passport-sample-btn" class="px-5 py-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-sm font-semibold hover:bg-indigo-100 dark:hover:bg-indigo-900/60 transition-colors inline-flex items-center gap-2 shadow-sm">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                <span>Load Sample US Passport Portrait</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Canvas Workspace -->
+          <div class="flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-950 rounded-2xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800">
+            <div class="relative shadow-2xl rounded-xl overflow-hidden border-2 border-indigo-500/40 bg-white">
+              <canvas id="passport-preview-canvas" width="600" height="600" class="w-[320px] h-[320px] sm:w-[480px] sm:h-[480px] cursor-grab block"></canvas>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 flex items-center gap-1.5">
+              <i data-lucide="move" class="w-3.5 h-3.5"></i>
+              <span>Click and drag photo to position. Use sliders below to zoom, rotate and adjust.</span>
+            </p>
+          </div>
+
+          <!-- Interactive Adjustment Controls -->
+          <div id="passport-controls" class="space-y-4 p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 opacity-50 pointer-events-none transition-opacity">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-700">
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <i data-lucide="sliders" class="w-4 h-4 text-indigo-600"></i>
+                Photo Fine-Tuning Controls
+              </h3>
+              <div class="flex items-center gap-3">
+                <label class="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300 cursor-pointer">
+                  <input type="checkbox" id="passport-show-guides" checked class="rounded accent-indigo-600">
+                  <span>Show Guidelines</span>
+                </label>
+                <button type="button" id="passport-reset-btn" class="text-xs text-slate-500 hover:text-indigo-600 font-semibold transition-colors flex items-center gap-1">
+                  <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Zoom -->
+              <div>
+                <div class="flex items-center justify-between text-xs mb-1.5">
+                  <label for="passport-zoom" class="font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">Zoom / Scale</label>
+                  <span id="passport-zoom-val" class="font-mono text-indigo-600 dark:text-indigo-400 font-bold">1.00x</span>
+                </div>
+                <input type="range" id="passport-zoom" min="0.5" max="3" step="0.02" value="1" class="w-full accent-indigo-600 cursor-pointer">
+              </div>
+
+              <!-- Rotate -->
+              <div>
+                <div class="flex items-center justify-between text-xs mb-1.5">
+                  <label for="passport-rotate" class="font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">Head Tilt / Rotate</label>
+                  <span id="passport-rotate-val" class="font-mono text-indigo-600 dark:text-indigo-400 font-bold">0°</span>
+                </div>
+                <input type="range" id="passport-rotate" min="-45" max="45" step="1" value="0" class="w-full accent-indigo-600 cursor-pointer">
+              </div>
+
+              <!-- Brightness -->
+              <div>
+                <div class="flex items-center justify-between text-xs mb-1.5">
+                  <label for="passport-brightness" class="font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">Brightness</label>
+                  <span id="passport-brightness-val" class="font-mono text-indigo-600 dark:text-indigo-400 font-bold">100%</span>
+                </div>
+                <input type="range" id="passport-brightness" min="60" max="140" step="1" value="100" class="w-full accent-indigo-600 cursor-pointer">
+              </div>
+
+              <!-- Contrast -->
+              <div>
+                <div class="flex items-center justify-between text-xs mb-1.5">
+                  <label for="passport-contrast" class="font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">Contrast</label>
+                  <span id="passport-contrast-val" class="font-mono text-indigo-600 dark:text-indigo-400 font-bold">100%</span>
+                </div>
+                <input type="range" id="passport-contrast" min="60" max="140" step="1" value="100" class="w-full accent-indigo-600 cursor-pointer">
+              </div>
+            </div>
+          </div>
+
+          <!-- Download Action Buttons -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <button type="button" id="passport-download-single" disabled class="py-4 px-6 rounded-xl bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-md shadow-indigo-500/20">
+              <i data-lucide="download" class="w-5 h-5"></i>
+              <span>Download 2x2" Single Photo (600px 300DPI)</span>
+            </button>
+            <button type="button" id="passport-download-sheet" disabled class="py-4 px-6 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-md">
+              <i data-lucide="printer" class="w-5 h-5"></i>
+              <span>Download 4x6" Print Sheet (6 Photos)</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- SEO Article & Guide -->
+        <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-10 shadow-sm space-y-8">
+          <header>
+            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              Official Guide to US Passport and Visa Photo Specifications
+            </h2>
+            <p class="mt-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+              Every year, over 200,000 US passport applications are delayed or rejected because submitted photos fail to meet the rigorous biometric criteria mandated by the US Department of State. Taking your own compliant passport photo at home is simple, fast, and completely free when you follow the exact dimensions and positioning guidelines below.
+            </p>
+          </header>
+
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+              Official US Passport Photo Requirements (State Department Checklist)
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4">
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i> Dimensions &amp; Resolution
+                </h3>
+                <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-1.5">
+                  <li><strong>Size:</strong> Exactly 2 x 2 inches (51 x 51 mm)</li>
+                  <li><strong>Resolution:</strong> 600 x 600 pixels minimum at 300 DPI</li>
+                  <li><strong>Head Height:</strong> 1 inch to 1 3/8 inches (50% to 69% of height)</li>
+                  <li><strong>Eye Height:</strong> 1 1/8 inches to 1 3/8 inches from bottom</li>
+                </ul>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i> Lighting, Pose &amp; Attire
+                </h3>
+                <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-1.5">
+                  <li><strong>Background:</strong> Solid plain white or off-white with zero shadows</li>
+                  <li><strong>Expression:</strong> Neutral facial expression, mouth closed</li>
+                  <li><strong>Eyeglasses:</strong> Strictly prohibited (no prescription or sunglasses)</li>
+                  <li><strong>Clothing:</strong> Normal daily clothing (uniforms or camouflage forbidden)</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+              How to Print for Under $0.50 at Walgreens, CVS, or Walmart
+            </h2>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+              Retail pharmacies charge upwards of $16.99 for two passport photos taken at their photo counter. However, all photo kiosks print standard 4x6 inch photographic prints on genuine glossy or matte photo paper for approximately $0.35 to $0.40.
+            </p>
+            <ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-400">
+              <li>Upload your portrait to MultiTools Hub and align your eyes with the red guideline and head within the oval.</li>
+              <li>Click <strong>Download 4x6" Print Sheet</strong> to receive a single 1200x1800 px image containing six 2x2 photos with scissor guidelines.</li>
+              <li>Upload the downloaded 4x6 image file to the Walgreens, CVS, or Walmart Photo website as a standard 4x6 print (do not select their "passport photo" service).</li>
+              <li>Pick up your 4x6 print in store for under 50 cents, cut out two photos along the dashed lines, and attach them to your DS-11 or DS-82 passport application.</li>
+            </ol>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div class="space-y-3">
+              <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+                <summary class="flex items-center justify-between gap-4 p-5 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                  Can I use this photo for a US Visa or Green Card application?
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400 flex-shrink-0"></i>
+                </summary>
+                <p class="px-5 pb-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Yes. The US Department of State and USCIS use the exact same 2x2 inch (600x600 px at 300 DPI) biometric standard for US Tourist Visas (B1/B2), Student Visas (F1), Diversity Visa Lotteries (DV Lottery), Green Card renewals (Form I-90), and US Naturalization Citizenship (Form N-400).</p>
+              </details>
+              <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+                <summary class="flex items-center justify-between gap-4 p-5 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                  Can I take my passport photo with a smartphone?
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400 flex-shrink-0"></i>
+                </summary>
+                <p class="px-5 pb-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Yes! Modern smartphones have cameras with more than enough megapixels to exceed the 300 DPI requirement. Have a family member or friend take your photo from 4 to 6 feet away in natural, indirect daylight in front of a white wall. Avoid selfies as front-facing cameras distort facial proportions.</p>
+              </details>
+              <details class="group border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden">
+                <summary class="flex items-center justify-between gap-4 p-5 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 font-semibold text-sm text-slate-900 dark:text-white select-none">
+                  Are my biometric facial photos stored or uploaded?
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400 flex-shrink-0"></i>
+                </summary>
+                <p class="px-5 pb-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Never. MultiTools Hub is built on 100% client-side technology. All zooming, rotation, and photo sheet generation runs in your browser's local memory via the HTML5 Canvas API. Nothing is transmitted over the internet.</p>
+              </details>
+            </div>
+          </section>
+        </article>
+
+      </div>
+
+      <!-- Right Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <!-- Related Step-by-Step Guide Card -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-900 dark:to-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 shadow-sm space-y-3">
+          <div class="flex items-center gap-2 text-indigo-700 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>Recommended Reading</span>
+          </div>
+          <h4 class="font-bold text-sm text-slate-900 dark:text-white leading-snug">
+            <a href="../blog/how-to-take-print-us-passport-photo-at-home.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              How to Take and Print Official 2x2 US Passport Photos at Home for Under $0.50
+            </a>
+          </h4>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Read our complete 2026 problem-solving tutorial with step-by-step instructions, practical use cases, and expert tips.
+          </p>
+          <div class="pt-2">
+            <a href="../blog/how-to-take-print-us-passport-photo-at-home.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+              <span>Read Step-by-Step Guide</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 text-slate-800 dark:text-slate-200">
+          <div class="flex items-center gap-2.5 text-indigo-700 dark:text-indigo-400 font-bold text-sm mb-3">
+            <i data-lucide="help-circle" class="w-5 h-5"></i>
+            <span>Head &amp; Eye Positioning Tips</span>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Zoom your photo until the top of the hair touches the green line, and your eyes sit squarely inside the red dashed horizontal eye guide. The chin must align with the bottom guideline.
+          </p>
+        </div>
+
+        <div class="sticky top-24 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm space-y-4">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">Related Creator Tools</h3>
+          <div class="space-y-3">
+            <a href="image-converter.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Image Format Converter</p>
+                <p class="text-xs text-slate-500 mt-0.5">JPG, PNG, WEBP &amp; SVG bulk</p>
+              </div>
+            </a>
+            <a href="bulk-image-resizer.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="scaling" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Bulk Image Resizer</p>
+                <p class="text-xs text-slate-500 mt-0.5">Scale images to exact dimensions</p>
+              </div>
+            </a>
+            <a href="aspect-ratio-calculator.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-violet-100 dark:bg-violet-950/80 text-violet-600 dark:text-violet-400 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="calculator" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Aspect Ratio Calculator</p>
+                <p class="text-xs text-slate-500 mt-0.5">Microstock 4MP verification</p>
+              </div>
+            </a>
+          </div>
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+            <a href="../index.html" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 hover:text-indigo-600 text-slate-700 dark:text-slate-300 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+              <span>Browse All Tools</span>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/passport-photo-maker.js"></script>
+</body>
+</html>

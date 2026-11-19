@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube & Reels Thumbnail Previewer - Test CTR & Mobile Feed Mockups | MultiTools Hub</title>
+  <meta name="description" content="Test your YouTube thumbnail CTR, title contrast, and readability across live Desktop, Mobile, and Dark Mode feed mockups. 100% free client-side tool.">
+  <link rel="canonical" href="https://multitools-hub.web.app/tools/thumbnail-previewer.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multitools-hub.web.app/tools/thumbnail-previewer.html">
+  <meta property="og:title" content="YouTube & Reels Thumbnail Previewer - MultiTools Hub">
+  <meta property="og:description" content="Test your YouTube thumbnail CTR, title readability, and visual hierarchy across desktop and mobile feed mockups.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {} }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "YouTube and Reels Thumbnail Previewer",
+        "url": "https://multitools-hub.web.app/tools/thumbnail-previewer.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Interactive thumbnail tester that displays live YouTube Desktop, Mobile, and Sidebar feed mockups to evaluate CTR and text legibility.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why is testing thumbnail readability at small mobile sizes so important?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Over 70% of YouTube views originate on mobile devices where thumbnails appear at physical sizes under 1.5 inches. If your embedded text is too small or lacks high contrast against dark mode feeds, viewers will scroll past."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the optimal character length for YouTube video titles?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Between 45 and 65 characters is the sweet spot. Titles longer than 70 characters are frequently truncated with ellipses (...) on mobile app home feeds and search result cards."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I test both Dark Mode and Light Mode backgrounds?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Use the theme toggle buttons in the previewer to switch mockups between YouTube Dark (#0F0F0F) and White backgrounds to verify that your thumbnail pops in both user settings."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does MultiTools Hub store my unreleased thumbnail artwork?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. All thumbnail images, titles, and channel icons are rendered locally in your browser memory. Nothing is ever sent to or stored on any server."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 h-18 py-3.5 flex items-center justify-between gap-4">
+      <a href="../index.html" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+          <i data-lucide="layers" class="w-5 h-5"></i>
+        </div>
+        <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-slate-100 dark:to-indigo-400 bg-clip-text text-transparent">MultiTools Hub</span>
+      </a>
+        <a href="../index.html" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/70 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 text-sm font-semibold transition-colors" title="Back to All Tools">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i>
+          <span>Home</span>
+        </a>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="safe-zone-checker.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Safe Zone</a>
+        <a href="thumbnail-previewer.html" class="px-3 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold">Thumbnail Test</a>
+        <a href="aspect-ratio-calculator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Aspect Ratio</a>
+        <a href="bulk-image-resizer.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Image Resizer</a>
+        <a href="kdp-bleed-calculator.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">KDP Bleed</a>
+        <a href="../blog/index.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+        <a href="../about.html" class="px-3 py-2 rounded-lg hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">About</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="window.toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors">
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+        <a href="../index.html" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors">
+          <i data-lucide="grid" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs & Header -->
+  <div class="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800/80 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-slate-500 mb-2">
+        <a href="../index.html" class="hover:text-indigo-600">Home</a>
+        <span>/</span>
+        <span class="text-slate-400">Creator & Print</span>
+        <span>/</span>
+        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Thumbnail Previewer</span>
+      </nav>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            YouTube & Reels Thumbnail Previewer
+          </h1>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
+            Compare your thumbnails in realistic Desktop, Mobile, and Dark Mode feed mockups to maximize CTR.
+          </p>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 self-start sm:self-auto">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span>100% In-Browser Privacy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Left 70% Tool Interface -->
+      <div class="lg:col-span-8 space-y-6">
+        
+        <!-- Input & Configuration Card -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 shadow-sm space-y-6">
+          
+          <!-- Dropzone for Thumbnail Image -->
+          <div id="thumb-dropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-indigo-500 rounded-2xl p-6 text-center cursor-pointer transition-all bg-slate-50/50 dark:bg-slate-800/30">
+            <input type="file" id="thumb-file-input" accept="image/*" class="hidden">
+            <div class="w-12 h-12 mx-auto rounded-xl bg-violet-50 dark:bg-violet-950/70 text-violet-600 dark:text-violet-400 flex items-center justify-center mb-2">
+              <i data-lucide="image-plus" class="w-6 h-6"></i>
+            </div>
+            <p class="text-sm font-bold text-slate-900 dark:text-white">Upload thumbnail image (1280×720 or 16:9)</p>
+            <p class="text-xs text-slate-500 mt-0.5">Click to browse or drop an image</p>
+          </div>
+
+          <!-- Sample Presets Bar -->
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="text-xs font-semibold text-slate-500">Quick Presets:</span>
+            <button type="button" class="thumb-preset-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors" data-title="I Tested 10 AI Video Generators: One is Shockingly Good!" data-channel="TechMaster Pro" data-duration="18:42" data-views="340K views" data-time="1 day ago" data-color="#4f46e5">
+              Tech / AI Review
+            </button>
+            <button type="button" class="thumb-preset-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors" data-title="Solo Camping in a Brutal Blizzard (No Tent Challenge)" data-channel="Wilderness Journey" data-duration="24:15" data-views="1.2M views" data-time="3 weeks ago" data-color="#059669">
+              Outdoor / Vlog
+            </button>
+            <button type="button" class="thumb-preset-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors" data-title="How to Pass Any Coding Interview in 30 Days (Full Roadmap)" data-channel="DevBytes Academy" data-duration="14:05" data-views="85K views" data-time="5 hours ago" data-color="#db2777">
+              Coding / Tutorial
+            </button>
+          </div>
+
+          <!-- Metadata Inputs -->
+          <div class="space-y-4">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <label for="video-title-input" class="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">Video Title</label>
+                <div class="text-xs">
+                  <span id="char-count" class="font-bold font-mono">59</span>/100 chars • <span id="char-status" class="text-emerald-500 font-semibold">Optimal length</span>
+                </div>
+              </div>
+              <input type="text" id="video-title-input" value="How to Master Video Creation in 2026 (Full Step-by-Step Guide)" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all font-medium">
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 text-xs">
+              <div>
+                <label for="channel-name-input" class="block font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">Channel Name</label>
+                <input type="text" id="channel-name-input" value="MultiTools Studio" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white">
+              </div>
+              <div>
+                <label for="video-duration-input" class="block font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">Duration</label>
+                <input type="text" id="video-duration-input" value="14:28" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white font-mono">
+              </div>
+              <div>
+                <label for="video-views-input" class="block font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">Views</label>
+                <input type="text" id="video-views-input" value="142K views" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white">
+              </div>
+              <div>
+                <label for="video-time-input" class="block font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">Time Elapsed</label>
+                <input type="text" id="video-time-input" value="3 days ago" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white">
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-800">
+              <label class="cursor-pointer text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1.5">
+                <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                <span>Upload Custom Channel Avatar</span>
+                <input type="file" id="avatar-file-input" accept="image/*" class="hidden">
+              </label>
+
+              <!-- Feed Theme Toggle (Dark vs Light for Mockups) -->
+              <div class="flex items-center gap-1">
+                <span class="text-xs text-slate-500 mr-2">Mockup Theme:</span>
+                <button type="button" id="mockup-dark-btn" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white transition-colors">
+                  YouTube Dark
+                </button>
+                <button type="button" id="mockup-light-btn" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors">
+                  YouTube Light
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- LIVE MOCKUPS CONTAINER -->
+        <div class="space-y-6">
+          
+          <!-- Mockup 1: YouTube Desktop Feed Card -->
+          <div class="mockup-container bg-[#0f0f0f] text-white p-6 rounded-2xl border border-zinc-800 shadow-xl transition-all">
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10 text-xs text-zinc-400">
+              <span class="font-bold uppercase tracking-wider">YouTube Desktop Feed Card</span>
+              <span>16:9 Standard Ratio</span>
+            </div>
+            
+            <div class="max-w-md mx-auto">
+              <!-- Thumbnail Wrapper -->
+              <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-zinc-800">
+                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221280%22%20height%3D%22720%22%20viewBox%3D%220%200%201280%20720%22%3E%3Crect%20fill%3D%22%234f46e5%22%20width%3D%221280%22%20height%3D%22720%22%2F%3E%3Ctext%20fill%3D%22%23ffffff%22%20font-family%3D%22sans-serif%22%20font-size%3D%2260%22%20font-weight%3D%22bold%22%20x%3D%2250%25%22%20y%3D%2250%25%22%20text-anchor%3D%22middle%22%3EYour%20Thumbnail%20Here%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Thumbnail Preview" class="mockup-thumb-img w-full h-full object-cover">
+                <span class="mockup-duration absolute bottom-2 right-2 px-1.5 py-0.5 rounded bg-black/85 text-[11px] font-semibold text-white font-mono">14:28</span>
+              </div>
+
+              <!-- Metadata row -->
+              <div class="mt-3 flex items-start gap-3">
+                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%2220%22%20fill%3D%22%236366f1%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2226%22%20font-size%3D%2218%22%20font-weight%3D%22bold%22%20fill%3D%22%23ffffff%22%20text-anchor%3D%22middle%22%3EM%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Channel Avatar" class="mockup-avatar-img w-9 h-9 rounded-full flex-shrink-0">
+                <div class="min-w-0 flex-1">
+                  <h3 class="mockup-title font-bold text-sm sm:text-base leading-snug line-clamp-2">
+                    How to Master Video Creation in 2026 (Full Step-by-Step Guide)
+                  </h3>
+                  <p class="mockup-channel text-xs text-zinc-400 mt-1 hover:text-white transition-colors">
+                    MultiTools Studio
+                  </p>
+                  <p class="mockup-meta text-xs text-zinc-400 mt-0.5">
+                    142K views • 3 days ago
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mockup 2 & 3: Mobile Feed and Compact Row -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Mobile App Feed View -->
+            <div class="mockup-container bg-[#0f0f0f] text-white p-5 rounded-2xl border border-zinc-800 shadow-xl">
+              <div class="flex items-center justify-between pb-2 mb-3 border-b border-white/10 text-xs text-zinc-400">
+                <span class="font-bold uppercase tracking-wider">Mobile App Feed (Full-Width)</span>
+                <i data-lucide="smartphone" class="w-4 h-4"></i>
+              </div>
+              <div class="relative w-full aspect-video rounded-lg overflow-hidden bg-zinc-800">
+                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221280%22%20height%3D%22720%22%20viewBox%3D%220%200%201280%20720%22%3E%3Crect%20fill%3D%22%234f46e5%22%20width%3D%221280%22%20height%3D%22720%22%2F%3E%3Ctext%20fill%3D%22%23ffffff%22%20font-family%3D%22sans-serif%22%20font-size%3D%2260%22%20font-weight%3D%22bold%22%20x%3D%2250%25%22%20y%3D%2250%25%22%20text-anchor%3D%22middle%22%3EYour%20Thumbnail%20Here%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Thumbnail Preview" class="mockup-thumb-img w-full h-full object-cover">
+                <span class="mockup-duration absolute bottom-1.5 right-1.5 px-1 py-0.2 rounded bg-black/85 text-[10px] font-semibold text-white font-mono">14:28</span>
+              </div>
+              <div class="mt-2.5 flex items-start gap-2.5">
+                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%2220%22%20fill%3D%22%236366f1%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2226%22%20font-size%3D%2218%22%20font-weight%3D%22bold%22%20fill%3D%22%23ffffff%22%20text-anchor%3D%22middle%22%3EM%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Avatar" class="mockup-avatar-img w-8 h-8 rounded-full flex-shrink-0">
+                <div class="min-w-0 flex-1">
+                  <h4 class="mockup-title font-bold text-xs sm:text-sm line-clamp-2 leading-tight">
+                    How to Master Video Creation in 2026 (Full Step-by-Step Guide)
+                  </h4>
+                  <p class="mockup-channel text-[11px] text-zinc-400 mt-0.5">MultiTools Studio • <span class="mockup-meta">142K views • 3 days ago</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Compact Search / Sidebar Card -->
+            <div class="mockup-container bg-[#0f0f0f] text-white p-5 rounded-2xl border border-zinc-800 shadow-xl">
+              <div class="flex items-center justify-between pb-2 mb-3 border-b border-white/10 text-xs text-zinc-400">
+                <span class="font-bold uppercase tracking-wider">Search / Sidebar Card</span>
+                <i data-lucide="search" class="w-4 h-4"></i>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="relative w-36 aspect-video rounded-lg overflow-hidden bg-zinc-800 flex-shrink-0">
+                  <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221280%22%20height%3D%22720%22%20viewBox%3D%220%200%201280%20720%22%3E%3Crect%20fill%3D%22%234f46e5%22%20width%3D%221280%22%20height%3D%22720%22%2F%3E%3Ctext%20fill%3D%22%23ffffff%22%20font-family%3D%22sans-serif%22%20font-size%3D%2260%22%20font-weight%3D%22bold%22%20x%3D%2250%25%22%20y%3D%2250%25%22%20text-anchor%3D%22middle%22%3EYour%20Thumbnail%20Here%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Thumbnail Preview" class="mockup-thumb-img w-full h-full object-cover">
+                  <span class="mockup-duration absolute bottom-1 right-1 px-1 rounded bg-black/85 text-[9px] font-semibold text-white font-mono">14:28</span>
+                </div>
+                <div class="min-w-0 flex-1">
+                  <h4 class="mockup-title font-bold text-xs line-clamp-2 leading-tight">
+                    How to Master Video Creation in 2026 (Full Step-by-Step Guide)
+                  </h4>
+                  <p class="mockup-channel text-[11px] text-zinc-400 mt-1">MultiTools Studio</p>
+                  <p class="mockup-meta text-[10px] text-zinc-500 mt-0.5">142K views • 3 days ago</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- SEO Article (700+ Words) -->
+        <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-8 sm:p-10 shadow-sm space-y-8 text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+          
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Why Thumbnail Testing is the #1 Factor in YouTube Click-Through Rate (CTR)
+            </h2>
+            <p>
+              On YouTube, your video can possess world-class editing, high-fidelity audio, and immense educational value—but if prospective viewers do not click on your thumbnail in their recommendation feeds, your content will fail to gain algorithmic traction.
+            </p>
+            <p class="mt-3">
+              Professional creators understand that <strong>Click-Through Rate (CTR)</strong> combined with Average View Duration (AVD) dictates viral distribution. Evaluating how your thumbnail artwork competes on small mobile screens and high-contrast dark mode interfaces before you hit publish is essential for maximizing impressions.
+            </p>
+          </div>
+
+          <div class="border-t border-slate-100 dark:border-slate-800 pt-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              The 3-Second Thumbnail Audit Checklist
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80">
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">Text Readability at 100px</h3>
+                <p class="mt-1 text-xs text-slate-600 dark:text-slate-400">
+                  Limit in-image text to 3 to 4 impactful words in bold sans-serif fonts. Never duplicate your video title verbatim inside the image; complement it instead.
+                </p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80">
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">Timestamp Badge Clearance</h3>
+                <p class="mt-1 text-xs text-slate-600 dark:text-slate-400">
+                  The bottom-right corner of every YouTube thumbnail is automatically covered by the black duration timestamp badge (e.g. 14:28). Never place key faces or logos in this corner.
+                </p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80">
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">Focal Separation & Contrast</h3>
+                <p class="mt-1 text-xs text-slate-600 dark:text-slate-400">
+                  Ensure foreground subjects possess clear edge lighting or rim contrast separating them from dark or noisy background environments.
+                </p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80">
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">Mobile Title Truncation</h3>
+                <p class="mt-1 text-xs text-slate-600 dark:text-slate-400">
+                  Front-load your most exciting keywords in the first 45 characters of your title so they remain fully readable before mobile app truncation kicks in.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="border-t border-slate-100 dark:border-slate-800 pt-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Frequently Asked Questions (FAQ)
+            </h2>
+            <div class="space-y-3">
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>Why is testing thumbnail readability at small mobile sizes so important?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Over 70% of YouTube views originate on mobile devices where thumbnails appear at physical sizes under 1.5 inches. If your embedded text is too small or lacks high contrast against dark mode feeds, viewers will scroll past.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>What is the optimal character length for YouTube video titles?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Between 45 and 65 characters is the sweet spot. Titles longer than 70 characters are frequently truncated with ellipses (...) on mobile app home feeds and search result cards.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>Can I test both Dark Mode and Light Mode backgrounds?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Yes! Use the theme toggle buttons in the previewer to switch mockups between YouTube Dark (#0F0F0F) and White backgrounds to verify that your thumbnail pops in both user settings.
+                </p>
+              </details>
+
+              <details class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/80 cursor-pointer">
+                <summary class="font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between">
+                  <span>Does MultiTools Hub store my unreleased thumbnail artwork?</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 chevron-icon text-slate-400"></i>
+                </summary>
+                <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  No. All thumbnail images, titles, and channel icons are rendered locally in your browser memory. Nothing is ever sent to or stored on any server.
+                </p>
+              </details>
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+
+      <!-- Right 30% Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <!-- Related Step-by-Step Guide Card -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-900 dark:to-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 shadow-sm space-y-3">
+          <div class="flex items-center gap-2 text-indigo-700 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>Recommended Reading</span>
+          </div>
+          <h4 class="font-bold text-sm text-slate-900 dark:text-white leading-snug">
+            <a href="../blog/how-to-test-youtube-thumbnails-mobile-desktop-ctr.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              How to Test YouTube Thumbnails for Desktop & Mobile Feeds to Maximize Click-Through Rates (CTR)
+            </a>
+          </h4>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Read our complete 2026 problem-solving tutorial with step-by-step instructions, practical use cases, and expert tips.
+          </p>
+          <div class="pt-2">
+            <a href="../blog/how-to-test-youtube-thumbnails-mobile-desktop-ctr.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group">
+              <span>Read Step-by-Step Guide</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 text-slate-800 dark:text-slate-200">
+          <div class="flex items-center gap-2.5 text-indigo-700 dark:text-indigo-400 font-bold text-sm mb-2">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+            <span>CTR Optimization Tip</span>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Test 2 or 3 distinct color backgrounds. High-saturation complementary colors (like cyan against orange) historically score 15-25% higher CTR in gaming and tech niches.
+          </p>
+        </div>
+
+        <div class="sticky top-24 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm space-y-4">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">Related Utility Tools</h3>
+          
+          <div class="space-y-3">
+            <a href="safe-zone-checker.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="crop" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Safe Zone Checker</p>
+                <p class="text-xs text-slate-500 mt-0.5">Shorts, Reels & TikTok UI overlay guides</p>
+              </div>
+            </a>
+
+            <a href="color-palette-extractor.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="palette" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Color Palette Extractor</p>
+                <p class="text-xs text-slate-500 mt-0.5">Sample vibrant thumbnail hex colors</p>
+              </div>
+            </a>
+
+            <a href="bulk-image-resizer.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group">
+              <div class="w-9 h-9 rounded-lg bg-violet-100 dark:bg-violet-950/80 text-violet-600 dark:text-violet-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="scaling" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">Bulk Image Resizer</p>
+                <p class="text-xs text-slate-500 mt-0.5">Scale images to exact 1280×720 px</p>
+              </div>
+            </a>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+            <a href="../index.html" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 hover:text-indigo-600 text-slate-700 dark:text-slate-300 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+              <span>Browse All 14 Tools</span>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 text-xs text-slate-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 MultiTools Hub. 100% Client-Side Private Utility Suite.</span>
+      <div class="flex items-center gap-4">
+        <a href="../about.html" class="hover:underline">About</a>
+        <a href="../contact.html" class="hover:underline">Contact</a>
+        <a href="../privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="../terms.html" class="hover:underline">Terms of Service</a>
+        <a href="../disclaimer.html" class="hover:underline">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tools/thumbnail-previewer.js"></script>
+</body>
+</html>
